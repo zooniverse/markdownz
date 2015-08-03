@@ -4,7 +4,7 @@ import MarkdownItContainer from "markdown-it-container";
 import twemoji from 'twemoji';
 import {State} from 'react-router';
 
-const var markdownIt = new MarkdownIt({linkify: true, breaks: true})
+const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(require('markdown-it-emoji'))
           .use(require('markdown-it-sub'))
           .use(require('markdown-it-sup'))
@@ -12,7 +12,7 @@ const var markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(MarkdownItContainer, 'partners')
           .use(MarkdownItContainer, 'attribution');
 
-class Markdown extends React.createClass {
+class Markdown extends React.Component {
     get displayName() {
         return 'Markdown';
     }
@@ -34,7 +34,7 @@ class Markdown extends React.createClass {
         // Catch getParams in case we're in a non-routed context like an alert
         var owner, name;
         try {
-            {owner, name} = this.getParams();
+            ({owner, name} = this.getParams());
         } catch (_) {
             owner = null;
             name = null;
@@ -84,14 +84,14 @@ class Markdown extends React.createClass {
     render() {
         var html;
         try {
-            html = @replaceSymbols(@emojify(@markdownify(@props.children ? @props.content)));
+            html = this.replaceSymbols(this.emojify(this.markdownify(this.props.children || this.props.content)));
         } catch (e) {
             console.log(e.message);
-            html = @props.children || @props.content;
+            html = this.props.children || this.props.content;
         }
 
         return React.createElement(this.props.tag,{
-            className: `markdown ${@props.className}`,
+            className: `markdown ${this.props.className}`,
             dangerouslySetInnerHTML: {html: html}
         });
     }
