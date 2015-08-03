@@ -10,7 +10,8 @@ var config = {
     entryFile: './src/index.js',
     outputDir: './out/',
     outputFile: 'bundle.js',
-    testFiles: 'test/**/*.js'
+    testFiles: 'test/**/*.js',
+    srcFiles: 'src/**/*.js'
 };
 
 
@@ -41,8 +42,11 @@ gulp.task('compile', ['build'] ,function(){
     process.exit(0);
 });
 
+gulp.task('watch-test', function() {
+    return gulp.watch([config.srcFiles, config.testFiles],['test']);
+});
 
-gulp.task('mocha', function() {
+gulp.task('test', function() {
     return gulp.src([config.testFiles])
         .pipe(mocha({
             compilers: {
