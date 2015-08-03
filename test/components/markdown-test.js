@@ -1,19 +1,8 @@
 import Markdown from "../../src/components/markdown"
 import {expect} from "chai"
-
-function dom (markup) {
-  if (typeof document !== 'undefined') return;
-  var jsdom = require('node-jsdom').jsdom;
-  global.document = jsdom(markup || '');
-  global.window = document.parentWindow;
-  global.navigator = {
-    userAgent: 'node.js'
-  };
-}
-dom('<html><body></body></html>')
-
 import React, {addons} from 'react/addons'
 const TestUtils = addons.TestUtils;
+const shallowRenderer = TestUtils.createRenderer()
 
 describe('Markdown', () => {
     var markdown;
@@ -27,8 +16,8 @@ describe('Markdown', () => {
     });
 
     it('#getDefaultProps', () => {
-        var defaultProps = (markdown.defaultProps)
-        expect(defaultProps).to.deep.equal({
+        var defaultProps = (Markdown.defaultProps)
+        expect(Markdown.defaultProps).to.deep.equal({
             tag: 'div',
             content: '',
             inline: false,
@@ -77,8 +66,12 @@ describe('Markdown', () => {
 
     describe('#render', () => {
         it('renders', () => {
-            var md = TestUtils.renderIntoDocument(React.createElement(Markdown, {content: "hello"}));
-            expect(md).to.equal('hello');
+            shallowRenderer.render(React.createElement(Markdown, { className: 'MyComponent'}, 'Test children'));
+
+            var md = shallowRenderer.getRenderOutput()
+
+            expect(md.props.dangerouslySetInnerHTML.__html).to.equal('<p>Test children</p>\n');
         })
     })
+
 });
