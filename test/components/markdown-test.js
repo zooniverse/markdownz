@@ -1,6 +1,20 @@
 import Markdown from "../../src/components/markdown"
 import {expect} from "chai"
 
+function dom (markup) {
+  if (typeof document !== 'undefined') return;
+  var jsdom = require('node-jsdom').jsdom;
+  global.document = jsdom(markup || '');
+  global.window = document.parentWindow;
+  global.navigator = {
+    userAgent: 'node.js'
+  };
+}
+dom('<html><body></body></html>')
+
+import React, {addons} from 'react/addons'
+const TestUtils = addons.TestUtils;
+
 describe('Markdown', () => {
     var markdown;
 
@@ -58,6 +72,13 @@ describe('Markdown', () => {
         it('renders markdown', () => {
             var md = markdown.markdownify('# test header');
             expect(md).to.equal('<h1>test header</h1>\n'); 
+        })
+    })
+
+    describe('#render', () => {
+        it('renders', () => {
+            var md = TestUtils.renderIntoDocument(React.createElement(Markdown, {content: "hello"}));
+            expect(md).to.equal('hello');
         })
     })
 });
