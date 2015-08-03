@@ -19,19 +19,19 @@ var makeMarkdownHelper = function(prefix, string, suffix = '') {
 var onNewLine = function(string, cursorIndex) {
     var charAtCursor = string.charAt(cursorIndex - 1);
     return (charAtCursor == '\n') || (cursorIndex == 0);
-}
+};
 
 module.exports = {
     hrefLink: function(url, title) {
-        var linkTitle = title  "Example Text";
+        var linkTitle = title || "Example Text";
         var linkUrl = url || "http://www.example.com";
-        return makeMarkdownHelper(`[${linkTitle}](`, linkUrl, ")")
+        return makeMarkdownHelper(`[${linkTitle}](`, linkUrl, ")");
     },
 
     imageLink: function(url, title) {
         var imageTitle = title || "Example Alt Text";
         var imageUrl = url || "http://bit.ly/15CY6wE";
-        return makeMarkdownHelper("![#{imageTitle}](", imageUrl, ')');
+        return makeMarkdownHelper(`![${imageTitle}](`, imageUrl, ')');
     },
 
     bold: function(string) {
@@ -95,7 +95,7 @@ module.exports = {
         ({scrollTop} = input);
         input.focus();
         input.scrollTop = scrollTop;
-        if (input.setSelectRange) {
+        if (input.setSelectionRange) {
             input.setSelectionRange(newSelectionStart, newSelectionEnd);
         }
     },
@@ -108,7 +108,7 @@ module.exports = {
 
         if (splitSelection.length > 1) { // user has multiple lines highlighted
             return splitSelection
-                .map((text, i) => text.replace(numberedLi, function (fullMatch, n) { i + 1 }))
+                .map((text, i) => text.replace(numberedLi, function (fullMatch, n) { return i + 1; }))
                 .join("\n");
         }
         else {
