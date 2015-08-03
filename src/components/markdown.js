@@ -40,7 +40,7 @@ class Markdown extends React.Component {
             name = null;
         }
 
-        input
+        return input
         // subjects in a specific project : owner-slug/project-slug^subject_id
         // \b[\w-]+\b is hyphen boundary for slugs
             .replace(/@(\b[\w-]+\b)\/(\b[\w-]+\b)\^([0-9]+)/g, "<a href='#/projects/$1/$2/talk/subjects/$3'>$1/$2 - Subject $3</a>")
