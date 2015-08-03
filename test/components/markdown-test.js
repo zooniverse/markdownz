@@ -13,7 +13,7 @@ describe('Markdown', () => {
     });
 
     it('#getDefaultProps', () => {
-        var defaultProps = (markdown.getDefaultProps())
+        var defaultProps = (markdown.defaultProps)
         expect(defaultProps).to.deep.equal({
             tag: 'div',
             content: '',
