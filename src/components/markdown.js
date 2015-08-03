@@ -12,7 +12,7 @@ const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(MarkdownItContainer, 'partners')
           .use(MarkdownItContainer, 'attribution');
 
-class Markdown extends React.Component {
+export default class Markdown extends React.Component {
     get displayName() {
         return 'Markdown';
     }
@@ -21,14 +21,6 @@ class Markdown extends React.Component {
         return [State];
     }
 
-    get defaultProps() {
-        return {
-            tag: 'div',
-            content: '',
-            inline: false,
-            className: ''
-        };
-    }
 
     replaceSymbols(input) {
         // Catch getParams in case we're in a non-routed context like an alert
@@ -86,15 +78,20 @@ class Markdown extends React.Component {
         try {
             html = this.replaceSymbols(this.emojify(this.markdownify(this.props.children || this.props.content)));
         } catch (e) {
-            console.log(e.message);
             html = this.props.children || this.props.content;
         }
 
+        console.log('htnml', html)
         return React.createElement(this.props.tag,{
             className: `markdown ${this.props.className}`,
-            dangerouslySetInnerHTML: {html: html}
+            dangerouslySetInnerHTML: {__html: html}
         });
     }
 };
 
-module.exports = Markdown;
+Markdown.defaultProps = {
+    tag: 'div',
+    content: '',
+    inline: false,
+    className: ''
+}

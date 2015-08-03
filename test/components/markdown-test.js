@@ -1,5 +1,8 @@
 import Markdown from "../../src/components/markdown"
 import {expect} from "chai"
+import React, {addons} from 'react/addons'
+const TestUtils = addons.TestUtils;
+const shallowRenderer = TestUtils.createRenderer()
 
 describe('Markdown', () => {
     var markdown;
@@ -13,8 +16,8 @@ describe('Markdown', () => {
     });
 
     it('#getDefaultProps', () => {
-        var defaultProps = (markdown.defaultProps)
-        expect(defaultProps).to.deep.equal({
+        var defaultProps = (Markdown.defaultProps)
+        expect(Markdown.defaultProps).to.deep.equal({
             tag: 'div',
             content: '',
             inline: false,
@@ -60,4 +63,15 @@ describe('Markdown', () => {
             expect(md).to.equal('<h1>test header</h1>\n'); 
         })
     })
+
+    describe('#render', () => {
+        it('renders', () => {
+            shallowRenderer.render(React.createElement(Markdown, { className: 'MyComponent'}, 'Test children'));
+
+            var md = shallowRenderer.getRenderOutput()
+
+            expect(md.props.dangerouslySetInnerHTML.__html).to.equal('<p>Test children</p>\n');
+        })
+    })
+
 });
