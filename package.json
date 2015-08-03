@@ -4,7 +4,7 @@
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "index.js",
   "scripts": {
-    "test": "npm run-script test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
