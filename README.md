@@ -1,4 +1,4 @@
-# markdownz
+# markdownz [![Build Status](https://travis-ci.org/zooniverse-ui/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse-ui/markdownz) 
 
 Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org).
 
