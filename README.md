@@ -24,7 +24,7 @@ Editor:
 ### Viewer
 
 | property | default | effect |
-======================================
+|----------|:-------:|--------|
 | children  | `null` | Markdown String to Render |
 | content | `''` | Markdown String to Render used if `this.props.children` is null |
 | tag | `div` | HTML tag to wrap markdown content with |
@@ -34,7 +34,7 @@ Editor:
 ### Editor
 
 | property | default | effect |
-======================================
+|----------|:-------:|--------|
 | name | `''` | Name for the `<textarea>` in the Markdown editor |
 | value | `''` | Value of the `<textarea>` in the Markdown editor |
 | placeholder | `''` | Placeholder text in the `<textarea>` |
