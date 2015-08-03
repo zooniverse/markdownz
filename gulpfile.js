@@ -7,7 +7,7 @@ var source = require('vinyl-source-stream');
 var watchify = require("watchify");
 
 var config = {
-    entryFile: './src/index.jsx',
+    entryFile: './src/index.js',
     outputDir: './out/',
     outputFile: 'bundle.js',
     testFiles: 'test/**/*.js'
@@ -18,7 +18,7 @@ var bundler;
 function getBundler() {
     if (!bundler) {
         var options = Object.create(watchify.args);
-        options.debug = true
+        options.debug = true;
         bundler = watchify(browserify(config.entryFile, options));
     }
     return bundler;
@@ -35,10 +35,10 @@ function bundle() {
 
 gulp.task('build', function(){
     return bundle();
-})
+});
 
 gulp.task('compile', ['build'] ,function(){
-    process.exit(0)
+    process.exit(0);
 });
 
 
@@ -53,6 +53,6 @@ gulp.task('mocha', function() {
 
 gulp.task('watch', ['build'], function(){
     getBundler().on('update', function() {
-        gulp.start('build')
+        gulp.start('build');
     });
 });
