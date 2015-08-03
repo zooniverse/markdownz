@@ -22,12 +22,12 @@ class Markdown extends React.Component {
     }
 
     getDefaultProps() {
-        return Object.create({
+        return {
             tag: 'div',
             content: '',
             inline: false,
             className: ''
-        });
+        };
     }
 
     replaceSymbols(input) {
