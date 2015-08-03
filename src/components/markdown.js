@@ -21,7 +21,7 @@ class Markdown extends React.Component {
         return [State];
     }
 
-    getDefaultProps() {
+    get defaultProps() {
         return {
             tag: 'div',
             content: '',
