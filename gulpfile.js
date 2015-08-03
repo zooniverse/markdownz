@@ -9,7 +9,8 @@ var watchify = require("watchify");
 var config = {
     entryFile: './src/index.jsx',
     outputDir: './out/',
-    outputFile: 'bundle.js'
+    outputFile: 'bundle.js',
+    testFiles: 'test/**/*.js'
 };
 
 
@@ -42,7 +43,7 @@ gulp.task('compile', ['build'] ,function(){
 
 
 gulp.task('mocha', function() {
-    return gulp.src(['t/**/*.js'])
+    return gulp.src([config.testFiles])
         .pipe(mocha({
             compilers: {
                 js: babel
