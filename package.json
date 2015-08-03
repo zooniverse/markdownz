@@ -1,0 +1,23 @@
+{
+  "name": "markdownz",
+  "version": "1.0.0",
+  "description": "Markdown viewer and editor for the Zooniverse",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run-script test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zooniverse-ui/markdownz.git"
+  },
+  "keywords": [
+    "markdown",
+    "zooniverse"
+  ],
+  "author": "The Zooniverse",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zooniverse-ui/markdownz/issues"
+  },
+  "homepage": "https://github.com/zooniverse-ui/markdownz#readme"
+}
