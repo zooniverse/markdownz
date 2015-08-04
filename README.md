@@ -40,11 +40,12 @@ Editor:
 | name | `''` | Name for the `<textarea>` in the Markdown editor |
 | value | `''` | Value of the `<textarea>` in the Markdown editor |
 | placeholder | `''` | Placeholder text in the `<textarea>` |
-| row | `''` | Height of the `<textarea>` |
+| row | `5` | Height of the `<textarea>` |
 | cols | `''` | `null` | Width of `<textarea>` |
 | onChange | `NOOP` | Change listener 
 | className | `''` | css classes for the element |
 | helpText | `null` | String or Component for custom help text for the editor |
+| onHelp   | `NOOP` | Function to run when help button is clicked |
 
 ## Zooniverse-Flavoured Markdown
 

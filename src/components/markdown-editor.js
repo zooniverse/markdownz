@@ -187,7 +187,8 @@ MarkdownEditor.defaultProps = {
     placeholder: '',
     rows: 5,
     onChange: NOOP,
-    previewing: null
+    previewing: null,
+    onHelp: NOOP
 };
 
 MarkdownEditor.initialState = {
