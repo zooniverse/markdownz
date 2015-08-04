@@ -2,6 +2,8 @@
 
 Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org).
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/edpaget.svg)](https://saucelabs.com/u/edpaget)
+
 ## Usage
 
 Available on [npm](http://npmjs.com), include as a dependency using `npm install --save markdownz`
