@@ -91,5 +91,4 @@ Markdown.defaultProps = {
     className: ''
 }
 
-//reactMixin(Markdown.prototype, State);
 reactMixin.onClass(Markdown, State);

@@ -65,43 +65,43 @@ export default class MarkdownEditor extends React.Component {
         return (
                 <div className={`markdown-editor ${this.props.className}`} data-previewing={this.state.previewing || null}>
                     <div className="talk-comment-buttons-container">
-                        <button type="button" title="link"className='talk-comment-insert-link-button' onClick={this.onInsertLinkClick}>
+                        <button type="button" title="link"className='talk-comment-insert-link-button' onClick={this.onInsertLinkClick.bind(this)}>
                             <i className="fa fa-link"></i>
                         </button>
-                        <button type="button" title="image" className='talk-comment-insert-image-button' onClick={this.onInsertImageClick}>
+                        <button type="button" title="image" className='talk-comment-insert-image-button' onClick={this.onInsertImageClick.bind(this)}>
                             <i className="fa fa-image"></i>
                         </button>
-                        <button type="button" title="bold" className='talk-comment-bold-button' onClick={this.onBoldClick}>
+                        <button type="button" title="bold" className='talk-comment-bold-button' onClick={this.onBoldClick.bind(this)}>
                             <i className="fa fa-bold"></i>
                         </button>
-                        <button type="button" title="italic" className='talk-comment-italic-button' onClick={this.onItalicClick}>
+                        <button type="button" title="italic" className='talk-comment-italic-button' onClick={this.onItalicClick.bind(this)}>
                             <i className="fa fa-italic"></i>
                         </button>
-                        <button type="button" title="block quote" className='talk-comment-insert-quote-button' onClick={this.onQuoteClick}>
+                        <button type="button" title="block quote" className='talk-comment-insert-quote-button' onClick={this.onQuoteClick.bind(this)}>
                             <i className="fa fa-quote-left"></i> <i className="fa fa-quote-right"></i>
                         </button>
-                        <button type="button" title="heading" className='talk-comment-heading-button' onClick={this.onHeadingClick}>
+                        <button type="button" title="heading" className='talk-comment-heading-button' onClick={this.onHeadingClick.bind(this)}>
                             <i className="fa fa-header"></i>
                         </button>
-                        <button type="button" title="horizontal rule" className='talk-comment-hr-button' onClick={this.onHorizontalRuleClick}>
+                        <button type="button" title="horizontal rule" className='talk-comment-hr-button' onClick={this.onHorizontalRuleClick.bind(this)}>
                             <i className="fa fa-arrows-h"></i>
                         </button>
-                        <button type="button" title="strikethrough" className='talk-comment-strikethrough-button' onClick={this.onStrikethroughClick}>
+                        <button type="button" title="strikethrough" className='talk-comment-strikethrough-button' onClick={this.onStrikethroughClick.bind(this)}>
                             <i className="fa fa-strikethrough"></i>
                         </button>
-                        <button type="button" title="bulleted list" className='talk-comment-bullet-button' onClick={this.onBulletClick}>
+                        <button type="button" title="bulleted list" className='talk-comment-bullet-button' onClick={this.onBulletClick.bind(this)}>
                             <i className="fa fa-list"></i>
                         </button>
-                        <button type="button" title="numbered list" className='talk-comment-number-button' onClick={this.onNumberClick}>
+                        <button type="button" title="numbered list" className='talk-comment-number-button' onClick={this.onNumberClick.bind(this)}>
                             <i className="fa fa-list-ol"></i>
                         </button>
 
                         <span className="markdown-editor-controls">
-                            <button type="button" onClick={this.handlePreviewToggle}>
+                            <button type="button" onClick={this.handlePreviewToggle.bind(this)}>
                                 {previewIcon}
                             </button>
 
-                            <button type="button" onClick={this.handleHelpRequest}>
+                            <button type="button" onClick={this.handleHelpRequest.bind(this)}>
                                  <i className="fa fa-question fa-fw"></i>
                             </button>
                         </span>
@@ -124,7 +124,6 @@ export default class MarkdownEditor extends React.Component {
         else {
             value = this.refs.textarea.getDOMNode().value;
         }
-        console.log(this);
         var event = {
             target: {
                 name: this.props.name,
