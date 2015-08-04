@@ -115,4 +115,26 @@ describe('MarkdownEditor', () => {
             expect(editor.state.previewing).to.be.true;
         });
     });
+
+    describe("#render", () => {
+        [["insert-link", "InsertLink"],
+         ["insert-image", "InsertImage"],
+         ["bullet"],
+         ["number"],
+         ["bold"],
+         ["italic"],
+         ["heading"],
+         ["insert-quote", "Quote"],
+         ["hr", "HorizontalRule"],
+         ["strikethrough"]].forEach(([name, cbName]) => {
+             it(`should setup a click listener for ${name} button`, () => {
+                 cbName = cbName || name.charAt(0).toUpperCase() + name.slice(1);
+                 var cbSpy = spy.on(MarkdownEditor.prototype, `on${cbName}Click`);
+                 editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
+                 var button = addons.TestUtils.findRenderedDOMComponentWithClass(editor, `talk-comment-${name}-button`);
+                 addons.TestUtils.Simulate.click(button);
+                 expect(cbSpy).to.have.been.called();
+             });
+         });
+    });
 });
