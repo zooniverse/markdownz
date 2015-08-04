@@ -81,7 +81,6 @@ export default class Markdown extends React.Component {
             html = this.props.children || this.props.content;
         }
 
-        console.log('htnml', html)
         return React.createElement(this.props.tag,{
             className: `markdown ${this.props.className}`,
             dangerouslySetInnerHTML: {__html: html}

@@ -54,15 +54,5 @@
         "transform": [
             "babelify"
         ]
-    },
-    "testling": {
-        "harness": "mocha",
-        "files": "./test/**/*.js",
-        "browsers": [
-            "safari/7..latest",
-            "ie/10..latest",
-            "chrome/latest",
-            "firefox/latest"
-        ]
     }
 }
