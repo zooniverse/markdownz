@@ -160,6 +160,7 @@ export default class MarkdownEditor extends React.Component {
     wrapLinesIn(wrapFn, opts = {}) {
         var textarea = this.refs.textarea.getDOMNode();
         var lines = m.getSelection(textarea).split("\n");
+        console.log(m.getSelection(textarea).split("\n"));
 
         var formattedText = lines
                 .map((line) => wrapFn(line).text)

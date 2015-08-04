@@ -15,8 +15,41 @@ describe('MarkdownEditor', () => {
         expect(editor).to.be.ok;
     });
 
-    it('::initialState', () => {
-        expect(MarkdownEditor.initialState).to.deep.equal({previewing: false});
+    describe('::initialState', () => {
+        it("should set previewing to false", () => {
+            expect(MarkdownEditor.initialState).to.deep.equal({previewing: false});
+        });
+    });
+
+    describe("#wrapSelectionIn", () => {
+        var wrapFnSpy;
+
+        beforeEach(() => {
+            wrapFnSpy = spy((text) => { return {text: `*${text}*`, cursor: {start: 0, end: 5}}; });
+            editor.refs =
+                {
+                    textarea: {
+                        getDOMNode: () => {
+                            return {
+                                value: "A long boring string that doesn't mean anything",
+                                selectionStart: 2,
+                                selectionEnd: 10
+                            };
+                        }
+                    }
+                };
+        });
+
+        it("should apply a function to the selected text", () => {
+            editor.wrapLinesIn(wrapFnSpy);
+            expect(wrapFnSpy).to.have.been.called();
+        });
+
+        it("should trigger the onChange handler", () => {
+            var onChangeSpy = spy(editor, 'onInputChange');
+            editor.wrapLinesIn(wrapFnSpy);
+            expect(onChangeSpy).to.have.been.called();
+        });
     });
 
     describe('#onInputChange', () => {
