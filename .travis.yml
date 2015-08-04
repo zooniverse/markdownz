@@ -4,7 +4,7 @@ matrix:
   include:
     - node_js: '0.12'
       script: npm test
-    - node_js: '0.10'
+    - node_js: '0.12'
       script: npm run-script test-sauce
 env:
   global:
