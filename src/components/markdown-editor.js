@@ -8,7 +8,7 @@ export default class MarkdownEditor extends React.Component {
         return 'MarkdownEditor';
     }
 
-        onInsertLinkClick() {
+    onInsertLinkClick() {
         this.wrapSelectionIn(m.hrefLink);
     }
 

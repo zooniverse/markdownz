@@ -8,7 +8,7 @@ describe('MarkdownEditor', () => {
     var editor;
 
     beforeEach(() => {
-        editor = new MarkdownEditor();
+        editor = new MarkdownEditor({name: 'test', onChange: Function.prototype});
     });
 
     it('exists', () => {
@@ -18,4 +18,12 @@ describe('MarkdownEditor', () => {
     it('::initialState', () => {
         expect(MarkdownEditor.initialState).to.deep.equal({previewing: false});
     });
+
+    describe('#onInputChange', () => {
+        it('calls the props.onChange callback', () => {
+            let changeSpy = spy.on(editor.props, 'onChange')
+            editor.onInputChange({target: {value: 'testVal'}})
+            expect(changeSpy).to.have.been.called();
+        })
+    })
 });
