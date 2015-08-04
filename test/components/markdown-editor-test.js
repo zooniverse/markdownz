@@ -1,4 +1,8 @@
+import dom from '../test-setup';
+
 import MarkdownEditor from '../../src/components/markdown-editor.js';
+import React, {addons} from 'react';
+
 import chai from 'chai';
 import spies from 'chai-spies';
 chai.use(spies);
@@ -99,19 +103,16 @@ describe('MarkdownEditor', () => {
 
     describe("#handlePreviewToggle", () => {
         it("should toggle the preview State", () => {
-            var setStateSpy = spy.on(editor, 'setState');
-            editor.state = {previewing: false};
+            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
             editor.handlePreviewToggle();
-            expect(setStateSpy).to.have.been.called.with({previewing: true});
+            expect(editor.state.previewing).to.be.true;
         });
     });
 
     describe("#componentWillMount", () => {
         it("should set state.previewing to the value of the previewing prop", () => {
-            editor = new MarkdownEditor({previewing: false});
-            var setStateSpy = spy.on(editor, 'setState');
-            editor.componentWillMount();
-            expect(setStateSpy).to.have.been.called();
+            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor previewing={true} value="##blah blash" />);
+            expect(editor.state.previewing).to.be.true;
         });
     });
 });

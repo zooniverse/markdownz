@@ -50,7 +50,7 @@ export default class MarkdownEditor extends React.Component {
     }
 
     componentWillMount() {
-        this.setState({preview: this.props.previewing});
+        this.setState({previewing: !!this.props.previewing});
     }
 
     render() {
