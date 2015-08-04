@@ -136,5 +136,59 @@ describe('MarkdownEditor', () => {
                  expect(cbSpy).to.have.been.called();
              });
          });
+
+        context("when previewing is true", () => {
+            beforeEach(() => {
+                editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor previewing={true} />);
+            });
+
+            it("should set the preview icon to pencil", () => {
+                var icon = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-pencil');
+                expect(icon).to.be.ok;
+            });
+
+            it("should set data-previewing to true", () => {
+                var md = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
+                expect(md.props['data-previewing']).to.be.true;
+            });
+        });
+
+        context("when previewing is false", () => {
+            beforeEach(() => {
+                editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor previewing={false} />);
+            });
+
+            it("should set the preview icon to eye", () => {
+                var icon = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-eye');
+                expect(icon).to.be.ok;
+            });
+
+            it("should not set data-previewing", () => {
+                var md = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
+                expect(md.props['data-previewing']).to.be.null;
+            });
+        });
+
+        it("should render a markdown preview from the value property", () => {
+            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blah"/>);
+            let markdown = addons.TestUtils.findRenderedDOMComponentWithClass(editor, "markdown-editor-preview")
+            expect(markdown.props.dangerouslySetInnerHTML.__html).to.match(/blah blah/);
+        });
+
+        it("should pass properties to the textarea", () => {
+            var properties = {
+                rows: 5,
+                cols: 10,
+                placeholder: "asdfasdf",
+                name: "hey there",
+                value: "oh there"
+            };
+            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor {...properties}/>);
+            var textarea = addons.TestUtils.findRenderedDOMComponentWithTag(editor, 'textarea');
+            Object.keys(properties).forEach((key) => {
+                let value = properties[key];
+                expect(textarea.props).to.have.property(key).that.equals(value);
+            });
+        });
     });
 });

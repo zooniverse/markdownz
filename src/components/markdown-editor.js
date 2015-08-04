@@ -98,18 +98,18 @@ export default class MarkdownEditor extends React.Component {
                         </button>
 
                         <span className="markdown-editor-controls">
-                            <button type="button" onClick={this.handlePreviewToggle.bind(this)}>
+                            <button title="preview" type="button" onClick={this.handlePreviewToggle.bind(this)}>
                                 {previewIcon}
                             </button>
 
-                            <button type="button" onClick={this.handleHelpRequest.bind(this)}>
+                            <button title="help" type="button" onClick={this.handleHelpRequest.bind(this)}>
                                  <i className="fa fa-question fa-fw"></i>
                             </button>
                         </span>
                     </div>
 
                     <div className="editor-area">
-                <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
+                        <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
 
                         <Markdown className="markdown-editor-preview">{this.props.value}</Markdown>
                     </div>
