@@ -76,7 +76,7 @@ describe('Markdown', () => {
             expect(html).to.equal('<p>Test text</p>\n')
         })
 
-        it('renders bare child content on error', () =>{
+        it('renders bare child content on error', () => {
             md.replaceSymbols = () => {
                 throw new Error("fail")
             }
@@ -88,7 +88,7 @@ describe('Markdown', () => {
     describe('#render', () => {
         var editor, md
         before(() => {
-            editor = React.createElement(Markdown, { className: 'MyComponent'}, 'Test children')
+            editor = React.createElement(Markdown, { className: 'MyComponent', tag: 'div'}, 'Test children')
             md = TestUtils.renderIntoDocument(editor);
         })
 
@@ -102,6 +102,13 @@ describe('Markdown', () => {
             md.render()
             expect(replaceSymbolsSpy).to.have.been.called()
         });
+
+        it('returns a react component, with customizable tag', () =>{
+            var editor = React.createElement(Markdown, {className: 'PMarkdown', tag: 'p'}, 'Test p tag')
+            var md = TestUtils.renderIntoDocument(editor);
+
+            let renderValue = md.render()
+            expect(renderValue.type).to.equal('p')
+        })
     });
 });
-
