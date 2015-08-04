@@ -1,8 +1,12 @@
 import dom from "../test-setup";
 import Markdown from "../../src/components/markdown";
-import {expect} from "chai";
 import React, {addons} from 'react/addons';
 const TestUtils = addons.TestUtils;
+
+import chai from 'chai';
+import spies from 'chai-spies';
+chai.use(spies);
+let {expect, spy} = chai;
 
 describe('Markdown', () => {
     var markdown;
@@ -64,11 +68,40 @@ describe('Markdown', () => {
         });
     });
 
+    describe('#getHtml', () =>{
+        var md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent'}, 'Test text'));
+
+        it('returns the formatted html', () => {
+            let html = md.getHtml()
+            expect(html).to.equal('<p>Test text</p>\n')
+        })
+
+        it('renders bare child content on error', () =>{
+            md.replaceSymbols = () => {
+                throw new Error("fail")
+            }
+            let html = md.getHtml()
+            expect(html).to.equal('Test text')
+        })
+    })
+
     describe('#render', () => {
+        var editor, md
+        before(() => {
+            editor = React.createElement(Markdown, { className: 'MyComponent'}, 'Test children')
+            md = TestUtils.renderIntoDocument(editor);
+        })
+
         it('renders', () => {
-            var md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent'}, 'Test children'));
             var markdownDiv = TestUtils.findRenderedDOMComponentWithTag(md, 'div');
             expect(markdownDiv.props.dangerouslySetInnerHTML.__html).to.equal('<p>Test children</p>\n');
         });
+
+        it('calls getHtml in render', () => {
+            let replaceSymbolsSpy = spy.on(md, 'getHtml')
+            md.render()
+            expect(replaceSymbolsSpy).to.have.been.called()
+        });
     });
 });
+

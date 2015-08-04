@@ -69,13 +69,16 @@ export default class Markdown extends React.Component {
         }
     }
 
-    render() {
-        var html;
+    getHtml() {
         try {
-            html = this.replaceSymbols(this.emojify(this.markdownify(this.props.children || this.props.content)));
+            return this.replaceSymbols(this.emojify(this.markdownify(this.props.children || this.props.content)));
         } catch (e) {
-            html = this.props.children || this.props.content;
+            return this.props.children || this.props.content;
         }
+    }
+
+    render() {
+        var html = this.getHtml()
 
         return React.createElement(this.props.tag,{
             className: `markdown ${this.props.className}`,
