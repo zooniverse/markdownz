@@ -4,20 +4,9 @@ import m from '../lib/markdown-insert';
 
 var NOOP = Function.prototype;
 
-class MarkdownEditor extends React.Component {
+export default class MarkdownEditor extends React.Component {
     get displayName() {
         return 'MarkdownEditor';
-    }
-
-    getDefaultProps() {
-        return {
-            name: '',
-            value: '',
-            placeholder: '',
-            rows: 5,
-            onChange: NOOP,
-            previewing: null
-        };
     }
 
     getInitialState() {
@@ -41,15 +30,15 @@ class MarkdownEditor extends React.Component {
     }
 
     onHeadingClick() {
-        this.wrapSelectionIn(m.heading, ensureNewLine: true);
+        this.wrapSelectionIn(m.heading, {ensureNewLine: true});
     }
 
     onQuoteClick() {
-        this.wrapSelectionIn(m.quote, ensureNewLine: true);
+        this.wrapSelectionIn(m.quote, {ensureNewLine: true});
     }
 
     onHorizontalRuleClick() {
-        this.wrapSelectionIn(m.horizontalRule, ensureNewLine: true);
+        this.wrapSelectionIn(m.horizontalRule, {ensureNewLine: true});
     }
 
     onStrikethroughClick() {
@@ -57,11 +46,11 @@ class MarkdownEditor extends React.Component {
     }
 
     onBulletClick() {
-        this.wrapLinesIn(m.bullet, ensureNewLine: true);
+        this.wrapLinesIn(m.bullet, {ensureNewLine: true});
     }
 
     onNumberClick() {
-        this.wrapLinesIn(m.numberedList, ensureNewLine: true, incrementLines: true);
+        this.wrapLinesIn(m.numberedList, {ensureNewLine: true, incrementLines: true});
     }
 
     componentWillMount() {
@@ -194,4 +183,11 @@ class MarkdownEditor extends React.Component {
     }
 }
 
-module.exports = MarkdownEditor;
+MarkdownEditor.defaultProps = {
+    name: '',
+    value: '',
+    placeholder: '',
+    rows: 5,
+    onChange: NOOP,
+    previewing: null
+};
