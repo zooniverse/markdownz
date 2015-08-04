@@ -131,6 +131,7 @@ describe('MarkdownEditor', () => {
                  cbName = cbName || name.charAt(0).toUpperCase() + name.slice(1);
                  var cbSpy = spy.on(MarkdownEditor.prototype, `on${cbName}Click`);
                  editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
+                 editor.refs = mockTextarea();
                  var button = addons.TestUtils.findRenderedDOMComponentWithClass(editor, `talk-comment-${name}-button`);
                  addons.TestUtils.Simulate.click(button);
                  expect(cbSpy).to.have.been.called();
