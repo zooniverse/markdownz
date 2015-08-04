@@ -3,6 +3,7 @@ import MarkdownIt from "markdown-it";
 import MarkdownItContainer from "markdown-it-container";
 import twemoji from 'twemoji';
 import {State} from 'react-router';
+import reactMixin from 'react-mixin';
 
 const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(require('markdown-it-emoji'))
@@ -16,11 +17,6 @@ export default class Markdown extends React.Component {
     get displayName() {
         return 'Markdown';
     }
-
-    get mixins() {
-        return [State];
-    }
-
 
     replaceSymbols(input) {
         // Catch getParams in case we're in a non-routed context like an alert
@@ -94,3 +90,6 @@ Markdown.defaultProps = {
     inline: false,
     className: ''
 }
+
+//reactMixin(Markdown.prototype, State);
+reactMixin.onClass(Markdown, State);

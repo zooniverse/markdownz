@@ -8,14 +8,14 @@ describe('MarkdownEditor', () => {
     var editor;
 
     beforeEach(() => {
-        editor = new MarkdownEditor()
-    })
+        editor = new MarkdownEditor();
+    });
 
     it('exists', () => {
         expect(editor).to.be.ok;
-    })
+    });
 
-    it('#getInitialState', () => {
-        expect(editor.getInitialState()).to.deep.equal({previewing: false})
-    })
-})
+    it('::initialState', () => {
+        expect(MarkdownEditor.initialState).to.deep.equal({previewing: false});
+    });
+});

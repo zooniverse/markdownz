@@ -1,58 +1,59 @@
 {
-    "name": "markdownz",
-    "version": "1.0.0",
-    "description": "Markdown viewer and editor for the Zooniverse",
-    "main": "index.js",
-    "scripts": {
-        "test": "gulp test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/zooniverse-ui/markdownz.git"
-    },
-    "keywords": [
-        "markdown",
-        "zooniverse"
-    ],
-    "author": "The Zooniverse",
-    "license": "Apache-2.0",
-    "bugs": {
-        "url": "https://github.com/zooniverse-ui/markdownz/issues"
-    },
-    "homepage": "https://github.com/zooniverse-ui/markdownz#readme",
-    "devDependencies": {
-        "babel": "^5.8.20",
-        "babelify": "^6.1.3",
-        "browserify": "^11.0.1",
-        "chai": "^3.2.0",
-        "chai-as-promised": "^5.1.0",
-        "chai-spies": "^0.7.0",
-        "gulp": "^3.9.0",
-        "gulp-babel": "^5.2.0",
-        "gulp-browserify": "^0.5.1",
-        "gulp-mocha": "^2.1.3",
-        "mocha": "^2.2.5",
-        "react": "^0.13.3",
-        "react-router": "^0.13.3",
-        "vinyl-source-stream": "^1.1.0",
-        "watchify": "^3.3.1"
-    },
-    "peerDependencies": {
-        "react": "^0.13.3",
-        "react-router": "^0.13.3"
-    },
-    "dependencies": {
-        "markdown-it": "^4.4.0",
-        "markdown-it-container": "^1.0.0",
-        "markdown-it-emoji": "^1.0.0",
-        "markdown-it-footnote": "^1.0.0",
-        "markdown-it-sub": "^1.0.0",
-        "markdown-it-sup": "^1.0.0",
-        "twemoji": "^1.4.1"
-    },
-    "browserify": {
-        "transform": [
-            "babelify"
-        ]
-    }
+  "name": "markdownz",
+  "version": "1.0.0",
+  "description": "Markdown viewer and editor for the Zooniverse",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zooniverse-ui/markdownz.git"
+  },
+  "keywords": [
+    "markdown",
+    "zooniverse"
+  ],
+  "author": "The Zooniverse",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zooniverse-ui/markdownz/issues"
+  },
+  "homepage": "https://github.com/zooniverse-ui/markdownz#readme",
+  "devDependencies": {
+    "babel": "^5.8.20",
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.1",
+    "chai": "^3.2.0",
+    "chai-as-promised": "^5.1.0",
+    "chai-spies": "^0.7.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-mocha": "^2.1.3",
+    "mocha": "^2.2.5",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.1"
+  },
+  "peerDependencies": {
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
+  },
+  "dependencies": {
+    "markdown-it": "^4.4.0",
+    "markdown-it-container": "^1.0.0",
+    "markdown-it-emoji": "^1.0.0",
+    "markdown-it-footnote": "^1.0.0",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "react-mixin": "^1.7.0",
+    "twemoji": "^1.4.1"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
 }

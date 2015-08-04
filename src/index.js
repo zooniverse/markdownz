@@ -1,5 +1,5 @@
-import {Markdown} from './components/markdown.js';
+import Markdown from './components/markdown';
+import MarkdownEditor from './components/markdown-editor';
 
-console.log('markdown', Markdown);
+export default {Markdown, MarkdownEditor};
 
-console.log('hello world');

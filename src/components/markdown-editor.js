@@ -1,6 +1,5 @@
 import React from 'react';
-import Markdown from './markdown';
-import m from '../lib/markdown-insert';
+import Markdown from './markdown'; import m from '../lib/markdown-insert';
 
 var NOOP = Function.prototype;
 
@@ -9,11 +8,7 @@ export default class MarkdownEditor extends React.Component {
         return 'MarkdownEditor';
     }
 
-    getInitialState() {
-        return {previewing: false};
-    }
-
-    onInsertLinkClick() {
+        onInsertLinkClick() {
         this.wrapSelectionIn(m.hrefLink);
     }
 
@@ -113,7 +108,7 @@ export default class MarkdownEditor extends React.Component {
                     </div>
 
                     <div className="editor-area">
-                        <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange} />
+                <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
 
                         <Markdown className="markdown-editor-preview">{this.props.value}</Markdown>
                     </div>
@@ -129,6 +124,7 @@ export default class MarkdownEditor extends React.Component {
         else {
             value = this.refs.textarea.getDOMNode().value;
         }
+        console.log(this);
         var event = {
             target: {
                 name: this.props.name,
@@ -191,3 +187,8 @@ MarkdownEditor.defaultProps = {
     onChange: NOOP,
     previewing: null
 };
+
+MarkdownEditor.initialState = {
+    previewing: false
+};
+
