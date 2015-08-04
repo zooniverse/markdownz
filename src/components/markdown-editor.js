@@ -1,5 +1,6 @@
 import React from 'react';
-import Markdown from './markdown'; import m from '../lib/markdown-insert';
+import Markdown from './markdown';
+import m from '../lib/markdown-insert';
 
 var NOOP = Function.prototype;
 
@@ -117,22 +118,24 @@ export default class MarkdownEditor extends React.Component {
     }
 
     onInputChange(e) {
-        var value;
-        if (e && e.target && e.target.value) {
-            value = e.target.value;
-        }
-        else {
-            value = this.refs.textarea.getDOMNode().value;
-        }
-        var event = {
-            target: {
-                name: this.props.name,
-                value: value,
-                type: 'textarea',
-                dataset: {}
+        if (this.props.onChange) {
+            var value;
+            if (e && e.target && e.target.value) {
+                value = e.target.value;
             }
-        };
-        this.props.onChange(event);
+            else {
+                value = this.refs.textarea.getDOMNode().value;
+            }
+            var event = {
+                target: {
+                    name: this.props.name,
+                    value: value,
+                    type: 'textarea',
+                    dataset: {}
+                }
+            };
+            this.props.onChange(event);
+        }
     }
 
     handlePreviewToggle() {
@@ -160,7 +163,6 @@ export default class MarkdownEditor extends React.Component {
     wrapLinesIn(wrapFn, opts = {}) {
         var textarea = this.refs.textarea.getDOMNode();
         var lines = m.getSelection(textarea).split("\n");
-        console.log(m.getSelection(textarea).split("\n"));
 
         var formattedText = lines
                 .map((line) => wrapFn(line).text)
@@ -177,7 +179,7 @@ export default class MarkdownEditor extends React.Component {
         m.insertAtCursor(formattedText, textarea, cursor, opts);
         this.onInputChange();
     }
-}
+};
 
 MarkdownEditor.defaultProps = {
     name: '',
