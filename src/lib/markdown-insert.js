@@ -22,7 +22,7 @@ var onNewLine = function(string, cursorIndex) {
 };
 
 module.exports = {
-    hrefLink: function(url, title) {
+    hrefLink: function(title, url) {
         var linkTitle = title || "Example Text";
         var linkUrl = url || "http://www.example.com";
         return makeMarkdownHelper(`[${linkTitle}](`, linkUrl, ")");

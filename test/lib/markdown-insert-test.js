@@ -15,18 +15,18 @@ describe("markdownInsert", function() {
 
     describe("#hrefLink", function(){
         beforeEach(() =>{
-            ({text,cursor} = markdownInsert.hrefLink("https://google.com", "google"));
+            ({text,cursor} = markdownInsert.hrefLink("google", "https://google.com"));
         });
 
         it("should create markdown link", function() {
             expect(text).to.match(/\[[A-z]+\]\(https:\/\/[A-z\.]+\)/);
         });
 
-        it("should set the link href to the second argument", function() {
+        it("should set the link href to the first argument", function() {
             expect(text).to.match(/\(https:\/\/google.com\)/);
         });
 
-        it("should set the link name to the first argument", function() {
+        it("should set the link name to the second argument", function() {
             expect(text).to.match(/\[google\]/);
         });
     });
