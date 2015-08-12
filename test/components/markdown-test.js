@@ -35,6 +35,12 @@ describe('Markdown', () => {
             expect(tagLink).to.equal("<a href='#/talk/search?query=test'>#test</a>");
         });
 
+        it('replaces #hashtags inside of html without conflicting with urls', () => {
+            let htmlTagLink = markdown.replaceSymbols(`<p>#good \n https://www.zooniverse.org/#/talk/17/1403?page=1&comment=3063</p>`);
+
+            expect(htmlTagLink).to.equal(`<p><a href=\'#/talk/search?query=good\'>#good</a> \n https://www.zooniverse.org/#/talk/17/1403?page=1&comment=3063</p>`)
+        })
+
         it('replaces ^subject mentions with subject links', () =>{
             markdown.getParams = () => {
                 return {

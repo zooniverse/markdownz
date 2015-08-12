@@ -171,7 +171,7 @@ describe('MarkdownEditor', () => {
         });
 
         it("should render a markdown preview from the value property", () => {
-            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blah"/>);
+            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="## blah blah"/>);
             let markdown = addons.TestUtils.findRenderedDOMComponentWithClass(editor, "markdown-editor-preview")
             expect(markdown.props.dangerouslySetInnerHTML.__html).to.match(/blah blah/);
         });

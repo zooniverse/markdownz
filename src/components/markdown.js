@@ -29,6 +29,16 @@ export default class Markdown extends React.Component {
         }
 
         return input
+        // hashtags #tagname
+            .replace(/(?!\B[\w+-\/]+\b)\B#(\b[\w+-\/]+\b)/g, function(fullTag, tagName) {
+                if (owner && name) {
+                    return `<a href='#/projects/${owner}/${name}/talk/search?query=${tagName}'>${fullTag}</a>`;
+                }
+                else {
+                    return `<a href='#/talk/search?query=${tagName}'>${fullTag}</a>`;
+                }
+            })
+
         // subjects in a specific project : @owner-slug/project-slug^subject_id
         // \b[\w-]+\b is hyphen boundary for slugs
             .replace(/@(\b[\w-]+\b)\/(\b[\w-]+\b)\^([0-9]+)/g, "<a href='#/projects/$1/$2/talk/subjects/$3'>$1/$2 - Subject $3</a>")
@@ -45,15 +55,6 @@ export default class Markdown extends React.Component {
         // user mentions : @username
             .replace(/\B@(\b[\w-]+\b)/g, "<a href='#/users/$1'>@$1</a>")
 
-        // hashtags #tagname
-            .replace(/(?!\B.*\/)\B#(\b[\w+-\/]+\b)/g, function(fullTag, tagName) {
-                if (owner && name) {
-                    return `<a href='#/projects/${owner}/${name}/talk/search?query=${tagName}'>${fullTag}</a>`;
-                }
-                else {
-                    return `<a href='#/talk/search?query=${tagName}'>${fullTag}</a>`;
-                }
-            });
     }
 
     emojify(input) {
