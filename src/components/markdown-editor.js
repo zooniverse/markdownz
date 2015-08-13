@@ -111,7 +111,7 @@ export default class MarkdownEditor extends React.Component {
                     <div className="editor-area">
                         <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
 
-                        <Markdown className="markdown-editor-preview">{this.props.value}</Markdown>
+                        <Markdown className="markdown-editor-preview" transform={this.props.transform}>{this.props.value}</Markdown>
                     </div>
                 </div>
         );
@@ -186,6 +186,7 @@ MarkdownEditor.defaultProps = {
     value: '',
     placeholder: '',
     rows: 5,
+    transform: arg => arg,
     onChange: NOOP,
     previewing: null,
     onHelp: NOOP
@@ -194,4 +195,3 @@ MarkdownEditor.defaultProps = {
 MarkdownEditor.initialState = {
     previewing: false
 };
-

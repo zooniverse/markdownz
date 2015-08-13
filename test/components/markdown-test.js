@@ -25,45 +25,8 @@ describe('Markdown', () => {
             tag: 'div',
             content: '',
             inline: false,
+            transform: Markdown.defaultProps.transform,
             className: ''
-        });
-    });
-
-    describe('#replaceSymbols', () => {
-        it('replaces #hashtags with hashtag links', () => {
-            var tagLink = markdown.replaceSymbols('#test');
-            expect(tagLink).to.equal("<a href='#/talk/search?query=test'>#test</a>");
-        });
-
-        it('replaces #hashtags inside of html without conflicting with urls', () => {
-            let htmlTagLink = markdown.replaceSymbols(`<p>#good \n https://www.zooniverse.org/#/talk/17/1403?page=1&comment=3063</p>`);
-
-            expect(htmlTagLink).to.equal(`<p><a href=\'#/talk/search?query=good\'>#good</a> \n https://www.zooniverse.org/#/talk/17/1403?page=1&comment=3063</p>`)
-        })
-
-        it('replaces ^subject mentions with subject links', () =>{
-            markdown.getParams = () => {
-                return {
-                    owner: 'test',
-                    name: 'project'
-                };
-            };
-
-            var subjectLink = markdown.replaceSymbols('^123456');
-            expect(subjectLink).to.equal("<a href='#/projects/test/project/talk/subjects/123456'>test/project - Subject 123456</a>");
-        });
-
-        it('does not format subject Ids when not in a routed context', () =>{
-            markdown.getParams = Function.prototype;
-
-            var subjectLink = markdown.replaceSymbols('^123456');
-            expect(subjectLink).to.equal("123456");
-        });
-
-        it('replaces @ownerslug/project-slug^subject_id mentions with links', () => {
-            var projectSubjectLink = markdown.replaceSymbols('@owner/project-d^123456');
-
-            expect(projectSubjectLink).to.equal("<a href='#/projects/owner/project-d/talk/subjects/123456'>owner/project-d - Subject 123456</a>");
         });
     });
 
@@ -83,7 +46,7 @@ describe('Markdown', () => {
         })
 
         it('renders bare child content on error', () => {
-            md.replaceSymbols = () => {
+            md.props.transform = () => {
                 throw new Error("fail")
             }
             let html = md.getHtml()
@@ -94,19 +57,25 @@ describe('Markdown', () => {
     describe('#render', () => {
         var editor, md
         before(() => {
-            editor = React.createElement(Markdown, { className: 'MyComponent', tag: 'div'}, 'Test children')
+            editor = React.createElement(Markdown, {
+              className: 'MyComponent',
+              tag: 'div',
+              transform: (html) => {
+                return html.replace('foo', 'bar');
+              }
+            }, 'Test children foo');
             md = TestUtils.renderIntoDocument(editor);
         })
 
         it('renders', () => {
             var markdownDiv = TestUtils.findRenderedDOMComponentWithTag(md, 'div');
-            expect(markdownDiv.props.dangerouslySetInnerHTML.__html).to.equal('<p>Test children</p>\n');
+            expect(markdownDiv.props.dangerouslySetInnerHTML.__html).to.equal('<p>Test children bar</p>\n');
         });
 
         it('calls getHtml in render', () => {
-            let replaceSymbolsSpy = spy.on(md, 'getHtml')
+            let getHtmlSpy = spy.on(md, 'getHtml')
             md.render()
-            expect(replaceSymbolsSpy).to.have.been.called()
+            expect(getHtmlSpy).to.have.been.called()
         });
 
         it('returns a react component, with customizable tag', () =>{
