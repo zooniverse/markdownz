@@ -25,6 +25,8 @@ describe('Markdown', () => {
             tag: 'div',
             content: '',
             inline: false,
+            baseURI: null,
+            project: null,
             transform: Markdown.defaultProps.transform,
             className: ''
         });
@@ -41,21 +43,21 @@ describe('Markdown', () => {
         var md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent'}, 'Test text'));
 
         it('returns the formatted html', () => {
-            let html = md.getHtml()
-            expect(html).to.equal('<p>Test text</p>\n')
-        })
+            let html = md.getHtml();
+            expect(html).to.equal('<p>Test text</p>\n');
+        });
 
         it('renders bare child content on error', () => {
             md.props.transform = () => {
-                throw new Error("fail")
-            }
-            let html = md.getHtml()
-            expect(html).to.equal('Test text')
-        })
-    })
+                throw new Error("fail");
+            };
+            let html = md.getHtml();
+            expect(html).to.equal('Test text');
+        });
+    });
 
     describe('#render', () => {
-        var editor, md
+        var editor, md;
         before(() => {
             editor = React.createElement(Markdown, {
               className: 'MyComponent',
@@ -65,7 +67,7 @@ describe('Markdown', () => {
               }
             }, 'Test children foo');
             md = TestUtils.renderIntoDocument(editor);
-        })
+        });
 
         it('renders', () => {
             var markdownDiv = TestUtils.findRenderedDOMComponentWithTag(md, 'div');
@@ -73,17 +75,17 @@ describe('Markdown', () => {
         });
 
         it('calls getHtml in render', () => {
-            let getHtmlSpy = spy.on(md, 'getHtml')
-            md.render()
-            expect(getHtmlSpy).to.have.been.called()
+            let getHtmlSpy = spy.on(md, 'getHtml');
+            md.render();
+            expect(getHtmlSpy).to.have.been.called();
         });
 
         it('returns a react component, with customizable tag', () =>{
-            var editor = React.createElement(Markdown, {className: 'PMarkdown', tag: 'p'}, 'Test p tag')
+            var editor = React.createElement(Markdown, {className: 'PMarkdown', tag: 'p'}, 'Test p tag');
             var md = TestUtils.renderIntoDocument(editor);
 
-            let renderValue = md.render()
-            expect(renderValue.type).to.equal('p')
-        })
+            let renderValue = md.render();
+            expect(renderValue.type).to.equal('p');
+        });
     });
 });

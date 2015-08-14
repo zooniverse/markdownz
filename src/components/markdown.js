@@ -2,6 +2,7 @@ import React from "react";
 import MarkdownIt from "markdown-it";
 import MarkdownItContainer from "markdown-it-container";
 import twemoji from 'twemoji';
+import replaceSymbols from '../lib/default-transformer';
 
 const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(require('markdown-it-emoji'))
@@ -31,14 +32,21 @@ export default class Markdown extends React.Component {
 
     getHtml() {
         try {
-            return this.props.transform(this.emojify(this.markdownify(this.props.children || this.props.content)));
+            let html = this.emojify(this.markdownify(this.props.children || this.props.content));
+            if (typeof this.props.transform === 'function') {
+                let {project, baseURI} = this.props;
+                return this.props.transform(html, {project, baseURI});
+            }
+            else {
+                return html;
+            }
         } catch (e) {
             return this.props.children || this.props.content;
         }
     }
 
     render() {
-        var html = this.getHtml()
+        var html = this.getHtml();
 
         return React.createElement(this.props.tag,{
             className: `markdown ${this.props.className}`,
@@ -51,6 +59,8 @@ Markdown.defaultProps = {
     tag: 'div',
     content: '',
     inline: false,
-    transform: arg => arg,
+    transform: replaceSymbols,
+    project: null,
+    baseURI: null,
     className: ''
 }
