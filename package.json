@@ -4,6 +4,7 @@
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "src/index.js",
   "scripts": {
+    "start": "gulp watch",
     "test": "gulp test",
     "test-sauce": "zuul -- test/**/*.js"
   },

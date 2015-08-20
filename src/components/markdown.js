@@ -2,8 +2,7 @@ import React from "react";
 import MarkdownIt from "markdown-it";
 import MarkdownItContainer from "markdown-it-container";
 import twemoji from 'twemoji';
-import {State} from 'react-router';
-import reactMixin from 'react-mixin';
+import replaceSymbols from '../lib/default-transformer';
 
 const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(require('markdown-it-emoji'))
@@ -16,45 +15,6 @@ const markdownIt = new MarkdownIt({linkify: true, breaks: true})
 export default class Markdown extends React.Component {
     get displayName() {
         return 'Markdown';
-    }
-
-    replaceSymbols(input) {
-        // Catch getParams in case we're in a non-routed context like an alert
-        var owner, name;
-        try {
-            ({owner, name} = this.getParams());
-        } catch (_) {
-            owner = null;
-            name = null;
-        }
-
-        return input
-        // hashtags #tagname
-            .replace(/(?!\B[\w+-\/]+\b)\B#(\b[\w+-\/]+\b)/g, function(fullTag, tagName) {
-                if (owner && name) {
-                    return `<a href='#/projects/${owner}/${name}/talk/search?query=${tagName}'>${fullTag}</a>`;
-                }
-                else {
-                    return `<a href='#/talk/search?query=${tagName}'>${fullTag}</a>`;
-                }
-            })
-
-        // subjects in a specific project : @owner-slug/project-slug^subject_id
-        // \b[\w-]+\b is hyphen boundary for slugs
-            .replace(/@(\b[\w-]+\b)\/(\b[\w-]+\b)\^([0-9]+)/g, "<a href='#/projects/$1/$2/talk/subjects/$3'>$1/$2 - Subject $3</a>")
-
-            .replace(/\^([0-9]+)/g, function(_, subjectID) {
-                if (owner && name) {
-                    return `<a href='#/projects/${owner}/${name}/talk/subjects/${subjectID}'>${owner}/${name} - Subject ${subjectID}</a>`;
-                }
-                else {
-                    return subjectID;
-                }
-            })
-
-        // user mentions : @username
-            .replace(/\B@(\b[\w-]+\b)/g, "<a href='#/users/$1'>@$1</a>")
-
     }
 
     emojify(input) {
@@ -72,14 +32,21 @@ export default class Markdown extends React.Component {
 
     getHtml() {
         try {
-            return this.replaceSymbols(this.emojify(this.markdownify(this.props.children || this.props.content)));
+            let html = this.emojify(this.markdownify(this.props.children || this.props.content));
+            if (typeof this.props.transform === 'function') {
+                let {project, baseURI} = this.props;
+                return this.props.transform(html, {project, baseURI});
+            }
+            else {
+                return html;
+            }
         } catch (e) {
             return this.props.children || this.props.content;
         }
     }
 
     render() {
-        var html = this.getHtml()
+        var html = this.getHtml();
 
         return React.createElement(this.props.tag,{
             className: `markdown ${this.props.className}`,
@@ -92,7 +59,8 @@ Markdown.defaultProps = {
     tag: 'div',
     content: '',
     inline: false,
+    transform: replaceSymbols,
+    project: null,
+    baseURI: null,
     className: ''
 }
-
-reactMixin.onClass(Markdown, State);
