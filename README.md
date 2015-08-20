@@ -31,6 +31,8 @@ Editor:
 | content | `''` | Markdown String to Render used if `this.props.children` is null |
 | tag | `div` | HTML tag to wrap markdown content with |
 | className | `''` | css classes for the element |
+| project | `null` | Panoptes project for links |
+| baseURI | 'null' | Set the base URI for building links |
 | inline | `false` | Toggles rendering between `markdownIt.render` and `markdownIt.renderInline`
 
 ### Editor
@@ -43,6 +45,8 @@ Editor:
 | row | `5` | Height of the `<textarea>` |
 | cols | `''` | `null` | Width of `<textarea>` |
 | onChange | `NOOP` | Change listener 
+| project | `null` | Panoptes project for links |
+| baseURI | 'null' | Set the base URI for building links |
 | className | `''` | css classes for the element |
 | helpText | `null` | String or Component for custom help text for the editor |
 | onHelp   | `NOOP` | Function to run when help button is clicked |
