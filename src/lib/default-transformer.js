@@ -4,7 +4,7 @@ export default function(input, {project, baseURI}) {
         [owner, name] = project.slug.split("/");
     }
     if (!baseURI) {
-        baseURI = "#";
+        baseURI = "";
     }
 
     return input
@@ -18,7 +18,7 @@ export default function(input, {project, baseURI}) {
             }
         })
 
-    // subjects in a specific project : @owner-slug/project-slug^subject_id
+    // subjects in a specific project : @owner-slug/project-slug^Ssubject_id
     // \b[\w-]+\b is hyphen boundary for slugs
         .replace(/@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g, `<a href="${baseURI}/projects/$1/$2/talk/subjects/$3">$1/$2 - Subject $3</a>`)
 
