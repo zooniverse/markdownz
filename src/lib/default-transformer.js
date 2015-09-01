@@ -32,6 +32,6 @@ export default function(input, {project, baseURI}) {
         })
 
     // user mentions : @username
-        .replace(/\B@(\b[\w-]+\b)/g, `<a href="${baseURI}/users/$1">@$1</a>`);
+        .replace(/\B@(\b[\w-.]+\b)/g, `<a href="${baseURI}/users/$1">@$1</a>`);
 
 }
