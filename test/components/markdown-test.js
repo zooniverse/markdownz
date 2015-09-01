@@ -37,6 +37,11 @@ describe('Markdown', () => {
             var md = markdown.markdownify('# test header');
             expect(md).to.equal('<h1>test header</h1>\n');
         });
+
+        it('opens links in a new tab when prefixed by +tab+', () => {
+            var md = markdown.markdownify('[A link](+tab+http://www.google.com)');
+            expect(md).to.equal('<p><a href="http://www.google.com" target="_blank">A link</a></p>\n')
+        });
     });
 
     describe('#getHtml', () =>{
