@@ -36,6 +36,16 @@ describe('default-transformer', () => {
         expect(subjectLink).to.equal("123456");
     });
 
+    it('replaces @username mentions with user links', () => {
+        const userLink = replaceSymbols('@testuser', {project, baseURI});
+        expect(userLink).to.equal('<a href="/users/testuser">@testuser</a>');
+    });
+
+    it('replaces @user.name mentions with user links', () => {
+        const userLink = replaceSymbols('@test.user', {project, baseURI});
+        expect(userLink).to.equal('<a href="/users/test.user">@test.user</a>');
+    });
+
     it('replaces @ownerslug/project-slug^S<subject_id> mentions with links', () => {
         var projectSubjectLink = replaceSymbols('@owner/project-d^S123456', {project, baseURI});
 
