@@ -1,11 +1,13 @@
 export default function(input, {project, baseURI}) {
-    let owner, name;
+    let owner, name, restrictedUserNames;
     if (project) {
         [owner, name] = project.slug.split("/");
     }
     if (!baseURI) {
         baseURI = "";
     }
+
+    restrictedUserNames = ['admins', 'moderators', 'researchers', 'scientists', 'team'];
 
     return input
     // hashtags #tagname
@@ -32,6 +34,12 @@ export default function(input, {project, baseURI}) {
         })
 
     // user mentions : @username
-        .replace(/\B@(\b[\w-.]+\b)/g, `<a href="${baseURI}/users/$1">@$1</a>`);
+        .replace(/\B@(\b[\w-.]+\b)/g, function(_, username) {
+          if(restrictedUserNames.indexOf(username) < 0) {
+            return `<a href="${baseURI}/users/${username}">@${username}</a>`;
+          } else {
+            return '@' + username;
+          }
+        });
 
 }
