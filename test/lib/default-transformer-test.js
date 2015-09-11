@@ -46,6 +46,11 @@ describe('default-transformer', () => {
         expect(userLink).to.equal('<a href="/users/test.user">@test.user</a>');
     });
 
+    it('it ignores restricted usernames', () => {
+        const userLink = replaceSymbols('@admins @moderators @team @test.user @researchers @scientists', {project, baseURI});
+        expect(userLink).to.equal('@admins @moderators @team <a href="/users/test.user">@test.user</a> @researchers @scientists');
+    });
+
     it('replaces @ownerslug/project-slug^S<subject_id> mentions with links', () => {
         var projectSubjectLink = replaceSymbols('@owner/project-d^S123456', {project, baseURI});
 
