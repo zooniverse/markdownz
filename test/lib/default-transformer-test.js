@@ -25,6 +25,20 @@ describe('default-transformer', () => {
         expect(htmlTagLink).to.equal(`<p><a href="/talk/search?query=good">#good</a> \n https://www.zooniverse.org/talk/17/1403?page=1&comment=3063</p>`);
     });
 
+    it('ignores links with hashes', () => {
+        const url = "http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users";
+        const markup = replaceSymbols(url, {project, baseURI});
+
+        expect(markup).to.equal(url)
+    })
+
+    it('allows delimiters in hashtags', () => {
+        ['#test-tag', '#test_tag', '#test.tag'].forEach((tag) => {
+            let parsedTag = replaceSymbols(tag, {project, baseURI})
+            expect(parsedTag).to.equal(`<a href="/talk/search?query=${tag.slice(1, tag.length)}">${tag}</a>`)
+        })
+    })
+
     it('replaces ^S<subject_id> mentions with subject links', () =>{
         project = { slug: "test/project" };
         var subjectLink = replaceSymbols('^S123456', {project, baseURI});;
