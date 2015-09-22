@@ -22,11 +22,11 @@ export default function(input, {project, baseURI}) {
 
     // subjects in a specific project : @owner-slug/project-slug^Ssubject_id
     // \b[\w-]+\b is hyphen boundary for slugs
-        .replace(/@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g, `<a href="${baseURI}/projects/$1/$2/talk/subjects/$3">$1/$2 - Subject $3</a>`)
+        .replace(/@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g, `<a href="${baseURI}/projects/$1/$2/talk/subjects/$3" title="$1/$2 - Subject $3">Subject $3</a>`)
 
         .replace(/\^S([0-9]+)/g, function(_, subjectID) {
             if (owner && name) {
-                return `<a href="${baseURI}/projects/${owner}/${name}/talk/subjects/${subjectID}">${owner}/${name} - Subject ${subjectID}</a>`;
+                return `<a href="${baseURI}/projects/${owner}/${name}/talk/subjects/${subjectID}" title="${owner}/${name} - Subject ${subjectID}" >Subject ${subjectID}</a>`;
             }
             else {
                 return subjectID;

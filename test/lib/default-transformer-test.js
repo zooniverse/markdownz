@@ -28,7 +28,7 @@ describe('default-transformer', () => {
     it('replaces ^S<subject_id> mentions with subject links', () =>{
         project = { slug: "test/project" };
         var subjectLink = replaceSymbols('^S123456', {project, baseURI});;
-        expect(subjectLink).to.equal('<a href="/projects/test/project/talk/subjects/123456">test/project - Subject 123456</a>');
+        expect(subjectLink).to.equal('<a href="/projects/test/project/talk/subjects/123456" title="test/project - Subject 123456" >Subject 123456</a>');
     });
 
     it('does not format subject Ids when not in a routed context', () =>{
@@ -54,6 +54,6 @@ describe('default-transformer', () => {
     it('replaces @ownerslug/project-slug^S<subject_id> mentions with links', () => {
         var projectSubjectLink = replaceSymbols('@owner/project-d^S123456', {project, baseURI});
 
-        expect(projectSubjectLink).to.equal('<a href="/projects/owner/project-d/talk/subjects/123456">owner/project-d - Subject 123456</a>');
+        expect(projectSubjectLink).to.equal('<a href="/projects/owner/project-d/talk/subjects/123456" title="owner/project-d - Subject 123456">Subject 123456</a>');
     });
 });
