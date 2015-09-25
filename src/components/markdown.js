@@ -34,13 +34,13 @@ export default class Markdown extends React.Component {
 
     getHtml() {
         try {
-            let html = this.emojify(this.markdownify(this.props.children || this.props.content));
+            let {project, baseURI} = this.props;
+
             if (typeof this.props.transform === 'function') {
-                let {project, baseURI} = this.props;
-                return this.props.transform(html, {project, baseURI});
+                return this.emojify(this.markdownify(this.props.transform(this.props.children || this.props.content, {project, baseURI})));
             }
             else {
-                return html;
+                return this.emojify(this.markdownify(this.props.children || this.props.content));
             }
         } catch (e) {
             return this.props.children || this.props.content;
