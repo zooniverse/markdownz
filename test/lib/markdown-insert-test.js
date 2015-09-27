@@ -87,7 +87,7 @@ describe("markdownInsert", function() {
     describe("#heading", () => {
         it("should wrap the provided string in '*'", () => {
             ({text,cursor} = markdownInsert.heading("blahblah"));
-            expect(text).to.match(/^#\/\/\s[A-z]+\s##$/);
+            expect(text).to.match(/^##\s[A-z]+\s##$/);
         });
     });
 
