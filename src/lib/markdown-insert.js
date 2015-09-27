@@ -59,7 +59,7 @@ module.exports = {
 
     heading: function(string) {
         var text = string || "Heading";
-        return makeMarkdownHelper('#// ', text, ' ##');
+        return makeMarkdownHelper('## ', text, ' ##');
     },
 
     horizontalRule: function(string) {
