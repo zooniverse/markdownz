@@ -1,6 +1,6 @@
 import dom from '../test-setup';
 
-import MarkdownEditor from '../../src/components/markdown-editor';
+import MarkdownEditor from '../../src/components/markdown-editor.jsx';
 import React, {addons} from 'react';
 
 import chai from 'chai';

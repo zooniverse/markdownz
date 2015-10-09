@@ -1,5 +1,5 @@
 import React from 'react';
-import Markdown from './markdown';
+import Markdown from './markdown.jsx';
 import m from '../lib/markdown-insert';
 import replaceSymbols from '../lib/default-transformer';
 

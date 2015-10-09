@@ -1,5 +1,5 @@
 import dom from "../test-setup";
-import Markdown from "../../src/components/markdown";
+import Markdown from "../../src/components/markdown.jsx";
 import React, {addons} from 'react/addons';
 const TestUtils = addons.TestUtils;
 
