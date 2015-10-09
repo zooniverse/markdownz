@@ -48,7 +48,7 @@ describe('default-transformer', () => {
     it('replaces project #hashtag mentions with project links', () =>{
         project = { slug: "test/project" };
         const subjectLink = replaceSymbols('#S123456', {project, baseURI});;
-        expect(subjectLink).to.equal('[#S123456](/projects/test/project/talk/search?query=S123456")');
+        expect(subjectLink).to.equal('[#S123456](/projects/test/project/talk/search?query=S123456)');
     });
 
 

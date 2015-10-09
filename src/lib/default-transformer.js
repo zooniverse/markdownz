@@ -13,7 +13,7 @@ export default function(input, {project, baseURI}) {
     // hashtags #tagname
         .replace(/(?!\B.*\/+\b)\B#(\b[\w+-\/]+\b)/g, function(fullTag, tagName) {
             if (owner && name) {
-                return `[${fullTag}](${baseURI}/projects/${owner}/${name}/talk/search?query=${tagName}")`
+                return `[${fullTag}](${baseURI}/projects/${owner}/${name}/talk/search?query=${tagName})`
             }
             else {
                 return `[${fullTag}](${baseURI}/talk/search?query=${tagName})`
