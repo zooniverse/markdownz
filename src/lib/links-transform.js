@@ -1,6 +1,7 @@
 /* 
- markdown-it-links-in-new-tabs.js
+ links-transform.js
  opens links in a new tab if prefixed with +tab+
+ adds rel=nofollow if not a zooniverse.org link
  accepts options of {prefix: 'your-custom-prefix'}
  'prefix' is the string to use before links for links to open in new tab
  */ 

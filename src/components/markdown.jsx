@@ -10,7 +10,7 @@ const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(require('markdown-it-sup'))
           .use(require('markdown-it-footnote'))
           .use(require('markdown-it-imsize'))
-          .use(require('../lib/links-in-new-tabs'))
+          .use(require('../lib/links-transform'))
           .use(MarkdownItContainer, 'partners')
           .use(MarkdownItContainer, 'attribution');
 
