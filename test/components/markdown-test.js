@@ -12,7 +12,7 @@ describe('Markdown', () => {
     var markdown;
 
     beforeEach(() => {
-        markdown = new Markdown();
+        markdown = addons.TestUtils.renderIntoDocument(<Markdown />)
     });
 
     it('exists', () => {
@@ -27,6 +27,7 @@ describe('Markdown', () => {
             inline: false,
             baseURI: null,
             project: null,
+            relNofollow: false,
             transform: Markdown.defaultProps.transform,
             className: ''
         });
@@ -40,7 +41,7 @@ describe('Markdown', () => {
 
         it('opens links in a new tab when prefixed by +tab+', () => {
             var md = markdown.markdownify('[A link](+tab+http://www.google.com)');
-            expect(md).to.equal('<p><a href="http://www.google.com" target="_blank" rel="nofollow">A link</a></p>\n')
+            expect(md).to.equal('<p><a href="http://www.google.com" target="_blank">A link</a></p>\n')
         });
     });
 
@@ -60,6 +61,21 @@ describe('Markdown', () => {
             expect(html).to.equal('Test text');
         });
     });
+
+    describe('#renderer', () => {
+        it('uses relNofollow when passed as a prop', () => {
+            var md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', relNofollow: true}, '[Test](link)'));
+
+            expect(md.getHtml()).to.equal('<p><a href="link" rel="nofollow">Test</a></p>\n')
+        })
+
+        it('doesn\'t use relNofollow when not passed as a prop', () => {
+            var md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', relNofollow: false}, '[Test](link)'));
+
+            expect(md.getHtml()).to.equal('<p><a href="link">Test</a></p>\n')
+        })
+
+    })
 
     describe('#render', () => {
         var editor, md;
