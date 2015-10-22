@@ -3,8 +3,10 @@ import MarkdownIt from "markdown-it";
 import MarkdownItContainer from "markdown-it-container";
 import twemoji from 'twemoji';
 import replaceSymbols from '../lib/default-transformer';
+import relNofollow from  '../lib/links-rel-nofollow'
 
-const markdownIt = new MarkdownIt({linkify: true, breaks: true})
+const markdownIt = function () {
+    return new MarkdownIt({linkify: true, breaks: true})
           .use(require('markdown-it-emoji'))
           .use(require('markdown-it-sub'))
           .use(require('markdown-it-sup'))
@@ -13,6 +15,7 @@ const markdownIt = new MarkdownIt({linkify: true, breaks: true})
           .use(require('../lib/links-in-new-tabs'))
           .use(MarkdownItContainer, 'partners')
           .use(MarkdownItContainer, 'attribution');
+}
 
 export default class Markdown extends React.Component {
     get displayName() {
@@ -23,12 +26,20 @@ export default class Markdown extends React.Component {
         return twemoji.parse(input);
     }
 
+    renderer() {
+        if (this.props && this.props.relNofollow) {
+            return markdownIt().use(relNofollow)
+        } else {
+            return markdownIt()
+        }
+    }
+
     markdownify(input) {
         if (this.props && this.props.inline) {
-            return markdownIt.renderInline(input);
+            return this.renderer().renderInline(input);
         }
         else {
-            return markdownIt.render(input);
+            return this.renderer().render(input);
         }
     }
 
@@ -64,5 +75,6 @@ Markdown.defaultProps = {
     transform: replaceSymbols,
     project: null,
     baseURI: null,
-    className: ''
+    className: '',
+    relNofollow: false
 }

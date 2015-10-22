@@ -9,16 +9,14 @@ export default function(md, opts) {
     md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
         const hrefIndex = tokens[idx].attrIndex('href');
         const href = tokens[idx].attrs[hrefIndex][1];
+        const relIndex = tokens[idx].attrIndex('rel');
 
-        if (prefix === href.slice(0, prefix.length)) {
-            // trim prefix if href starts with prefix
-            tokens[idx].attrs[hrefIndex][1] = href.slice(prefix.length, href.length);
-            const aIndex = tokens[idx].attrIndex('target');
-
-            if (aIndex < 0) {
-                tokens[idx].attrPush(['target', '_blank']); // add new attribute
+        if (!href.match(/zooniverse.org/)) {
+            // add rel=nofollow to external links
+            if (relIndex < 0) {
+                tokens[idx].attrPush(['rel', 'nofollow'])
             } else {
-                tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+                tokens[idx].attrs[relIndex][1] = 'nofollow';
             }
         }
 
