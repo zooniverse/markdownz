@@ -1,7 +1,7 @@
 import dom from "../test-setup";
 import Markdown from "../../src/components/markdown.jsx";
-import React, {addons} from 'react/addons';
-const TestUtils = addons.TestUtils;
+import React from 'react'
+import TestUtils from 'react-addons-test-utils';
 
 import chai from 'chai';
 import spies from 'chai-spies';
@@ -12,7 +12,7 @@ describe('Markdown', () => {
     var markdown;
 
     beforeEach(() => {
-        markdown = addons.TestUtils.renderIntoDocument(<Markdown />)
+        markdown = TestUtils.renderIntoDocument(<Markdown />)
     });
 
     it('exists', () => {
@@ -45,18 +45,20 @@ describe('Markdown', () => {
         });
     });
 
-    describe('#getHtml', () =>{
-        var md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent'}, 'Test text'));
+    describe('#getHtml', () => {
+        let errorTransform = () => {
+          throw new Error('fail')
+        }
 
         it('returns the formatted html', () => {
+            let md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent' }, 'Test text'));
+
             let html = md.getHtml();
             expect(html).to.equal('<p>Test text</p>\n');
         });
 
         it('renders bare child content on error', () => {
-            md.props.transform = () => {
-                throw new Error("fail");
-            };
+            let md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', transform: errorTransform }, 'Test text'));
             let html = md.getHtml();
             expect(html).to.equal('Test text');
         });
@@ -92,7 +94,7 @@ describe('Markdown', () => {
 
         it('renders', () => {
             var markdownDiv = TestUtils.findRenderedDOMComponentWithTag(md, 'div');
-            expect(markdownDiv.props.dangerouslySetInnerHTML.__html).to.equal('<p>Test children bar</p>\n');
+            expect(markdownDiv.innerHTML).to.equal('<p>Test children bar</p>\n');
         });
 
         it('calls getHtml in render', () => {

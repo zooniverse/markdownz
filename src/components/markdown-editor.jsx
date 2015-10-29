@@ -125,7 +125,7 @@ export default class MarkdownEditor extends React.Component {
                 value = e.target.value;
             }
             else {
-                value = this.refs.textarea.getDOMNode().value;
+                value = this.refs.textarea.value;
             }
             var event = {
                 target: {
@@ -151,7 +151,7 @@ export default class MarkdownEditor extends React.Component {
         // helper to call markdown-insert functions on the textarea
         // wrapFn takes / returns a string (from ./lib/markdown-insert.cjsx)
 
-        var textarea = this.refs.textarea.getDOMNode(),
+        var textarea = this.refs.textarea,
             selection = m.getSelection(textarea),
             text,cursor;
 
@@ -162,7 +162,7 @@ export default class MarkdownEditor extends React.Component {
     }
 
     wrapLinesIn(wrapFn, opts = {}) {
-        var textarea = this.refs.textarea.getDOMNode();
+        var textarea = this.refs.textarea;
         var lines = m.getSelection(textarea).split("\n");
 
         var formattedText = lines
