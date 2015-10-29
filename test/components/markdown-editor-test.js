@@ -1,7 +1,8 @@
 import dom from '../test-setup';
 
 import MarkdownEditor from '../../src/components/markdown-editor.jsx';
-import React, {addons} from 'react';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 
 import chai from 'chai';
 import spies from 'chai-spies';
@@ -9,18 +10,14 @@ chai.use(spies);
 let {expect, spy} = chai;
 
 let mockTextarea = function() {
-    return {
-        textarea: {
-            getDOMNode: () => {
-                return {
-                    focus: () => {},
-                    value: "A long\nboring string that doesn't mean anything",
-                    selectionStart: 2,
-                    selectionEnd: 10
-                };
-            }
-        }
-    };
+  return {
+    textarea: {
+      focus: () => {},
+      value: "A long\nboring string that doesn't mean anything",
+      selectionStart: 2,
+      selectionEnd: 10
+    }
+  };
 };
 
 describe('MarkdownEditor', () => {
@@ -103,7 +100,7 @@ describe('MarkdownEditor', () => {
 
     describe("#handlePreviewToggle", () => {
         it("should toggle the preview State", () => {
-            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
+            editor = TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
             editor.handlePreviewToggle();
             expect(editor.state.previewing).to.be.true;
         });
@@ -111,7 +108,7 @@ describe('MarkdownEditor', () => {
 
     describe("#componentWillMount", () => {
         it("should set state.previewing to the value of the previewing prop", () => {
-            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor previewing={true} value="##blah blash" />);
+            editor = TestUtils.renderIntoDocument(<MarkdownEditor previewing={true} value="##blah blash" />);
             expect(editor.state.previewing).to.be.true;
         });
     });
@@ -130,66 +127,66 @@ describe('MarkdownEditor', () => {
              it(`should setup a click listener for ${name} button`, () => {
                  cbName = cbName || name.charAt(0).toUpperCase() + name.slice(1);
                  var cbSpy = spy.on(MarkdownEditor.prototype, `on${cbName}Click`);
-                 editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
-                 editor.refs = mockTextarea();
-                 var button = addons.TestUtils.findRenderedDOMComponentWithClass(editor, `talk-comment-${name}-button`);
-                 addons.TestUtils.Simulate.click(button);
+                 editor = TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
+                 var button = TestUtils.findRenderedDOMComponentWithClass(editor, `talk-comment-${name}-button`);
+                 TestUtils.Simulate.click(button);
                  expect(cbSpy).to.have.been.called();
              });
          });
 
         context("when previewing is true", () => {
             beforeEach(() => {
-                editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor previewing={true} />);
+                editor = TestUtils.renderIntoDocument(<MarkdownEditor previewing={true} />);
             });
 
             it("should set the preview icon to pencil", () => {
-                var icon = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-pencil');
+                var icon = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-pencil');
                 expect(icon).to.be.ok;
             });
 
             it("should set data-previewing to true", () => {
-                var md = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
-                expect(md.props['data-previewing']).to.be.true;
+                var md = TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
+                expect(md.hasAttribute('data-previewing')).to.be.true;
             });
         });
 
         context("when previewing is false", () => {
             beforeEach(() => {
-                editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor previewing={false} />);
+                editor = TestUtils.renderIntoDocument(<MarkdownEditor previewing={false} />);
             });
 
             it("should set the preview icon to eye", () => {
-                var icon = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-eye');
+                var icon = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-eye');
                 expect(icon).to.be.ok;
             });
 
             it("should not set data-previewing", () => {
-                var md = addons.TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
-                expect(md.props['data-previewing']).to.be.null;
+                var md = TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
+                expect(md.hasAttribute('data-previewing')).to.be.false;
             });
         });
 
         it("should render a markdown preview from the value property", () => {
-            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor value="## blah blah"/>);
-            let markdown = addons.TestUtils.findRenderedDOMComponentWithClass(editor, "markdown-editor-preview")
-            expect(markdown.props.dangerouslySetInnerHTML.__html).to.match(/blah blah/);
+            editor = TestUtils.renderIntoDocument(<MarkdownEditor value="## blah blah"/>);
+            let markdown = TestUtils.findRenderedDOMComponentWithClass(editor, "markdown-editor-preview")
+            expect(markdown.innerHTML).to.match(/blah blah/);
         });
 
         it("should pass properties to the textarea", () => {
             var properties = {
-                rows: 5,
-                cols: 10,
+                rows: '5',
+                cols: '10',
                 placeholder: "asdfasdf",
-                name: "hey there",
-                value: "oh there"
+                name: "hey there"
             };
-            editor = addons.TestUtils.renderIntoDocument(<MarkdownEditor {...properties}/>);
-            var textarea = addons.TestUtils.findRenderedDOMComponentWithTag(editor, 'textarea');
+            var value = "oh there";
+            editor = TestUtils.renderIntoDocument(<MarkdownEditor {...properties} value={value}/>);
+            var textarea = TestUtils.findRenderedDOMComponentWithTag(editor, 'textarea');
             Object.keys(properties).forEach((key) => {
-                let value = properties[key];
-                expect(textarea.props).to.have.property(key).that.equals(value);
+              let value = properties[key];
+              expect(textarea.getAttribute(key)).to.be.equal(value);
             });
+            expect(textarea.value).to.equal(value);
         });
     });
 });
