@@ -99,7 +99,7 @@ export default class MarkdownEditor extends React.Component {
                     </button>
 
                     <span className="markdown-editor-controls">
-                        <button title="preview" type="button" onClick={this.handlePreviewToggle.bind(this)}>
+                        <button title={(this.state.previewing) ? "edit" : "preview"} type="button" onClick={this.handlePreviewToggle.bind(this)}>
                             {previewIcon}
                         </button>
 
