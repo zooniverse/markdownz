@@ -113,6 +113,28 @@ describe('MarkdownEditor', () => {
         });
     });
 
+    describe("#componentWillReceiveProps", () => {
+        it("should set state.previewing to the value of the previewing prop (after mount)", () => {
+            // We can't manipulate props of editor directly, so create a parent component to do it via render
+            var TestParent = React.createFactory(React.createClass({
+              getInitialState() {
+                return {
+                  previewing: true
+                };
+              },
+              render() {
+                return <MarkdownEditor ref="editor" previewing={this.state.previewing} value="##blah blash"  />
+              }
+            }));
+
+            var parent = TestUtils.renderIntoDocument(TestParent());
+            parent.setState({
+              previewing: false
+            });
+            expect(parent.refs.editor.state.previewing).to.be.false;
+        });
+    });
+
     describe("#render", () => {
         [["insert-link", "InsertLink"],
          ["insert-image", "InsertImage"],

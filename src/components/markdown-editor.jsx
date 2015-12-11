@@ -54,6 +54,15 @@ export default class MarkdownEditor extends React.Component {
         this.setState({previewing: !!this.props.previewing});
     }
 
+    componentWillReceiveProps(nextProps) {
+        // If previewing prop has changed, update internal state
+        if (typeof nextProps.previewing === 'boolean') {
+            this.setState({
+                previewing: nextProps.previewing
+            });
+        }
+    }
+
     render() {
         var previewIcon;
         if (this.state.previewing) {
