@@ -50,6 +50,7 @@ Editor:
 | className | `''` | css classes for the element |
 | helpText | `null` | String or Component for custom help text for the editor |
 | onHelp   | `NOOP` | Function to run when help button is clicked |
+| previewing   | false | Toggle the editor's preview mode |
 
 ## Zooniverse-Flavoured Markdown
 
