@@ -6,10 +6,6 @@ import replaceSymbols from '../lib/default-transformer';
 var NOOP = Function.prototype;
 
 export default class MarkdownEditor extends React.Component {
-    get displayName() {
-        return 'MarkdownEditor';
-    }
-
     onInsertLinkClick() {
         this.wrapSelectionIn(m.hrefLink);
     }
@@ -190,6 +186,8 @@ export default class MarkdownEditor extends React.Component {
         this.onInputChange();
     }
 };
+
+MarkdownEditor.displayName = 'MarkdownEditor';
 
 MarkdownEditor.defaultProps = {
     name: '',
