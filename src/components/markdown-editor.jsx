@@ -201,10 +201,10 @@ export default class MarkdownEditor extends React.Component {
 MarkdownEditor.displayName = 'MarkdownEditor';
 
 MarkdownEditor.defaultProps = {
-    name: '',
-    value: '',
-    placeholder: '',
+    name: null,
     defaultValue: null,
+    value: null,
+    placeholder: null,
     rows: 5,
     transform: replaceSymbols,
     onChange: NOOP,
