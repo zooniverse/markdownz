@@ -13,6 +13,10 @@ export default class MarkdownEditor extends React.Component {
         };
     }
 
+    get value() {
+        return this.refs.textarea.value;
+    }
+
     onInsertLinkClick() {
         this.wrapSelectionIn(m.hrefLink);
     }
