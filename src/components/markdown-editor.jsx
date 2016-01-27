@@ -6,6 +6,13 @@ import replaceSymbols from '../lib/default-transformer';
 var NOOP = Function.prototype;
 
 export default class MarkdownEditor extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            previewing: false
+        };
+    }
+
     onInsertLinkClick() {
         this.wrapSelectionIn(m.hrefLink);
     }
@@ -200,8 +207,4 @@ MarkdownEditor.defaultProps = {
     onHelp: NOOP,
     project: null,
     baseURI: null
-};
-
-MarkdownEditor.initialState = {
-    previewing: false
 };
