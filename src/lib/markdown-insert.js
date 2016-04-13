@@ -24,13 +24,13 @@ var onNewLine = function(string, cursorIndex) {
 module.exports = {
     hrefLink: function(title, url) {
         var linkTitle = title || "Example Text";
-        var linkUrl = url || "http://www.example.com";
+        var linkUrl = url || "https://www.example.com";
         return makeMarkdownHelper(`[${linkTitle}](`, linkUrl, ")");
     },
 
     imageLink: function(url, title) {
         var imageTitle = title || "Example Alt Text";
-        var imageUrl = url || "http://bit.ly/15CY6wE";
+        var imageUrl = url || "https://bit.ly/1T3dYw2";
         return makeMarkdownHelper(`![${imageTitle}](`, imageUrl, ')');
     },
 
