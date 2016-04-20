@@ -31,9 +31,9 @@ describe('MarkdownEditor', () => {
         expect(editor).to.be.ok;
     });
 
-    describe('::initialState', () => {
+    describe('initial state', () => {
         it("should set previewing to false", () => {
-            expect(MarkdownEditor.initialState).to.deep.equal({previewing: false});
+            expect(editor.state).to.deep.equal({previewing: false});
         });
     });
 

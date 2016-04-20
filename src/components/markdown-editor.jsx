@@ -6,8 +6,15 @@ import replaceSymbols from '../lib/default-transformer';
 var NOOP = Function.prototype;
 
 export default class MarkdownEditor extends React.Component {
-    get displayName() {
-        return 'MarkdownEditor';
+    constructor() {
+        super(...arguments);
+        this.state = {
+            previewing: false
+        };
+    }
+
+    get value() {
+        return this.refs.textarea.value;
     }
 
     onInsertLinkClick() {
@@ -119,7 +126,7 @@ export default class MarkdownEditor extends React.Component {
                 </div>
 
                 <div className="editor-area">
-                    <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
+                    <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} defaultValue={this.props.defaultValue} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
 
                     <Markdown className="markdown-editor-preview" project={this.props.project} baseURI={this.props.baseURI} transform={this.props.transform}>{this.props.value}</Markdown>
                 </div>
@@ -191,10 +198,13 @@ export default class MarkdownEditor extends React.Component {
     }
 };
 
+MarkdownEditor.displayName = 'MarkdownEditor';
+
 MarkdownEditor.defaultProps = {
-    name: '',
-    value: '',
-    placeholder: '',
+    name: null,
+    defaultValue: null,
+    value: null,
+    placeholder: null,
     rows: 5,
     transform: replaceSymbols,
     onChange: NOOP,
@@ -202,8 +212,4 @@ MarkdownEditor.defaultProps = {
     onHelp: NOOP,
     project: null,
     baseURI: null
-};
-
-MarkdownEditor.initialState = {
-    previewing: false
 };
