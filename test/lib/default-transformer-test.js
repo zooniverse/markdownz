@@ -22,7 +22,7 @@ describe('default-transformer', () => {
         const sentence = `#test sentence #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`
 
         const htmlSentence = replaceSymbols(sentence, {project, baseURI})
-        expect(htmlSentence).to.equal(`#test sentence #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`)
+        expect(htmlSentence).to.equal(`[#test](/talk/search?query=test) sentence[#tag](/talk/search?query=tag) and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`)
     })
 
     it('ignores links with hashes', () => {
@@ -33,7 +33,7 @@ describe('default-transformer', () => {
     })
 
     it('allows delimiters in hashtags', () => {
-        ['#test-tag', '#test_tag', '#test.tag'].forEach((tag) => {
+        ['#test-tag', '#test_tag'].forEach((tag) => {
             const parsedTag = replaceSymbols(tag, {project, baseURI})
             expect(parsedTag).to.equal(`[${tag}](/talk/search?query=${tag.slice(1, tag.length)})`)
         })
