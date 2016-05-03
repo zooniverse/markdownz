@@ -6,17 +6,17 @@ Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org).
 
 Available on [npm](http://npmjs.com), include as a dependency using `npm install --save markdownz`
 
-This package contains two publically accessible components a Markdown viewer and a Markdown editor for Zooniverse-flavoured Markdown:
+This package contains two publicly accessible components a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown:
 
 Viewer:
 
 ```jsx
-<Mardowkn>{A String of `Markdown`}</Markdown>
+<Markdown>{A String of `Markdown`}</Markdown>
 ```
 
 Editor:
 ```jsx
-<MarkdownEditor rows={20} value={A String of `Markdown`} onChange={this.handleMarkdownChange} />
+<MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
 ```
 
 ## Supported Properties
@@ -42,7 +42,7 @@ Editor:
 | placeholder | `''` | Placeholder text in the `<textarea>` |
 | row | `5` | Height of the `<textarea>` |
 | cols | `''` | `null` | Width of `<textarea>` |
-| onChange | `NOOP` | Change listener 
+| onChange | `NOOP` | Change listener |
 | project | `null` | Panoptes project for links |
 | baseURI | 'null' | Set the base URI for building links |
 | className | `''` | css classes for the element |
@@ -54,7 +54,7 @@ Editor:
 
 We use [markdown-it](https://github.com/markdown-it/markdown-it) for rendering Markdown and [twemoji](https://github.com/twitter/twemoji) for cross-browser emoji support.
 
-TODO: Document custom extensions. 
+TODO: Document custom extensions.
 
 ## Contributing
 
