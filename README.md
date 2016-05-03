@@ -1,8 +1,6 @@
-# markdownz [![Build Status](https://travis-ci.org/zooniverse-ui/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse-ui/markdownz) 
+# markdownz [![Build Status](https://travis-ci.org/zooniverse/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse/markdownz)
 
 Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org).
-
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/edpaget.svg)](https://saucelabs.com/u/edpaget)
 
 ## Usage
 
