@@ -11,7 +11,7 @@ export default function(input, {project, baseURI}) {
 
     return input
     // hashtags #tagname
-        .replace(/(?!\B.*\/+\b)\B#(\b[\w+-\/]+\b)/g, function(fullTag, tagName) {
+        .replace(/(?:^|\s)\#([-\w\d]{3,40})/g, function(fullTag, tagName) {
             if (owner && name) {
                 return `[${fullTag}](${baseURI}/projects/${owner}/${name}/talk/tags/${tagName})`
             }

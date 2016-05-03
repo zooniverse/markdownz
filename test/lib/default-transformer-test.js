@@ -19,10 +19,10 @@ describe('default-transformer', () => {
     });
 
     it('works in a sentence with multiple tags & a URL', () => {
-        const sentence = `#test sentenc #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`
+        const sentence = `#test sentence #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`
 
         const htmlSentence = replaceSymbols(sentence, {project, baseURI})
-        expect(htmlSentence).to.equal(`#test sentenc #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`)
+        expect(htmlSentence).to.equal(`#test sentence #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`)
     })
 
     it('ignores links with hashes', () => {
