@@ -22,7 +22,7 @@ describe('default-transformer', () => {
         const sentence = `#test sentence #tag and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`
 
         const htmlSentence = replaceSymbols(sentence, {project, baseURI})
-        expect(htmlSentence).to.equal(`[#test](/talk/search?query=test) sentence[#tag](/talk/search?query=tag) and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`)
+        expect(htmlSentence).to.equal(`[#test](/talk/search?query=test) sentence [#tag](/talk/search?query=tag) and url: http://docs.panoptes.apiary.io/#reference/user/users-collection/list-all-users`)
     })
 
     it('ignores links with hashes', () => {
