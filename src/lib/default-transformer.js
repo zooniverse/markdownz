@@ -11,12 +11,12 @@ export default function(input, {project, baseURI}) {
 
     return input
     // hashtags #tagname
-        .replace(/(?:^|\s)\#([-\w\d]{3,40})/g, function(fullTag, tagName) {
+        .replace(/(^|\s)\#([-\w\d]{3,40})/g, function(fullTag, separator, tagName) {
             if (owner && name) {
-                return `[#${tagName}](${baseURI}/projects/${owner}/${name}/talk/tags/${tagName})`
+                return `${separator}[#${tagName}](${baseURI}/projects/${owner}/${name}/talk/tags/${tagName})`
             }
             else {
-                return `[#${tagName}](${baseURI}/talk/search?query=${tagName})`
+                return `${separator}[#${tagName}](${baseURI}/talk/search?query=${tagName})`
             }
         })
 
