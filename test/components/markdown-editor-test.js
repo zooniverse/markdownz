@@ -138,6 +138,7 @@ describe('MarkdownEditor', () => {
     describe("#render", () => {
         [["insert-link", "InsertLink"],
          ["insert-image", "InsertImage"],
+         ["insert-video", "InsertVideo"],
          ["bullet"],
          ["number"],
          ["bold"],

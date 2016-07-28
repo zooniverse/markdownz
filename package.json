@@ -52,6 +52,7 @@
     "markdown-it-imsize": "git://github.com/edpaget/markdown-it-imsize",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
+    "markdown-it-video": "^0.4.0",
     "react-mixin": "^1.7.0",
     "twemoji": "^1.4.1"
   },
