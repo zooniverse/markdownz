@@ -33,6 +33,12 @@ module.exports = {
         var imageUrl = url || "https://bit.ly/1T3dYw2";
         return makeMarkdownHelper(`![${imageTitle}](`, imageUrl, ')');
     },
+    
+    videoLink: function(url, service) {
+      var videoService = service || 'youtube';
+      var videoUrl = url || 'https://www.youtube.com/watch?v=cjC94EhAs00'
+      return makeMarkdownHelper(`@[${videoService}](`, videoUrl, ')');
+    },
 
     bold: function(string) {
         var text = string || "Bold Text";

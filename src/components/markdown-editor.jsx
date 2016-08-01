@@ -24,6 +24,10 @@ export default class MarkdownEditor extends React.Component {
     onInsertImageClick() {
         this.wrapSelectionIn(m.imageLink);
     }
+    
+    onInsertVideoClick() {
+        this.wrapSelectionIn(m.videoLink);
+    }
 
     onBoldClick() {
         this.wrapSelectionIn(m.bold);
@@ -88,6 +92,9 @@ export default class MarkdownEditor extends React.Component {
                     </button>
                     <button type="button" title="image" className='talk-comment-insert-image-button' onClick={this.onInsertImageClick.bind(this)}>
                         <i className="fa fa-image"></i>
+                    </button>
+                    <button type="button" title="video" className='talk-comment-insert-video-button' onClick={this.onInsertVideoClick.bind(this)}>
+                        <i className="fa fa-video-camera"></i>
                     </button>
                     <button type="button" title="bold" className='talk-comment-bold-button' onClick={this.onBoldClick.bind(this)}>
                         <i className="fa fa-bold"></i>

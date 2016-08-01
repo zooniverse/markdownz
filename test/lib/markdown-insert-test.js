@@ -48,6 +48,24 @@ describe("markdownInsert", function() {
             expect(text).to.match(/!\[logor\]/);
         });
     });
+    
+    describe("#videoLink", () => {
+        beforeEach(() => {
+            ({text,cursor} = markdownInsert.videoLink("https://youtu.be/cjC94EhAs00", "youtube"));
+        });
+
+        it("should create a markdown video", () => {
+            expect(text).to.match(/\@[[A-z]+\]\(https:\/\/[A-z0-9\.\/]+\)/);
+        });
+
+        it("should include a src attribute from the first argument", () => {
+            expect(text).to.match(/\(https:\/\/youtu.be\/cjC94EhAs00\)/);
+        });
+
+        it("should include a service name from the second argument", () => {
+            expect(text).to.match(/@\[youtube\]/);
+        });
+    });
 
     describe("#bold", () => {
         it("should wrap the provided string in '**'", () => {
