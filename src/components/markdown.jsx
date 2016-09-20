@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import MarkdownIt from "markdown-it";
 import MarkdownItContainer from "markdown-it-container";
 import twemoji from 'twemoji';
@@ -44,11 +45,26 @@ export default class Markdown extends React.Component {
     }
 
     markdownify(input) {
+        Markdown.counter++;
+        let id = this.props.idPrefix || (Date.now().toString(16) + Markdown.counter);
+        let env = {docId: id};
         if (this.props && this.props.inline) {
-            return this.renderer().renderInline(input);
+            return this.renderer().renderInline(input, env);
         }
         else {
-            return this.renderer().render(input);
+            return this.renderer().render(input, env);
+        }
+    }
+
+    captureFootnoteLinks() {
+        let links = ReactDOM.findDOMNode(this).querySelectorAll('.footnote-ref > a, .footnote-backref');
+        for(let i = 0; i < links.length; i++) {
+            let link = links[i];
+            let target = document.getElementById(link.getAttribute('href').replace('#', ''));
+            link.onclick = function(ev) {
+                ev.preventDefault();
+                target.scrollIntoView({block: 'start', behavior: 'smooth'});
+            };
         }
     }
 
@@ -69,6 +85,7 @@ export default class Markdown extends React.Component {
 
     render() {
         var html = this.getHtml();
+        setTimeout(() => this.captureFootnoteLinks(), 1);
 
         return React.createElement(this.props.tag,{
             className: `markdown ${this.props.className}`,
@@ -76,6 +93,8 @@ export default class Markdown extends React.Component {
         });
     }
 };
+
+Markdown.counter = 0;
 
 Markdown.defaultProps = {
     tag: 'div',
@@ -85,5 +104,6 @@ Markdown.defaultProps = {
     project: null,
     baseURI: null,
     className: '',
-    relNofollow: false
+    relNofollow: false,
+    idPrefix: null
 }

@@ -29,7 +29,8 @@ describe('Markdown', () => {
             project: null,
             relNofollow: false,
             transform: Markdown.defaultProps.transform,
-            className: ''
+            className: '',
+            idPrefix: null
         });
     });
 
