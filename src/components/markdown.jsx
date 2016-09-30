@@ -13,6 +13,7 @@ import markdownFootnote from 'markdown-it-footnote';
 import markdownImsize from 'markdown-it-imsize';
 import markdownNewTab from '../lib/links-in-new-tabs';
 import markdownVideo from 'markdown-it-video';
+import markdownTableOfContents from 'markdown-it-table-of-contents';
 
 const markdownIt = function () {
     return new MarkdownIt({linkify: true, breaks: true})
@@ -23,6 +24,7 @@ const markdownIt = function () {
                 .use(markdownImsize)
                 .use(markdownNewTab)
                 .use(markdownVideo)
+                .use(markdownTableOfContents)
                 .use(MarkdownItContainer, 'partners')
                 .use(MarkdownItContainer, 'attribution');
 }
