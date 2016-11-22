@@ -1,6 +1,6 @@
 # markdownz [![Build Status](https://travis-ci.org/zooniverse/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse/markdownz)
 
-Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org).
+Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org). Requires React 15.
 
 ## Usage
 
