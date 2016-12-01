@@ -1,6 +1,4 @@
-import dom from '../test-setup';
-
-import MarkdownEditor from '../../src/components/markdown-editor.jsx';
+import { MarkdownEditor } from '../src/index';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 

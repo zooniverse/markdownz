@@ -1,9 +1,4 @@
-import linksTransform from '../../src/lib/links-in-new-tabs';
-import MarkdownIt from 'markdown-it'
-import chai from 'chai';
-import spies from 'chai-spies';
-chai.use(spies);
-let {expect, spy} = chai;
+import linksTransform from '../src/lib/links-in-new-tabs';
 
 describe('links-in-new-tabs', () => {
     var mdIt;

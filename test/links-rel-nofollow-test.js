@@ -1,9 +1,4 @@
-import relNofollow from '../../src/lib/links-rel-nofollow';
-import MarkdownIt from 'markdown-it'
-import chai from 'chai';
-import spies from 'chai-spies';
-chai.use(spies);
-let {expect, spy} = chai;
+import relNofollow from '../src/lib/links-rel-nofollow';
 
 describe('links-rel-nofollow', () => {
     var mdIt;

@@ -1,12 +1,5 @@
-import dom from "../test-setup";
-import Markdown from "../../src/components/markdown.jsx";
-import React from 'react'
+import { Markdown } from '../src/index';
 import TestUtils from 'react-addons-test-utils';
-
-import chai from 'chai';
-import spies from 'chai-spies';
-chai.use(spies);
-let {expect, spy} = chai;
 
 describe('Markdown', () => {
     var markdown;

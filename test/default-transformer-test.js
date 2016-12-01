@@ -1,4 +1,4 @@
-import replaceSymbols from '../../src/lib/default-transformer';
+import replaceSymbols from '../src/lib/default-transformer';
 import chai from 'chai';
 import spies from 'chai-spies';
 

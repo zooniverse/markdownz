@@ -1,10 +1,4 @@
-import markdownInsert from '../../src/lib/markdown-insert.js';
-import chai from 'chai';
-import spies from 'chai-spies';
-
-chai.use(spies);
-
-let {expect, spy} = chai;
+import markdownInsert from '../src/lib/markdown-insert.js';
 
 var setCursorStartEnd = function(text,cursor) {
 
