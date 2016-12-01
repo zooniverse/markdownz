@@ -11,11 +11,16 @@ This package contains two publicly accessible components a Markdown viewer and a
 Viewer:
 
 ```jsx
+import { Markdown } from 'markdownz';
+
 <Markdown>{A String of `Markdown`}</Markdown>
 ```
 
 Editor:
+
 ```jsx
+import { MarkdownEditor } from 'markdownz';
+
 <MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
 ```
 

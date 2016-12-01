@@ -1,5 +1,2 @@
-import Markdown from './components/markdown.jsx';
-import MarkdownEditor from './components/markdown-editor.jsx';
-
-export default {Markdown, MarkdownEditor};
-
+export { default as Markdown } from './components/markdown.jsx';
+export { default as MarkdownEditor } from './components/markdown-editor.jsx';
