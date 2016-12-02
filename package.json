@@ -2,7 +2,7 @@
   "name": "markdownz",
   "version": "7.0.0",
   "description": "Markdown viewer and editor for the Zooniverse",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "lint": "eslint src",
