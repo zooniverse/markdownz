@@ -1,12 +1,15 @@
 {
   "name": "markdownz",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "src/index.js",
   "scripts": {
+    "build": "babel src --out-dir lib",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-register --require test/helper.js test/*-test.js*",
-    "test-sauce": "zuul -- test/**/*.js"
+    "preversion": "rm -rf lib && npm test",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "repository": {
     "type": "git",
@@ -40,8 +43,7 @@
     "mocha": "~3.1.0",
     "react-addons-test-utils": "~15.3.2",
     "react-dom": "~15.3.2",
-    "webpack": "~1.13.3",
-    "zuul": "~3.2.0"
+    "webpack": "~1.13.3"
   },
   "dependencies": {
     "markdown-it": "~7.0.1",
