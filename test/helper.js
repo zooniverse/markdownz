@@ -9,7 +9,7 @@ chai.use(spy);
 global.React = React;
 global.expect = chai.expect;
 global.spy = chai.spy;
-global.MarkdownIt = MarkdownIt
+global.MarkdownIt = MarkdownIt;
 
 global.document = jsdom('');
 global.window = document.defaultView;

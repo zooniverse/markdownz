@@ -1,113 +1,115 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import MarkdownIt from "markdown-it";
-import MarkdownItContainer from "markdown-it-container";
-import twemoji from 'twemoji';
-import replaceSymbols from '../lib/default-transformer';
-import relNofollow from  '../lib/links-rel-nofollow'
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MarkdownIt from 'markdown-it';
+import MarkdownItContainer from 'markdown-it-container';
 import markdownEmoji from 'markdown-it-emoji';
 import markdownSub from 'markdown-it-sub';
 import markdownSup from 'markdown-it-sup';
 import markdownFootnote from 'markdown-it-footnote';
 import markdownImsize from 'markdown-it-imsize';
-import markdownNewTab from '../lib/links-in-new-tabs';
 import markdownVideo from 'markdown-it-video';
 import markdownTableOfContents from 'markdown-it-table-of-contents';
 import markdownAnchor from 'markdown-it-anchor';
+import twemoji from 'twemoji';
 
-const markdownIt = function () {
-    return new MarkdownIt({linkify: true, breaks: true})
-                .use(markdownEmoji)
-                .use(markdownSub)
-                .use(markdownSup)
-                .use(markdownFootnote)
-                .use(markdownImsize)
-                .use(markdownNewTab)
-                .use(markdownVideo)
-                .use(markdownAnchor)
-                .use(markdownTableOfContents)
-                .use(MarkdownItContainer, 'partners')
-                .use(MarkdownItContainer, 'attribution');
+import replaceSymbols from '../lib/default-transformer';
+import relNofollow from '../lib/links-rel-nofollow';
+import markdownNewTab from '../lib/links-in-new-tabs';
+
+function markdownIt() {
+  return new MarkdownIt({ linkify: true, breaks: true })
+    .use(markdownEmoji)
+    .use(markdownSub)
+    .use(markdownSup)
+    .use(markdownFootnote)
+    .use(markdownImsize)
+    .use(markdownNewTab)
+    .use(markdownVideo)
+    .use(markdownAnchor)
+    .use(markdownTableOfContents)
+    .use(MarkdownItContainer, 'partners')
+    .use(MarkdownItContainer, 'attribution');
 }
 
 export default class Markdown extends React.Component {
-    get displayName() {
-        return 'Markdown';
+  displayName() {
+    return 'Markdown';
+  }
+
+  markdownify(input) {
+    Markdown.counter += 1;
+    const id = this.props.idPrefix || (Date.now().toString(16) + Markdown.counter);
+    const env = { docId: id };
+    if (this.props && this.props.inline) {
+      return this.renderer().renderInline(input, env);
     }
 
-    emojify(input) {
-        return twemoji.parse(input);
+    return this.renderer().render(input, env);
+  }
+
+  renderer() {
+    if (this.props && this.props.relNofollow) {
+      return markdownIt().use(relNofollow);
     }
+    return markdownIt();
+  }
 
-    renderer() {
-        if (this.props && this.props.relNofollow) {
-            return markdownIt().use(relNofollow)
-        } else {
-            return markdownIt()
-        }
+  captureFootnoteLinks() {
+    const backrefs = '.footnote-ref > a, .footnote-backref';
+    const links = ReactDOM.findDOMNode(this).querySelectorAll(backrefs);
+
+    for (let i = 0; i < links.length; i += 1) {
+      const link = links[i];
+      const target = document.getElementById(link.getAttribute('href').replace('#', ''));
+      link.onclick = function (ev) {
+        ev.preventDefault();
+        target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      };
     }
+  }
 
-    markdownify(input) {
-        Markdown.counter++;
-        let id = this.props.idPrefix || (Date.now().toString(16) + Markdown.counter);
-        let env = {docId: id};
-        if (this.props && this.props.inline) {
-            return this.renderer().renderInline(input, env);
-        }
-        else {
-            return this.renderer().render(input, env);
-        }
+  getHtml() {
+    const content = this.props.children || this.props.content;
+
+    try {
+      const { project, baseURI } = this.props;
+
+      if (typeof this.props.transform === 'function') {
+        const transformed = this.props.transform(content, { project, baseURI });
+        return this.emojify(this.markdownify(transformed));
+      }
+
+      return this.emojify(this.markdownify(content));
+    } catch (e) {
+      return content;
     }
+  }
 
-    captureFootnoteLinks() {
-        let links = ReactDOM.findDOMNode(this).querySelectorAll('.footnote-ref > a, .footnote-backref');
-        for(let i = 0; i < links.length; i++) {
-            let link = links[i];
-            let target = document.getElementById(link.getAttribute('href').replace('#', ''));
-            link.onclick = function(ev) {
-                ev.preventDefault();
-                target.scrollIntoView({block: 'start', behavior: 'smooth'});
-            };
-        }
-    }
+  emojify(input) {
+    return twemoji.parse(input);
+  }
 
-    getHtml() {
-        try {
-            let {project, baseURI} = this.props;
+  render() {
+    const html = this.getHtml();
+    setTimeout(() => this.captureFootnoteLinks(), 1);
 
-            if (typeof this.props.transform === 'function') {
-                return this.emojify(this.markdownify(this.props.transform(this.props.children || this.props.content, {project, baseURI})));
-            }
-            else {
-                return this.emojify(this.markdownify(this.props.children || this.props.content));
-            }
-        } catch (e) {
-            return this.props.children || this.props.content;
-        }
-    }
-
-    render() {
-        var html = this.getHtml();
-        setTimeout(() => this.captureFootnoteLinks(), 1);
-
-        return React.createElement(this.props.tag,{
-            className: `markdown ${this.props.className}`,
-            dangerouslySetInnerHTML: {__html: html}
-        });
-    }
-};
+    return React.createElement(this.props.tag, {
+      className: `markdown ${this.props.className}`,
+      dangerouslySetInnerHTML: { __html: html }
+    });
+  }
+}
 
 Markdown.counter = 0;
 
 Markdown.defaultProps = {
-    tag: 'div',
-    content: '',
-    inline: false,
-    transform: replaceSymbols,
-    project: null,
-    baseURI: null,
-    className: '',
-    relNofollow: false,
-    idPrefix: null
-}
+  tag: 'div',
+  content: '',
+  inline: false,
+  transform: replaceSymbols,
+  project: null,
+  baseURI: null,
+  className: '',
+  relNofollow: false,
+  idPrefix: null
+};
