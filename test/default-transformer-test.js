@@ -60,6 +60,11 @@ describe('default-transformer', () => {
     expect(userLink).to.equal('[@test.user](/users/test.user)');
   });
 
+  it('ignores non-separated @-names', () => {
+    const nonUserLink = 'https://www.google.com/maps/@38.3462374,-77.978685,16z';
+    expect(replaceSymbols(nonUserLink, { project, baseURI })).to.equal(nonUserLink);
+  });
+
   it('it ignores restricted usernames', () => {
     const userLink = replaceSymbols('@admins @moderators @team @researchers @scientists', { project, baseURI });
     expect(userLink).to.equal('@admins @moderators @team @researchers @scientists');

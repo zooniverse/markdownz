@@ -1,7 +1,7 @@
 const tagReplacer = /(^|\s)#([-\w\d]{3,40})/g;
 const projectSubjectLinker = /@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g;
 const subjectLinker = /\^S([0-9]+)/g;
-const userLinker = /\B@(\b[\w-.]+\b)/g;
+const userLinker = /(^|\s)@([\w\-.]+)/g;
 
 export default function (input, { project, baseURI }) {
   let owner;
@@ -22,11 +22,11 @@ export default function (input, { project, baseURI }) {
     return `${separator}[#${tagName}](${prefix}/talk/search?query=${tagName})`;
   }
 
-  function replaceUsers(_, username) {
+  function replaceUsers(_, seperator, username) {
     if (restrictedUserNames.indexOf(username) < 0) {
-      return `[@${username}](${prefix}/users/${username})`;
+      return `${seperator}[@${username}](${prefix}/users/${username})`;
     }
-    return `@${username}`;
+    return `${seperator}@${username}`;
   }
 
   function replaceSubjects(_, subjectID) {
