@@ -1,131 +1,125 @@
-var makeMarkdownHelper = function(prefix, string, suffix = '') {
-    /* (string) { {text, cursor}
-     // text is the formatted markdown string
-     // cursor is the position in that string to put the cursor back
+function makeMarkdownHelper(prefix, string, suffix = '') {
+  /* (string) { {text, cursor}
+   // text is the formatted markdown string
+   // cursor is the position in that string to put the cursor back
 
-     // wraps string in prefix & suffix
-     // returns object with {text: output string, cursor: {start, end}}
-     // * start and end are selection indexes
-     // probably easiest to access data with {text, cursor} = func() */
+   // wraps string in prefix & suffix
+   // returns object with {text: output string, cursor: {start, end}}
+   // * start and end are selection indexes
+   // probably easiest to access data with {text, cursor} = func() */
 
-    var text = prefix + string + suffix,
-        start = prefix.length,
-        end = start + string.length,
-        cursor = {start: start, end: end};
+  const text = prefix + string + suffix;
+  const start = prefix.length;
+  const end = start + string.length;
+  const cursor = { start, end };
+  return { text, cursor };
+}
 
-    return {text: text, cursor: cursor};
-};
-
-var onNewLine = function(string, cursorIndex) {
-    var charAtCursor = string.charAt(cursorIndex - 1);
-    return (charAtCursor == '\n') || (cursorIndex == 0);
-};
+function onNewLine(string, cursorIndex) {
+  const charAtCursor = string.charAt(cursorIndex - 1);
+  return (charAtCursor === '\n') || (cursorIndex === 0);
+}
 
 module.exports = {
-    hrefLink: function(title, url) {
-        var linkTitle = title || "Example Text";
-        var linkUrl = url || "https://www.example.com";
-        return makeMarkdownHelper(`[${linkTitle}](`, linkUrl, ")");
-    },
+  hrefLink(title, url) {
+    const linkTitle = title || 'Example Text';
+    const linkUrl = url || 'https://www.example.com';
+    return makeMarkdownHelper(`[${linkTitle}](`, linkUrl, ')');
+  },
 
-    imageLink: function(url, title) {
-        var imageTitle = title || "Example Alt Text";
-        var imageUrl = url || "https://bit.ly/1T3dYw2";
-        return makeMarkdownHelper(`![${imageTitle}](`, imageUrl, ')');
-    },
-    
-    videoLink: function(url, service) {
-      var videoService = service || 'youtube';
-      var videoUrl = url || 'https://www.youtube.com/watch?v=cjC94EhAs00'
-      return makeMarkdownHelper(`@[${videoService}](`, videoUrl, ')');
-    },
+  imageLink(url, title) {
+    const imageTitle = title || 'Example Alt Text';
+    const imageUrl = url || 'https://bit.ly/1T3dYw2';
+    return makeMarkdownHelper(`![${imageTitle}](`, imageUrl, ')');
+  },
 
-    bold: function(string) {
-        var text = string || "Bold Text";
-        return makeMarkdownHelper('**', text, '**');
-    },
+  videoLink(url, service) {
+    const videoService = service || 'youtube';
+    const videoUrl = url || 'https://www.youtube.com/watch?v=cjC94EhAs00';
+    return makeMarkdownHelper(`@[${videoService}](`, videoUrl, ')');
+  },
 
-    italic: function(string) {
-        var text = string || "Italic Text";
-        return makeMarkdownHelper('*', text, '*');
-    },
+  bold(string) {
+    const text = string || 'Bold Text';
+    return makeMarkdownHelper('**', text, '**');
+  },
 
-    quote: function(string) {
-        var text = string || "Quoted Text";
-        return makeMarkdownHelper('> ', text);
-    },
+  italic(string) {
+    const text = string || 'Italic Text';
+    return makeMarkdownHelper('*', text, '*');
+  },
 
-    bullet: function(string) {
-        return makeMarkdownHelper('- ', string);
-    },
+  quote(string) {
+    const text = string || 'Quoted Text';
+    return makeMarkdownHelper('> ', text);
+  },
 
-    numberedList: function(string) {
-        return makeMarkdownHelper('1. ', string);
-    },
+  bullet(string) {
+    return makeMarkdownHelper('- ', string);
+  },
 
-    heading: function(string) {
-        var text = string || "Heading";
-        return makeMarkdownHelper('## ', text, ' ##');
-    },
+  numberedList(string) {
+    return makeMarkdownHelper('1. ', string);
+  },
 
-    horizontalRule: function(string) {
-        return makeMarkdownHelper('----------\n', string);
-    },
+  heading(string) {
+    const text = string || 'Heading';
+    return makeMarkdownHelper('## ', text, ' ##');
+  },
 
-    strikethrough: function(string) {
-        var text = string || "Strikethrough";
-        return makeMarkdownHelper('~~', text, '~~'); // github-flavored specific
-    },
+  horizontalRule(string) {
+    return makeMarkdownHelper('----------\n', string);
+  },
 
-    getSelection: function(input) {
-        return input.value.substring(input.selectionStart, input.selectionEnd);
-    },
+  strikethrough(string) {
+    const text = string || 'Strikethrough';
+    return makeMarkdownHelper('~~', text, '~~');
+  },
 
-    insertAtCursor: function(text, input, cursor, opts = {}) {
-        var inputVal = input.value,                                 // input text value
-            cursorPos = input.selectionStart,                       // current cursor position
-            cursorEnd = input.selectionEnd,                         // end of highlight, if so
-            notOnNewLine = !onNewLine(inputVal, cursorPos),
-            newLineChar = (opts.ensureNewLine && notOnNewLine) ? '\n' : '', // optional char for newline switch
-            begInputValue = inputVal.substring(0, cursorPos) + newLineChar, // values to update input.value with
-            midInputValue = text,
-            endInputValue = inputVal.substring(cursorEnd, inputVal.length),
-            newSelectionStart = cursorPos + cursor.start + newLineChar.length,
-            newSelectionEnd = cursorPos + cursor.end + newLineChar.length,
-            scrollTop;
+  getSelection(input) {
+    return input.value.substring(input.selectionStart, input.selectionEnd);
+  },
 
-        // update input value with new values
-        input.value = begInputValue + midInputValue + endInputValue;
+  insertAtCursor(text, input, cursor, opts = {}) {
+    const inputVal = input.value;
+    const cursorPos = input.selectionStart;
+    const cursorEnd = input.selectionEnd;
+    const notOnNewLine = !onNewLine(inputVal, cursorPos);
+    const newLineChar = (opts.ensureNewLine && notOnNewLine) ? '\n' : '';
+    const begInputValue = inputVal.substring(0, cursorPos) + newLineChar;
+    const midInputValue = text;
+    const endInputValue = inputVal.substring(cursorEnd, inputVal.length);
+    const newSelectionStart = cursorPos + cursor.start + newLineChar.length;
+    const newSelectionEnd = cursorPos + cursor.end + newLineChar.length;
+    const scrollTop = input.scrollTop;
 
-        // set cursor back to a meaningful location for continued typing
-        ({scrollTop} = input);
-        input.focus();
-        input.scrollTop = scrollTop;
-        if (input.setSelectionRange) {
-            input.setSelectionRange(newSelectionStart, newSelectionEnd);
-        }
-    },
-
-    incrementedListItems: function(previousText, text) { // TODO: limit prev lines length
-        var numberedLi = /^[^\d]*(\d+)/, // matches something line "3."
-            splitPrevLines = previousText.split("\n"),
-            prevLine = splitPrevLines[splitPrevLines.length - 2],
-            splitSelection = text.split("\n");
-
-        if (splitSelection.length > 1) { // user has multiple lines highlighted
-            return splitSelection
-                .map((text, i) => text.replace(numberedLi, function (fullMatch, n) { return i + 1; }))
-                .join("\n");
-        }
-        else {
-            return text.replace(numberedLi, function(fullMatch, n) {
-                if (prevLine && +prevLine.split(".")[0]) {
-                    return (+prevLine.split(".")[0] + 1);
-                }
-                else {
-                    return 1;
-                }
-            });
-        }
+    // update input value with new values
+    input.value = begInputValue + midInputValue + endInputValue;
+    input.focus();
+    input.scrollTop = scrollTop;
+    if (input.setSelectionRange) {
+      input.setSelectionRange(newSelectionStart, newSelectionEnd);
     }
-}
+  },
+
+  incrementedListItems(previousText, text) {
+    const numberedLi = /^[^\d]*(\d+)/;
+    const splitPrevLines = previousText.split('\n');
+    const prevLine = splitPrevLines[splitPrevLines.length - 2];
+    const splitSelection = text.split('\n');
+
+    // user has multiple lines highlighted
+    if (splitSelection.length > 1) {
+      return splitSelection
+        .map((lineText, i) => lineText.replace(numberedLi, () => i + 1))
+        .join('\n');
+    }
+
+    return text.replace(numberedLi, () => {
+      if (prevLine && +prevLine.split('.')[0]) {
+        return (+prevLine.split('.')[0] + 1);
+      }
+      return 1;
+    });
+  }
+};

@@ -1,222 +1,303 @@
 import React from 'react';
-import Markdown from './markdown.jsx';
-import m from '../lib/markdown-insert';
+import Markdown from './markdown';
+import md from '../lib/markdown-insert';
 import replaceSymbols from '../lib/default-transformer';
 
-var NOOP = Function.prototype;
+const NOOP = Function.prototype;
 
 export default class MarkdownEditor extends React.Component {
-    constructor() {
-        super(...arguments);
-        this.state = {
-            previewing: false
-        };
-    }
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      previewing: false
+    };
+  }
 
-    get value() {
-        return this.refs.textarea.value;
-    }
+  onInsertLinkClick() {
+    this.wrapSelectionIn(md.hrefLink);
+  }
 
-    onInsertLinkClick() {
-        this.wrapSelectionIn(m.hrefLink);
-    }
+  get value() {
+    return this.refs.textarea.value;
+  }
 
-    onInsertImageClick() {
-        this.wrapSelectionIn(m.imageLink);
-    }
-    
-    onInsertVideoClick() {
-        this.wrapSelectionIn(m.videoLink);
-    }
+  onInsertImageClick() {
+    this.wrapSelectionIn(md.imageLink);
+  }
 
-    onBoldClick() {
-        this.wrapSelectionIn(m.bold);
-    }
+  onInsertVideoClick() {
+    this.wrapSelectionIn(md.videoLink);
+  }
 
-    onItalicClick() {
-        this.wrapSelectionIn(m.italic);
-    }
+  onBoldClick() {
+    this.wrapSelectionIn(md.bold);
+  }
 
-    onHeadingClick() {
-        this.wrapSelectionIn(m.heading, {ensureNewLine: true});
-    }
+  onItalicClick() {
+    this.wrapSelectionIn(md.italic);
+  }
 
-    onQuoteClick() {
-        this.wrapSelectionIn(m.quote, {ensureNewLine: true});
-    }
+  onHeadingClick() {
+    this.wrapSelectionIn(md.heading, { ensureNewLine: true });
+  }
 
-    onHorizontalRuleClick() {
-        this.wrapSelectionIn(m.horizontalRule, {ensureNewLine: true});
-    }
+  onQuoteClick() {
+    this.wrapSelectionIn(md.quote, { ensureNewLine: true });
+  }
 
-    onStrikethroughClick() {
-        this.wrapSelectionIn(m.strikethrough);
-    }
+  onHorizontalRuleClick() {
+    this.wrapSelectionIn(md.horizontalRule, { ensureNewLine: true });
+  }
 
-    onBulletClick() {
-        this.wrapLinesIn(m.bullet, {ensureNewLine: true});
-    }
+  onStrikethroughClick() {
+    this.wrapSelectionIn(md.strikethrough);
+  }
 
-    onNumberClick() {
-        this.wrapLinesIn(m.numberedList, {ensureNewLine: true, incrementLines: true});
-    }
+  onBulletClick() {
+    this.wrapLinesIn(md.bullet, { ensureNewLine: true });
+  }
 
-    componentWillMount() {
-        this.setState({previewing: !!this.props.previewing});
-    }
+  onNumberClick() {
+    this.wrapLinesIn(md.numberedList, { ensureNewLine: true, incrementLines: true });
+  }
 
-    componentWillReceiveProps(nextProps) {
-        // If previewing prop has changed, update internal state
-        if (typeof nextProps.previewing === 'boolean') {
-            this.setState({
-                previewing: nextProps.previewing
-            });
+  componentWillMount() {
+    this.setState({ previewing: !!this.props.previewing });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // If previewing prop has changed, update internal state
+    if (typeof nextProps.previewing === 'boolean') {
+      this.setState({
+        previewing: nextProps.previewing
+      });
+    }
+  }
+
+  onInputChange(e) {
+    let value;
+
+    if (this.props.onChange) {
+      if (e && e.target && e.target.value) {
+        value = e.target.value;
+      } else {
+        value = this.refs.textarea.value;
+      }
+
+      this.props.onChange({
+        target: {
+          name: this.props.name,
+          value,
+          type: 'textarea',
+          dataset: {}
         }
+      });
+    }
+  }
+
+  handlePreviewToggle() {
+    this.setState({ previewing: !this.state.previewing });
+  }
+
+  handleHelpRequest(e) {
+    this.props.onHelp(e);
+  }
+
+  wrapSelectionIn(wrapFn, opts = {}) {
+    // helper to call markdown-insert functions on the textarea
+    // wrapFn takes / returns a string (from ./lib/markdown-insert.js)
+
+    const textarea = this.refs.textarea;
+    const selection = md.getSelection(textarea);
+    const { text, cursor } = wrapFn(selection);
+
+    md.insertAtCursor(text, textarea, cursor, opts);
+    this.onInputChange();
+  }
+
+  wrapLinesIn(wrapFn, opts = {}) {
+    const textarea = this.refs.textarea;
+    const lines = md.getSelection(textarea).split('\n');
+    let formattedText = lines.map((line) => wrapFn(line).text).join('\n');
+
+    // increment the line numbers in a list, if that option is specified
+    if (opts.incrementLines && opts.ensureNewLine) {
+      const begInputValue = textarea.value.substring(0, textarea.selectionStart);
+      formattedText = md.incrementedListItems(`${begInputValue}\n`, formattedText);
     }
 
-    render() {
-        var previewIcon;
-        if (this.state.previewing) {
-            previewIcon = <i className="fa fa-pencil fa-fw"></i>;
-        }
-        else {
-            previewIcon = <i className="fa fa-eye fa-fw"></i>;
-        }
+    const cursor = { start: formattedText.length, end: formattedText.length };
 
+    md.insertAtCursor(formattedText, textarea, cursor, opts);
+    this.onInputChange();
+  }
 
-        return (
-            <div className={`markdown-editor ${this.props.className}`} data-previewing={this.state.previewing || null}>
-                <div className="talk-comment-buttons-container">
-                    <button type="button" title="link"className='talk-comment-insert-link-button' onClick={this.onInsertLinkClick.bind(this)}>
-                        <i className="fa fa-link"></i>
-                    </button>
-                    <button type="button" title="image" className='talk-comment-insert-image-button' onClick={this.onInsertImageClick.bind(this)}>
-                        <i className="fa fa-image"></i>
-                    </button>
-                    <button type="button" title="video" className='talk-comment-insert-video-button' onClick={this.onInsertVideoClick.bind(this)}>
-                        <i className="fa fa-video-camera"></i>
-                    </button>
-                    <button type="button" title="bold" className='talk-comment-bold-button' onClick={this.onBoldClick.bind(this)}>
-                        <i className="fa fa-bold"></i>
-                    </button>
-                    <button type="button" title="italic" className='talk-comment-italic-button' onClick={this.onItalicClick.bind(this)}>
-                        <i className="fa fa-italic"></i>
-                    </button>
-                    <button type="button" title="block quote" className='talk-comment-insert-quote-button' onClick={this.onQuoteClick.bind(this)}>
-                        <i className="fa fa-quote-left"></i> <i className="fa fa-quote-right"></i>
-                    </button>
-                    <button type="button" title="heading" className='talk-comment-heading-button' onClick={this.onHeadingClick.bind(this)}>
-                        <i className="fa fa-header"></i>
-                    </button>
-                    <button type="button" title="horizontal rule" className='talk-comment-hr-button' onClick={this.onHorizontalRuleClick.bind(this)}>
-                        <i className="fa fa-arrows-h"></i>
-                    </button>
-                    <button type="button" title="strikethrough" className='talk-comment-strikethrough-button' onClick={this.onStrikethroughClick.bind(this)}>
-                        <i className="fa fa-strikethrough"></i>
-                    </button>
-                    <button type="button" title="bulleted list" className='talk-comment-bullet-button' onClick={this.onBulletClick.bind(this)}>
-                        <i className="fa fa-list"></i>
-                    </button>
-                    <button type="button" title="numbered list" className='talk-comment-number-button' onClick={this.onNumberClick.bind(this)}>
-                        <i className="fa fa-list-ol"></i>
-                    </button>
-
-                    <span className="markdown-editor-controls">
-                        <button title={(this.state.previewing) ? "edit" : "preview"} type="button" onClick={this.handlePreviewToggle.bind(this)}>
-                            {previewIcon}
-                        </button>
-
-                        <button title="help" type="button" onClick={this.handleHelpRequest.bind(this)}>
-                            <i className="fa fa-question fa-fw"></i>
-                        </button>
-                    </span>
-                </div>
-
-                <div className="editor-area">
-                    <textarea ref="textarea" className="markdown-editor-input" name={this.props.name} placeholder={this.props.placeholder} value={this.props.value} rows={this.props.rows} cols={this.props.cols} onChange={this.onInputChange.bind(this)} />
-
-                    <Markdown className="markdown-editor-preview" project={this.props.project} baseURI={this.props.baseURI} transform={this.props.transform} idPrefix={this.props.idPrefix}>{this.props.value}</Markdown>
-                </div>
-            </div>
-        );
+  render() {
+    let previewIcon;
+    if (this.state.previewing) {
+      previewIcon = <i className="fa fa-pencil fa-fw" />;
+    } else {
+      previewIcon = <i className="fa fa-eye fa-fw" />;
     }
 
-    onInputChange(e) {
-        if (this.props.onChange) {
-            var value;
-            if (e && e.target && e.target.value) {
-                value = e.target.value;
-            }
-            else {
-                value = this.refs.textarea.value;
-            }
-            var event = {
-                target: {
-                    name: this.props.name,
-                    value: value,
-                    type: 'textarea',
-                    dataset: {}
-                }
-            };
-            this.props.onChange(event);
-        }
-    }
+    const containerName = `markdown-editor ${this.props.className}`;
 
-    handlePreviewToggle() {
-        this.setState({previewing: !this.state.previewing});
-    }
+    return (
+      <div className={containerName} data-previewing={this.state.previewing || null}>
+        <div className="talk-comment-buttons-container">
+          <button
+            type="button"
+            title="link"
+            className="talk-comment-insert-link-button"
+            onClick={() => this.onInsertLinkClick()}
+          >
+            <i className="fa fa-link" />
+          </button>
 
-    handleHelpRequest(e) {
-        this.props.onHelp(e);
-    }
+          <button
+            type="button"
+            title="image"
+            className="talk-comment-insert-image-button"
+            onClick={() => this.onInsertImageClick()}
+          >
+            <i className="fa fa-image" />
+          </button>
 
-    wrapSelectionIn(wrapFn, opts = {}) {
-        // helper to call markdown-insert functions on the textarea
-        // wrapFn takes / returns a string (from ./lib/markdown-insert.cjsx)
+          <button
+            type="button"
+            title="video"
+            className="talk-comment-insert-video-button"
+            onClick={() => this.onInsertVideoClick()}
+          >
+            <i className="fa fa-video-camera" />
+          </button>
 
-        var textarea = this.refs.textarea,
-            selection = m.getSelection(textarea),
-            text,cursor;
+          <button
+            type="button"
+            title="bold"
+            className="talk-comment-bold-button"
+            onClick={() => this.onBoldClick()}
+          >
+            <i className="fa fa-bold" />
+          </button>
 
-        ({text, cursor} = wrapFn(selection));
+          <button
+            type="button"
+            title="italic"
+            className="talk-comment-italic-button"
+            onClick={() => this.onItalicClick()}
+          >
+            <i className="fa fa-italic" />
+          </button>
 
-        m.insertAtCursor(text, textarea, cursor, opts);
-        this.onInputChange();
-    }
+          <button
+            type="button"
+            title="block quote"
+            className="talk-comment-insert-quote-button"
+            onClick={() => this.onQuoteClick()}
+          >
+            <i className="fa fa-quote-left" /> <i className="fa fa-quote-right" />
+          </button>
 
-    wrapLinesIn(wrapFn, opts = {}) {
-        var textarea = this.refs.textarea;
-        var lines = m.getSelection(textarea).split("\n");
+          <button
+            type="button"
+            title="heading"
+            className="talk-comment-heading-button"
+            onClick={() => this.onHeadingClick()}
+          >
+            <i className="fa fa-header" />
+          </button>
 
-        var formattedText = lines
-                .map((line) => wrapFn(line).text)
-                .join("\n");
+          <button
+            type="button"
+            title="horizontal rule"
+            className="talk-comment-hr-button"
+            onClick={() => this.onHorizontalRuleClick()}
+          >
+            <i className="fa fa-arrows-h" />
+          </button>
 
-        // increment the line numbers in a list, if that option is specified
-        if (opts.incrementLines && opts.ensureNewLine) {
-            var begInputValue = textarea.value.substring(0, textarea.selectionStart) + "\n";
-            formattedText = m.incrementedListItems(begInputValue, formattedText);
-        }
+          <button
+            type="button"
+            title="strikethrough"
+            className="talk-comment-strikethrough-button"
+            onClick={() => this.onStrikethroughClick()}
+          >
+            <i className="fa fa-strikethrough" />
+          </button>
 
-        var cursor = {start: formattedText.length, end: formattedText.length};
+          <button
+            type="button"
+            title="bulleted list"
+            className="talk-comment-bullet-button"
+            onClick={() => this.onBulletClick()}
+          >
+            <i className="fa fa-list" />
+          </button>
 
-        m.insertAtCursor(formattedText, textarea, cursor, opts);
-        this.onInputChange();
-    }
-};
+          <button
+            type="button"
+            title="numbered list"
+            className="talk-comment-number-button"
+            onClick={() => this.onNumberClick()}
+          >
+            <i className="fa fa-list-ol" />
+          </button>
+
+          <span className="markdown-editor-controls">
+            <button
+              type="button"
+              title={(this.state.previewing) ? 'edit' : 'preview'}
+              onClick={() => this.handlePreviewToggle()}
+            >
+              {previewIcon}
+            </button>
+
+            <button title="help" type="button" onClick={() => this.handleHelpRequest()}>
+              <i className="fa fa-question fa-fw" />
+            </button>
+          </span>
+        </div>
+
+        <div className="editor-area">
+          <textarea
+            ref="textarea"
+            className="markdown-editor-input"
+            name={this.props.name}
+            placeholder={this.props.placeholder}
+            value={this.props.value}
+            rows={this.props.rows}
+            cols={this.props.cols}
+            onChange={(e) => this.onInputChange(e)}
+          />
+
+          <Markdown
+            className="markdown-editor-preview"
+            project={this.props.project}
+            baseURI={this.props.baseURI}
+            transform={this.props.transform}
+            idPrefix={this.props.idPrefix}
+          >
+            {this.props.value}
+          </Markdown>
+        </div>
+      </div>
+    );
+  }
+}
 
 MarkdownEditor.displayName = 'MarkdownEditor';
 
 MarkdownEditor.defaultProps = {
-    name: null,
-    value: '',
-    placeholder: null,
-    rows: 5,
-    transform: replaceSymbols,
-    onChange: NOOP,
-    previewing: null,
-    onHelp: NOOP,
-    project: null,
-    baseURI: null,
-    idPrefix: null
+  name: null,
+  value: '',
+  placeholder: null,
+  rows: 5,
+  transform: replaceSymbols,
+  onChange: NOOP,
+  previewing: null,
+  onHelp: NOOP,
+  project: null,
+  baseURI: null,
+  idPrefix: null
 };
