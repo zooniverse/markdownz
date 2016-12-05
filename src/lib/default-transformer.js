@@ -1,6 +1,6 @@
 const tagReplacer = /(^|\s)#([-\w\d]{3,40})/g;
-const projectSubjectLinker = /@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g;
-const subjectLinker = /\^S([0-9]+)/g;
+const projectSubjectLinker = /(^|\s)@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g;
+const subjectLinker = /(^|\s)\^S([0-9]+)/g;
 const userLinker = /(^|\s)@([\w\-.]+\b)/g;
 
 export default function (input, { project, baseURI }) {
@@ -13,7 +13,7 @@ export default function (input, { project, baseURI }) {
     [owner, name] = project.slug.split('/');
   }
 
-  const replaceProjectSubjects = `[Subject $3](${prefix}/projects/$1/$2/talk/subjects/$3)`;
+  const replaceProjectSubjects = `[Subject $4](${prefix}/projects/$2/$3/talk/subjects/$4)`;
 
   function replaceTags(fullTag, separator, tagName) {
     if (owner && name) {
@@ -29,11 +29,11 @@ export default function (input, { project, baseURI }) {
     return `${seperator}@${username}`;
   }
 
-  function replaceSubjects(_, subjectID) {
+  function replaceSubjects(_, seperator, subjectID) {
     if (owner && name) {
       const text = `Subject ${subjectID}`;
       const url = `${prefix}/projects/${owner}/${name}/talk/subjects/${subjectID}`;
-      return `[${text}](${url})`;
+      return `${seperator}[${text}](${url})`;
     }
     return subjectID;
   }
