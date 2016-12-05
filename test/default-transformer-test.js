@@ -65,6 +65,11 @@ describe('default-transformer', () => {
     expect(replaceSymbols(nonUserLink, { project, baseURI })).to.equal(nonUserLink);
   });
 
+  it('ignores trailing punctuation', () => {
+    const userLink = replaceSymbols('@test.user.', { project, baseURI });
+    expect(userLink).to.equal('[@test.user](/users/test.user).');
+  });
+
   it('it ignores restricted usernames', () => {
     const userLink = replaceSymbols('@admins @moderators @team @researchers @scientists', { project, baseURI });
     expect(userLink).to.equal('@admins @moderators @team @researchers @scientists');
