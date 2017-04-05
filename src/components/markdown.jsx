@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import MarkdownIt from 'markdown-it';
 import MarkdownItContainer from 'markdown-it-container';
 import markdownEmoji from 'markdown-it-emoji';
@@ -36,6 +35,10 @@ export default class Markdown extends React.Component {
     return 'Markdown';
   }
 
+  componentDidMount() {
+    setTimeout(() => this.captureFootnoteLinks(), 1);
+  }
+
   markdownify(input) {
     Markdown.counter += 1;
     const id = this.props.idPrefix || (Date.now().toString(16) + Markdown.counter);
@@ -56,15 +59,17 @@ export default class Markdown extends React.Component {
 
   captureFootnoteLinks() {
     const backrefs = '.footnote-ref > a, .footnote-backref';
-    const links = ReactDOM.findDOMNode(this).querySelectorAll(backrefs);
+    const links = this.node.querySelectorAll(backrefs);
 
-    for (let i = 0; i < links.length; i += 1) {
-      const link = links[i];
-      const target = document.getElementById(link.getAttribute('href').replace('#', ''));
-      link.onclick = function (ev) {
-        ev.preventDefault();
-        target.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      };
+    if (links.length > 0) {
+      for (let i = 0; i < links.length; i += 1) {
+        const link = links[i];
+        const target = document.getElementById(link.getAttribute('href').replace('#', ''));
+        link.onclick = (ev) => {
+          ev.preventDefault();
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        };
+      }
     }
   }
 
@@ -91,11 +96,11 @@ export default class Markdown extends React.Component {
 
   render() {
     const html = this.getHtml();
-    setTimeout(() => this.captureFootnoteLinks(), 1);
 
     return React.createElement(this.props.tag, {
       className: `markdown ${this.props.className}`,
-      dangerouslySetInnerHTML: { __html: html }
+      dangerouslySetInnerHTML: { __html: html },
+      ref: (node) => { this.node = node; }
     });
   }
 }
@@ -112,4 +117,16 @@ Markdown.defaultProps = {
   className: '',
   relNofollow: false,
   idPrefix: null
+};
+
+Markdown.propTypes = {
+  tag: React.PropTypes.string,
+  content: React.PropTypes.string,
+  inline: React.PropTypes.bool,
+  transform: React.PropTypes.func,
+  project: React.PropTypes.object,
+  baseURI: React.PropTypes.string,
+  className: React.PropTypes.string,
+  relNofollow: React.PropTypes.bool,
+  idPrefix: React.PropTypes.string
 };
