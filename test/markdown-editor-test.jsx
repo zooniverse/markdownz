@@ -1,22 +1,21 @@
-import TestUtils from 'react-addons-test-utils';
+// import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import { mount, shallow } from 'enzyme';
 import { MarkdownEditor } from '../src/index';
 
-function mockTextarea() {
-  return {
-    textarea: {
-      focus: () => {},
-      value: "A long\nboring string that doesn't mean anything",
-      selectionStart: 2,
-      selectionEnd: 10
-    }
-  };
-}
+const mockTextarea = {
+  focus: () => {},
+  value: "A long\nboring string that doesn't mean anything",
+  selectionStart: 2,
+  selectionEnd: 10
+};
 
 describe('MarkdownEditor', () => {
   let editor;
 
   beforeEach(() => {
-    editor = new MarkdownEditor({ name: 'test', onChange: Function.prototype });
+    // editor = new MarkdownEditor({ name: 'test', onChange: Function.prototype });
+    editor = shallow(<MarkdownEditor name="test" onChange={() => {}} />);
   });
 
   it('exists', () => {
@@ -25,7 +24,7 @@ describe('MarkdownEditor', () => {
 
   describe('initial state', () => {
     it('should set previewing to false', () => {
-      expect(editor.state).to.deep.equal({ previewing: false });
+      expect(editor.state('previewing')).to.deep.equal(false);
     });
   });
 
@@ -34,17 +33,17 @@ describe('MarkdownEditor', () => {
 
     beforeEach(() => {
       wrapFnSpy = spy((text) => { return { text: `*${text}*`, cursor: { start: 0, end: 5 }}; });
-      editor.refs = mockTextarea();
+      editor.instance().textarea = mockTextarea;
     });
 
     it('should apply a function to the selected text', () => {
-      editor.wrapSelectionIn(wrapFnSpy);
+      editor.instance().wrapSelectionIn(wrapFnSpy);
       expect(wrapFnSpy).to.have.been.called.with('long\nbor');
     });
 
     it('should trigger the onChange handler', () => {
-      const onChangeSpy = spy.on(editor, 'onInputChange');
-      editor.wrapSelectionIn(wrapFnSpy);
+      const onChangeSpy = spy.on(editor.instance(), 'onInputChange');
+      editor.instance().wrapSelectionIn(wrapFnSpy);
       expect(onChangeSpy).to.have.been.called();
     });
   });
@@ -54,17 +53,17 @@ describe('MarkdownEditor', () => {
 
     beforeEach(() => {
       wrapFnSpy = spy((text) => { return { text: `*${text}*`, cursor: { start: 0, end: 5 }}; });
-      editor.refs = mockTextarea();
+      editor.instance().textarea = mockTextarea;
     });
 
     it('should apply a function to the selected text', () => {
-      editor.wrapLinesIn(wrapFnSpy);
+      editor.instance().wrapLinesIn(wrapFnSpy);
       expect(wrapFnSpy).to.have.been.called.twice.with('long');
     });
 
     it('should trigger the onChange handler', () => {
-      const onChangeSpy = spy.on(editor, 'onInputChange');
-      editor.wrapLinesIn(wrapFnSpy);
+      const onChangeSpy = spy.on(editor.instance(), 'onInputChange');
+      editor.instance().wrapLinesIn(wrapFnSpy);
       expect(onChangeSpy).to.have.been.called();
     });
   });
@@ -72,7 +71,7 @@ describe('MarkdownEditor', () => {
   describe('#onInputChange', () => {
     it('calls the props.onChange callback', () => {
       const changeSpy = spy.on(editor.props, 'onChange');
-      editor.onInputChange({ target: { value: 'testVal' }});
+      editor.instance().onInputChange({ target: { value: 'testVal' }});
       expect(changeSpy).to.have.been.called();
     });
   });
@@ -81,29 +80,34 @@ describe('MarkdownEditor', () => {
     let helpSpy;
     beforeEach(() => {
       helpSpy = spy();
-      editor = new MarkdownEditor({ onHelp: helpSpy });
+      // editor = new MarkdownEditor({ onHelp: helpSpy });
+      editor = mount(<MarkdownEditor onHelp={helpSpy} />);
     });
 
     it('should call the onHelp property', () => {
-      editor.handleHelpRequest({ });
+      editor.instance().handleHelpRequest({ });
       expect(helpSpy).to.have.been.called.with({ });
     });
   });
 
   describe('#handlePreviewToggle', () => {
     it('should toggle the preview State', () => {
-      editor = TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
-      editor.handlePreviewToggle();
-      expect(editor.state.previewing).to.be.true;
+      // editor = TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
+      editor = shallow(<MarkdownEditor />);
+      editor.setProps({ value: '##blah blash' });
+      editor.instance().handlePreviewToggle();
+      expect(editor.state('previewing')).to.be.true;
     });
   });
 
   describe('#componentWillMount', () => {
     it('should set state.previewing to the value of the previewing prop', () => {
-      editor = TestUtils.renderIntoDocument(
-        <MarkdownEditor previewing value="##blah blash" />
-      );
-      expect(editor.state.previewing).to.be.true;
+      // editor = TestUtils.renderIntoDocument(
+      //   <MarkdownEditor previewing value="##blah blash" />
+      // );
+      editor = shallow(<MarkdownEditor previewing={true} value='##blah blash' />);
+      editor.setProps({ previewing: true, value: '##blah blash' });
+      expect(editor.state('previewing')).to.be.true;
     });
   });
 
