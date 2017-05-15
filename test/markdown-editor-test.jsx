@@ -58,6 +58,7 @@ describe('MarkdownEditor', () => {
 
     it('should apply a function to the selected text', () => {
       editor.instance().wrapLinesIn(wrapFnSpy);
+      console.log('wrapFnSpy', wrapFnSpy)
       expect(wrapFnSpy).to.have.been.called.twice.with('long');
     });
 
@@ -80,7 +81,6 @@ describe('MarkdownEditor', () => {
     let helpSpy;
     beforeEach(() => {
       helpSpy = spy();
-      // editor = new MarkdownEditor({ onHelp: helpSpy });
       editor = mount(<MarkdownEditor onHelp={helpSpy} />);
     });
 
@@ -92,7 +92,6 @@ describe('MarkdownEditor', () => {
 
   describe('#handlePreviewToggle', () => {
     it('should toggle the preview State', () => {
-      // editor = TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
       editor = shallow(<MarkdownEditor />);
       editor.setProps({ value: '##blah blash' });
       editor.instance().handlePreviewToggle();
@@ -102,10 +101,7 @@ describe('MarkdownEditor', () => {
 
   describe('#componentWillMount', () => {
     it('should set state.previewing to the value of the previewing prop', () => {
-      // editor = TestUtils.renderIntoDocument(
-      //   <MarkdownEditor previewing value="##blah blash" />
-      // );
-      editor = shallow(<MarkdownEditor previewing={true} value='##blah blash' />);
+      editor = mount(<MarkdownEditor previewing={true} value='##blah blash' />);
       editor.setProps({ previewing: true, value: '##blah blash' });
       expect(editor.state('previewing')).to.be.true;
     });
@@ -113,19 +109,12 @@ describe('MarkdownEditor', () => {
 
   describe('#componentWillReceiveProps', () => {
     it('should set state.previewing to the value of the previewing prop (after mount)', () => {
-      // We can't manipulate props of editor directly, so create a parent component to do it via render
-      const testParent = React.createFactory(React.createClass({
-        getInitialState() {
-          return { previewing: true };
-        },
-        render() {
-          return <MarkdownEditor ref="editor" previewing={this.state.previewing} value="##blah blash" />;
-        }
-      }));
-
-      const parent = TestUtils.renderIntoDocument(testParent());
-      parent.setState({ previewing: false });
-      expect(parent.refs.editor.state.previewing).to.be.false;
+      const cwrpSpy = spy.on(MarkdownEditor.prototype, 'componentWillReceiveProps');
+      editor = mount(<MarkdownEditor value="##blah blash" />);
+      expect(editor.state('previewing')).to.be.false;
+      editor.setProps({ previewing: true });
+      expect(cwrpSpy).to.have.been.called();
+      expect(editor.state('previewing')).to.be.true;
     });
   });
 
@@ -144,50 +133,51 @@ describe('MarkdownEditor', () => {
        it(`should setup a click listener for ${name} button`, () => {
          cbName = cbName || name.charAt(0).toUpperCase() + name.slice(1);
          const cbSpy = spy.on(MarkdownEditor.prototype, `on${cbName}Click`);
-         editor = TestUtils.renderIntoDocument(<MarkdownEditor value="##blah blash" />);
-         editor.refs = mockTextarea();
-         const button = TestUtils.findRenderedDOMComponentWithClass(editor, `talk-comment-${name}-button`);
-         TestUtils.Simulate.click(button);
+         editor = mount(<MarkdownEditor value="##blah blash" />);
+         editor.textarea = mockTextarea;
+         const button = editor.find(`.talk-comment-${name}-button`);
+         button.simulate('click');
          expect(cbSpy).to.have.been.called();
        });
      });
 
     context('when previewing is true', () => {
       beforeEach(() => {
-        editor = TestUtils.renderIntoDocument(<MarkdownEditor previewing />);
+        editor = shallow(<MarkdownEditor previewing />);
       });
 
       it('should set the preview icon to pencil', () => {
-        const icon = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-pencil');
+        const icon = editor.find('.fa-pencil');
         expect(icon).to.be.ok;
       });
 
       it('should set data-previewing to true', () => {
-        const md = TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
-        expect(md.hasAttribute('data-previewing')).to.be.true;
+        const md = editor.render().find('.markdown-editor');
+        console.log('md', md)
+        expect(md.attr('data-previewing')).to.exist;
       });
     });
 
     context('when previewing is false', () => {
       beforeEach(() => {
-        editor = TestUtils.renderIntoDocument(<MarkdownEditor previewing={false} />);
+        editor = shallow(<MarkdownEditor previewing={false} />);
       });
 
       it('should set the preview icon to eye', () => {
-        const icon = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-eye');
+        const icon = editor.find('.fa-eye');
         expect(icon).to.be.ok;
       });
 
       it('should not set data-previewing', () => {
-        const md = TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor');
-        expect(md.hasAttribute('data-previewing')).to.be.false;
+        const md = editor.render().find('.markdown-editor');
+        expect(md.attr('data-previewing')).to.not.exist;
       });
     });
 
     it('should render a markdown preview from the value property', () => {
-      editor = TestUtils.renderIntoDocument(<MarkdownEditor value="## blah blah" />);
-      const markdown = TestUtils.findRenderedDOMComponentWithClass(editor, 'markdown-editor-preview');
-      expect(markdown.innerHTML).to.match(/blah blah/);
+      editor = shallow(<MarkdownEditor value="## blah blah" />);
+      const markdown = editor.find('.markdown-editor-preview');
+      expect(markdown.html()).to.match(/blah blah/);
     });
 
     it('should pass properties to the textarea', () => {
@@ -198,11 +188,11 @@ describe('MarkdownEditor', () => {
         name: 'hey there'
       };
       const value = 'oh there';
-      editor = TestUtils.renderIntoDocument(<MarkdownEditor {...properties} value={value} />);
-      const textarea = TestUtils.findRenderedDOMComponentWithTag(editor, 'textarea');
+      editor = shallow(<MarkdownEditor {...properties} value={value} />);
+      const textarea = editor.render().find('textarea');
       Object.keys(properties).forEach((key) => {
         const val = properties[key];
-        expect(textarea.getAttribute(key)).to.be.equal(val);
+        expect(textarea.attr(key)).to.equal(val);
       });
       expect(textarea.value).to.equal(value);
     });
