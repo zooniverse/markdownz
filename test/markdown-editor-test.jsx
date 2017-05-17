@@ -14,7 +14,6 @@ describe('MarkdownEditor', () => {
   let editor;
 
   beforeEach(() => {
-    // editor = new MarkdownEditor({ name: 'test', onChange: Function.prototype });
     editor = shallow(<MarkdownEditor name="test" onChange={() => {}} />);
   });
 
@@ -71,7 +70,8 @@ describe('MarkdownEditor', () => {
 
   describe('#onInputChange', () => {
     it('calls the props.onChange callback', () => {
-      const changeSpy = spy.on(editor.props, 'onChange');
+      const changeSpy = spy.on(editor.instance(), 'onChange');
+      editor = shallow(<MarkdownEditor name="test" onChange={changeSpy} />);
       editor.instance().onInputChange({ target: { value: 'testVal' }});
       expect(changeSpy).to.have.been.called();
     });
@@ -153,7 +153,6 @@ describe('MarkdownEditor', () => {
 
       it('should set data-previewing to true', () => {
         const md = editor.render().find('.markdown-editor');
-        console.log('md', md)
         expect(md.attr('data-previewing')).to.exist;
       });
     });
