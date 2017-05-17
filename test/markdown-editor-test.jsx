@@ -1,4 +1,3 @@
-// import TestUtils from 'react-addons-test-utils';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { MarkdownEditor } from '../src/index';
