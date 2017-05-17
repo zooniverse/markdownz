@@ -194,7 +194,7 @@ describe('MarkdownEditor', () => {
         const val = properties[key];
         expect(textarea.attr(key)).to.equal(val);
       });
-      expect(textarea.value).to.equal(value);
+      expect(editor.find('textarea').props().value).to.equal(value);
     });
   });
 });
