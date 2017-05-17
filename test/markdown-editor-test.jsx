@@ -3,11 +3,13 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { MarkdownEditor } from '../src/index';
 
-const mockTextarea = {
-  focus: () => {},
-  value: "A long\nboring string that doesn't mean anything",
-  selectionStart: 2,
-  selectionEnd: 10
+const mockTextarea = () => {
+  return {
+    focus: () => {},
+    value: "A long\nboring string that doesn't mean anything",
+    selectionStart: 2,
+    selectionEnd: 10
+  };
 };
 
 describe('MarkdownEditor', () => {
@@ -32,7 +34,7 @@ describe('MarkdownEditor', () => {
 
     beforeEach(() => {
       wrapFnSpy = spy((text) => { return { text: `*${text}*`, cursor: { start: 0, end: 5 }}; });
-      editor.instance().textarea = mockTextarea;
+      editor.instance().textarea = mockTextarea();
     });
 
     it('should apply a function to the selected text', () => {
@@ -52,12 +54,11 @@ describe('MarkdownEditor', () => {
 
     beforeEach(() => {
       wrapFnSpy = spy((text) => { return { text: `*${text}*`, cursor: { start: 0, end: 5 }}; });
-      editor.instance().textarea = mockTextarea;
+      editor.instance().textarea = mockTextarea();
     });
 
     it('should apply a function to the selected text', () => {
       editor.instance().wrapLinesIn(wrapFnSpy);
-      console.log('wrapFnSpy', wrapFnSpy)
       expect(wrapFnSpy).to.have.been.called.twice.with('long');
     });
 
@@ -134,7 +135,7 @@ describe('MarkdownEditor', () => {
          cbName = cbName || name.charAt(0).toUpperCase() + name.slice(1);
          const cbSpy = spy.on(MarkdownEditor.prototype, `on${cbName}Click`);
          editor = mount(<MarkdownEditor value="##blah blash" />);
-         editor.textarea = mockTextarea;
+         editor.textarea = mockTextarea();
          const button = editor.find(`.talk-comment-${name}-button`);
          button.simulate('click');
          expect(cbSpy).to.have.been.called();
