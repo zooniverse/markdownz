@@ -1,8 +1,8 @@
 import React from 'react';
 import chai from 'chai';
 import spy from 'chai-spies';
-import MarkdownIt from 'markdown-it'
-const jsdom = require('jsdom').jsdom;
+import MarkdownIt from 'markdown-it';
+import { jsdom } from 'jsdom';
 
 chai.use(spy);
 

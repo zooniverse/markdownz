@@ -18,7 +18,7 @@ export default class MarkdownEditor extends React.Component {
   }
 
   get value() {
-    return this.refs.textarea.value;
+    return this.textarea.value;
   }
 
   onInsertImageClick() {
@@ -81,7 +81,7 @@ export default class MarkdownEditor extends React.Component {
       if (e && e.target && e.target.value) {
         value = e.target.value;
       } else {
-        value = this.refs.textarea.value;
+        value = this.textarea.value;
       }
 
       this.props.onChange({
@@ -107,7 +107,7 @@ export default class MarkdownEditor extends React.Component {
     // helper to call markdown-insert functions on the textarea
     // wrapFn takes / returns a string (from ./lib/markdown-insert.js)
 
-    const textarea = this.refs.textarea;
+    const textarea = this.textarea;
     const selection = md.getSelection(textarea);
     const { text, cursor } = wrapFn(selection);
 
@@ -116,7 +116,7 @@ export default class MarkdownEditor extends React.Component {
   }
 
   wrapLinesIn(wrapFn, opts = {}) {
-    const textarea = this.refs.textarea;
+    const textarea = this.textarea;
     const lines = md.getSelection(textarea).split('\n');
     let formattedText = lines.map((line) => wrapFn(line).text).join('\n');
 
@@ -261,7 +261,7 @@ export default class MarkdownEditor extends React.Component {
 
         <div className="editor-area">
           <textarea
-            ref="textarea"
+            ref={(textarea) => { this.textarea = textarea; }}
             className="markdown-editor-input"
             name={this.props.name}
             placeholder={this.props.placeholder}
