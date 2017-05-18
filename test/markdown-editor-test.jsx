@@ -2,14 +2,14 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { MarkdownEditor } from '../src/index';
 
-const mockTextarea = () => {
+function mockTextarea() {
   return {
     focus: () => {},
     value: "A long\nboring string that doesn't mean anything",
     selectionStart: 2,
     selectionEnd: 10
   };
-};
+}
 
 describe('MarkdownEditor', () => {
   let editor;
