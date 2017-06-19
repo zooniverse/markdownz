@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zooniverse-ui/markdownz.git"
+    "url": "git+https://github.com/zooniverse/markdownz.git"
   },
   "keywords": [
     "markdown",
@@ -22,13 +22,12 @@
   "author": "The Zooniverse",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/zooniverse-ui/markdownz/issues"
+    "url": "https://github.com/zooniverse/markdownz/issues"
   },
-  "homepage": "https://github.com/zooniverse-ui/markdownz#readme",
+  "homepage": "https://github.com/zooniverse/markdownz#readme",
   "devDependencies": {
     "babel-cli": "~6.16.0",
     "babel-core": "~6.16.0",
-    "babel-loader": "~6.2.5",
     "babel-preset-es2015": "~6.16.0",
     "babel-preset-react": "~6.16.0",
     "babel-register": "~6.16.0",
@@ -43,8 +42,7 @@
     "jsdom": "~9.5.0",
     "mocha": "~3.1.0",
     "react-addons-test-utils": "~15.4",
-    "react-dom": "~15.4",
-    "webpack": "~1.13.3"
+    "react-dom": "~15.4"
   },
   "dependencies": {
     "markdown-it": "~7.0.1",
@@ -52,19 +50,13 @@
     "markdown-it-container": "~2.0.0",
     "markdown-it-emoji": "~1.2.0",
     "markdown-it-footnote": "~3.0.1",
-    "markdown-it-imsize": "git://github.com/edpaget/markdown-it-imsize",
+    "markdown-it-imsize": "~2.0.1",
     "markdown-it-sub": "~1.0.0",
     "markdown-it-sup": "~1.0.0",
     "markdown-it-table-of-contents": "~0.2.2",
     "markdown-it-video": "~0.4.0",
     "react": "~15.4",
     "react-dom": "~15.4",
-    "react-mixin": "~1.7.0",
     "twemoji": "~1.4.1"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
   }
 }
