@@ -1,14 +1,14 @@
 # markdownz [![Build Status](https://travis-ci.org/zooniverse/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse/markdownz)
 
-Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org). Requires React 15.
+Markdown viewer, editor, and help components for the [Zooniverse](https://www.zooniverse.org). Requires React 15.
 
 ## Usage
 
 Available on [npm](http://npmjs.com), include as a dependency using `npm install --save markdownz`
 
-Any default styles can be added to `src/css/markdown-help.css`. Don't forget to add a `require` statement for the css file!
+For the MarkdownHelp component, any default styles can be added to `src/css/markdown-help.css`. Don't forget to add a `require` statement for the css file!
 
-This package contains two publicly accessible components a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown:
+This package contains three publicly accessible components: a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown, and a MarkdownHelp component that displays a modal illustrating styles and how to implement them.
 
 Viewer:
 
@@ -24,6 +24,14 @@ Editor:
 import { MarkdownEditor } from 'markdownz';
 
 <MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
+```
+
+Help:
+
+```jsx
+import { MarkdownHelp } from 'markdownz'
+
+<MarkdownHelp talk={true} title={<h1>Guide to Markdown</h1>} />
 ```
 
 ## Supported Properties
@@ -56,6 +64,13 @@ import { MarkdownEditor } from 'markdownz';
 | helpText | `null` | String or Component for custom help text for the editor |
 | onHelp   | `NOOP` | Function to run when help button is clicked |
 | previewing   | false | Toggle the editor's preview mode |
+
+### Help
+
+| property | default | effect |
+|----------|:-------:|--------|
+| talk | `false`| Toggle the inclusion of Talk-specific Markdown tools |
+| title | `''` | Title displayed at the top of the MarkdownHelp component |
 
 ## Zooniverse-Flavoured Markdown
 
