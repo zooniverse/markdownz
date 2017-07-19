@@ -6,6 +6,8 @@ Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org). Req
 
 Available on [npm](http://npmjs.com), include as a dependency using `npm install --save markdownz`
 
+Any default styles can be added to `src/css/markdown-help.css`. Don't forget to add a `require` statement for the css file!
+
 This package contains two publicly accessible components a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown:
 
 Viewer:

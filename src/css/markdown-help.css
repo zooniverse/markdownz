@@ -1,0 +1,14 @@
+.markdown-editor-help {
+  margin: 2em;
+}
+
+.markdown-editor-help table {
+  margin: auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown-editor-help td {
+  border: 1px solid #000;
+  padding: 10px;
+}
