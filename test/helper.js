@@ -20,6 +20,10 @@ Object.keys(document.defaultView).forEach((property) => {
   }
 });
 
+// prevent mocha from compiling .png files
+function noop() { return null; }
+require.extensions['.png'] = noop
+
 global.navigator = {
   userAgent: 'node.js'
 };
