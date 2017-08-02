@@ -10,21 +10,27 @@ This package contains three publicly accessible components: a Markdown viewer an
 
 Viewer:
 
+```javascript
 import { Markdown } from 'markdownz';
 
 <Markdown>{A String of `Markdown`}</Markdown>
+```
 
 Editor:
 
+```javascript
 import { MarkdownEditor } from 'markdownz';
 
 <MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
+```
 
 Help:
 
+```javascript
 import { MarkdownHelp } from 'markdownz'
 
 <MarkdownHelp talk={true} title={<h1>Guide to Markdown</h1>} />
+```
 
 ## Supported Properties
 
