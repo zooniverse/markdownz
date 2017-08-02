@@ -1,6 +1,5 @@
 import React from 'react';
 import Markdown from './markdown';
-import simpleAvatar from '../images/simple-avatar.png';
 
 const TalkMarkdownHelp = () =>
   (<table>
@@ -46,34 +45,6 @@ const TalkMarkdownHelp = () =>
   </table>);
 
 const MarkdownHelp = ({ title, talk }) => {
-  const bulletedList = `
-  - item one
-  - item two
-  - item three
-  `;
-
-  const numberedList = `
-  1. item one
-  2. item two
-  3. item three
-  `;
-
-  const nestedList = `
-  - item one
-    - item two
-      - item three
-  - item four
-  `;
-
-  const headers = `
-  # header1
-  ## header2
-  ### header3
-  `;
-
-  const avatarImage = `![imagealttext](${simpleAvatar})`;
-  const avatarImageResized = `![imagealttext](${simpleAvatar} =75x75)`;
-
   return (
     <div className="markdown-editor-help">
       <table>
@@ -109,8 +80,8 @@ const MarkdownHelp = ({ title, talk }) => {
           <tr>
             <td>Superscript</td>
             <td>
-               ^superscript^<br />
-                ^super\ script^
+              ^superscript^<br />
+              ^super\ script^
             </td>
             <td>
               <Markdown>^superscript^</Markdown>
@@ -120,8 +91,8 @@ const MarkdownHelp = ({ title, talk }) => {
           <tr>
             <td>Subscript</td>
             <td>
-               ~subscript~<br />
-                ~sub\ script~
+              ~subscript~<br />
+              ~sub\ script~
             </td>
             <td>
               <Markdown>^subscript^</Markdown>
@@ -130,13 +101,27 @@ const MarkdownHelp = ({ title, talk }) => {
           </tr>
           <tr>
             <td>Hyperlink</td>
-            <td>[zooniverse](http://www.zooniverse.org)</td>
-            <td><Markdown>[zooniverse](http://www.zooniverse.org)</Markdown></td>
+            <td>
+              [Google](https://google.com)<br/>
+              or<br/>
+              [Google](//google.com)
+            </td>
+            <td>
+              <Markdown>[Google](https://google.com)</Markdown>
+            </td>
           </tr>
           <tr>
             <td>Hyperlink<br />(new tab)</td>
             <td>[zooniverse](+tab+http://www.zooniverse.org)</td>
             <td><Markdown>[zooniverse](+tab+http://www.zooniverse.org)</Markdown></td>
+          </tr>
+          <tr>
+            <td>Zooniverse links</td>
+            <td>
+              Links to Zooniverse pages can omit "https://www.zooniverse.org" from the URL<br/>
+              [About Us](/about)
+            </td>
+            <td><Markdown>[About Us](/about)</Markdown></td>
           </tr>
           <tr>
             <td>Bulleted List</td>
@@ -146,7 +131,9 @@ const MarkdownHelp = ({ title, talk }) => {
               - item three
             </td>
             <td>
-              <Markdown>{bulletedList}</Markdown>
+              <Markdown>
+                {'- item one\n- item two\n- item three'}
+              </Markdown>
             </td>
           </tr>
           <tr>
@@ -157,7 +144,9 @@ const MarkdownHelp = ({ title, talk }) => {
               3. item three
             </td>
             <td>
-              <Markdown>{numberedList}</Markdown>
+              <Markdown>
+                {'1. item one\n2. item two\n3. item three'}
+              </Markdown>
             </td>
           </tr>
           <tr>
@@ -169,7 +158,9 @@ const MarkdownHelp = ({ title, talk }) => {
               <span>- item four</span>
             </td>
             <td>
-              <Markdown>{nestedList}</Markdown>
+              <Markdown>
+                {'- item one\n&nbsp;&nbsp;- item two\n&nbsp;&nbsp;&nbsp;&nbsp;- item three\n- item 4'}
+              </Markdown>
             </td>
           </tr>
           <tr>
@@ -190,7 +181,9 @@ const MarkdownHelp = ({ title, talk }) => {
               <em>etc., up to six # symbols</em>
             </td>
             <td>
-              <Markdown>{headers}</Markdown>
+              <Markdown>
+                {'# header1\n## header2\n### header3'}
+              </Markdown>
             </td>
           </tr>
           <tr>
@@ -216,7 +209,7 @@ const MarkdownHelp = ({ title, talk }) => {
               <em>images must already be uploaded; use <a href="http://imgur.com/" rel="noopener noreferrer" target="_blank">imgur</a> to host new images</em>
             </td>
             <td>
-              <Markdown>{avatarImage}</Markdown>
+              <a href="http://via.placeholder.com/350x150"><img src="http://via.placeholder.com/350x150" /></a>
             </td>
           </tr>
           <tr>
@@ -224,10 +217,10 @@ const MarkdownHelp = ({ title, talk }) => {
             <td>
               ![imagealttext](assets/simple-avatar.png =MxN)<br />
               <em>M is width in pixels, N is height in pixels</em><br />
-              <em>constrain by ommitting one value, e.g.: =75x or =x75</em>
+              <em>constrain by omitting one value, e.g.: =75x or =x75</em>
             </td>
             <td>
-              <Markdown>{avatarImageResized}</Markdown>
+              <a href="http://via.placeholder.com/75x75"><img src="http://via.placeholder.com/75x75" /></a><br />
               sample set @ 75x75
             </td>
           </tr>
@@ -242,14 +235,10 @@ const MarkdownHelp = ({ title, talk }) => {
             <td>Tables</td>
             <td colSpan="2"><a href="http://www.tablesgenerator.com/markdown_tables" rel="noopener noreferrer" target="_blank">use this website to generate markdown tables</a></td>
           </tr>
-          <tr>
-            <td>URL Shortening</td>
-            <td colSpan="2">URLs can be written as /projects/username/projectname and /projects/username/projectname/pagename, omitting the &quot;https://www.zooniverse.org.&quot;</td>
-          </tr>
         </tbody>
       </table>
-      { talk &&
-        <TalkMarkdownHelp /> }
+      {talk &&
+        <TalkMarkdownHelp />}
       <p>If you need any more help formatting posts, please ask on the <a href="https://www.zooniverse.org/talk/">Zooniverse Talk</a> boards!</p>
     </div>
   );

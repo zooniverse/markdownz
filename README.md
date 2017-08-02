@@ -6,33 +6,25 @@ Markdown viewer, editor, and help components for the [Zooniverse](https://www.zo
 
 Available on [npm](http://npmjs.com), include as a dependency using `npm install --save markdownz`
 
-For the MarkdownHelp component, any default styles can be added to `src/css/markdown-help.css`. Don't forget to add a `require` statement for the css file!
-
-This package contains three publicly accessible components: a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown, and a MarkdownHelp component that displays a modal illustrating styles and how to implement them.
+This package contains three publicly accessible components: a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown, and a MarkdownHelp component.
 
 Viewer:
 
-```jsx
 import { Markdown } from 'markdownz';
 
 <Markdown>{A String of `Markdown`}</Markdown>
-```
 
 Editor:
 
-```jsx
 import { MarkdownEditor } from 'markdownz';
 
 <MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
-```
 
 Help:
 
-```jsx
 import { MarkdownHelp } from 'markdownz'
 
 <MarkdownHelp talk={true} title={<h1>Guide to Markdown</h1>} />
-```
 
 ## Supported Properties
 
