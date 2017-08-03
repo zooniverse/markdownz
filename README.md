@@ -10,7 +10,7 @@ This package contains three publicly accessible components: a Markdown viewer an
 
 Viewer:
 
-```javascript
+```jsx
 import { Markdown } from 'markdownz';
 
 <Markdown>{A String of `Markdown`}</Markdown>
@@ -18,7 +18,7 @@ import { Markdown } from 'markdownz';
 
 Editor:
 
-```javascript
+```jsx
 import { MarkdownEditor } from 'markdownz';
 
 <MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
@@ -26,7 +26,7 @@ import { MarkdownEditor } from 'markdownz';
 
 Help:
 
-```javascript
+```jsx
 import { MarkdownHelp } from 'markdownz'
 
 <MarkdownHelp talk={true} title={<h1>Guide to Markdown</h1>} />
