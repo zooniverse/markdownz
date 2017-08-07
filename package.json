@@ -4,8 +4,7 @@
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "lib/index.js",
   "scripts": {
-    "build": "rm -rf lib && npm run build-js",
-    "build-js": "babel src --out-dir lib",
+    "build": "babel src --out-dir lib",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-register --require test/helper.js test/*-test.js*",
     "preversion": "rm -rf lib && npm test",
