@@ -1,12 +1,12 @@
 # markdownz [![Build Status](https://travis-ci.org/zooniverse/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse/markdownz)
 
-Markdown viewer and editor for the [Zooniverse](https://www.zooniverse.org). Requires React 15.
+Markdown viewer, editor, and help components for the [Zooniverse](https://www.zooniverse.org). Requires React 15.
 
 ## Usage
 
 Available on [npm](http://npmjs.com), include as a dependency using `npm install --save markdownz`
 
-This package contains two publicly accessible components a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown:
+This package contains three publicly accessible components: a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown, and a MarkdownHelp component.
 
 Viewer:
 
@@ -22,6 +22,14 @@ Editor:
 import { MarkdownEditor } from 'markdownz';
 
 <MarkdownEditor rows={20} value="A String of `Markdown`" onChange={this.handleMarkdownChange} />
+```
+
+Help:
+
+```jsx
+import { MarkdownHelp } from 'markdownz'
+
+<MarkdownHelp talk={true} title={<h1>Guide to Markdown</h1>} />
 ```
 
 ## Supported Properties
@@ -55,6 +63,13 @@ import { MarkdownEditor } from 'markdownz';
 | onHelp   | `NOOP` | Function to run when help button is clicked |
 | previewing   | false | Toggle the editor's preview mode |
 
+### Help
+
+| property | default | effect |
+|----------|:-------:|--------|
+| talk | `false`| Toggle the inclusion of Talk-specific Markdown help content |
+| title | `<h1 className="markdown-editor-title">Guide to using Markdown</h1>` | Title displayed at the top of the MarkdownHelp component |
+
 ## Zooniverse-Flavoured Markdown
 
 We use [markdown-it](https://github.com/markdown-it/markdown-it) for rendering Markdown and [twemoji](https://github.com/twitter/twemoji) for cross-browser emoji support.
@@ -63,8 +78,8 @@ TODO: Document custom extensions.
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/zooniverse-ui/markdownz/tree/master/CONTRIBUTING.md)
+See [CONTRIBUTING.md](https://github.com/zooniverse/markdownz/tree/master/CONTRIBUTING.md)
 
 ## License
 
-Copyright 2015 by The Zooniverse. Licensed under the Apache Public License v2. See [LICENSE](https://github.com/zooniverse-ui/markdownz/tree/master/LICENSE) for details.
+Copyright 2015 by The Zooniverse. Licensed under the Apache Public License v2. See [LICENSE](https://github.com/zooniverse/markdownz/tree/master/LICENSE) for details.
