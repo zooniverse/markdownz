@@ -67,8 +67,8 @@ import { MarkdownHelp } from 'markdownz'
 
 | property | default | effect |
 |----------|:-------:|--------|
-| talk | `false`| Toggle the inclusion of Talk-specific Markdown tools |
-| title | `''` | Title displayed at the top of the MarkdownHelp component |
+| talk | `false`| Toggle the inclusion of Talk-specific Markdown help content |
+| title | `<h1 className="markdown-editor-title">Guide to using Markdown</h1>` | Title displayed at the top of the MarkdownHelp component |
 
 ## Zooniverse-Flavoured Markdown
 
@@ -78,8 +78,8 @@ TODO: Document custom extensions.
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/zooniverse-ui/markdownz/tree/master/CONTRIBUTING.md)
+See [CONTRIBUTING.md](https://github.com/zooniverse/markdownz/tree/master/CONTRIBUTING.md)
 
 ## License
 
-Copyright 2015 by The Zooniverse. Licensed under the Apache Public License v2. See [LICENSE](https://github.com/zooniverse-ui/markdownz/tree/master/LICENSE) for details.
+Copyright 2015 by The Zooniverse. Licensed under the Apache Public License v2. See [LICENSE](https://github.com/zooniverse/markdownz/tree/master/LICENSE) for details.

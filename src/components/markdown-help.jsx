@@ -50,7 +50,7 @@ const MarkdownHelp = ({ title, talk }) => {
       <table>
         <thead>
           <tr>
-            <th colSpan="3"><h1 className="markdown-editor-title">{title}</h1></th>
+            <th colSpan="3">{title}</th>
           </tr>
           <tr>
             <th colSpan="3"><p>Utilizing a slightly customized version of <a href="http://daringfireball.net/projects/markdown/basics" rel="noopener noreferrer" target="_blank">Markdown</a>.</p></th>
@@ -205,22 +205,22 @@ const MarkdownHelp = ({ title, talk }) => {
           <tr>
             <td>Image</td>
             <td>
-              ![imagealttext](/assets/simple-avatar.png)<br />
+              ![imagealttext](https://via.placeholder.com/350x350)<br />
               <em>images must already be uploaded; use <a href="http://imgur.com/" rel="noopener noreferrer" target="_blank">imgur</a> to host new images</em>
             </td>
             <td>
-              <a href="http://via.placeholder.com/350x150"><img src="http://via.placeholder.com/350x150" /></a>
+              <Markdown>![imagealttext](https://via.placeholder.com/350x350)</Markdown>
             </td>
           </tr>
           <tr>
             <td>Resized Image</td>
             <td>
-              ![imagealttext](assets/simple-avatar.png =MxN)<br />
+              ![imagealttext](https://via.placeholder.com/350x350 =MxN)<br />
               <em>M is width in pixels, N is height in pixels</em><br />
               <em>constrain by omitting one value, e.g.: =75x or =x75</em>
             </td>
             <td>
-              <a href="http://via.placeholder.com/75x75"><img src="http://via.placeholder.com/75x75" /></a><br />
+              <Markdown>![imagealttext](https://via.placeholder.com/350x350 =75x75)</Markdown><br />
               sample set @ 75x75
             </td>
           </tr>
@@ -247,12 +247,12 @@ const MarkdownHelp = ({ title, talk }) => {
 
 MarkdownHelp.defaultProps = {
   talk: false,
-  title: 'Guide to using Markdown'
+  title: <h1 className="markdown-editor-title">Guide to using Markdown</h1>
 };
 
 MarkdownHelp.propTypes = {
   talk: React.PropTypes.bool,
-  title: React.PropTypes.string
+  title: React.PropTypes.node
 };
 
 export default MarkdownHelp;
