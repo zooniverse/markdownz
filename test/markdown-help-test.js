@@ -20,7 +20,7 @@ describe('<MarkdownHelp />', () => {
       wrapper = shallow(<MarkdownHelp />);
     });
 
-    it('should not render TalkMarkdownHelp component', () => {
+    it('should not render <TalkMarkdownHelp /> component', () => {
       expect(wrapper.find('TalkMarkdownHelp')).to.have.lengthOf(0);
     });
 
@@ -28,13 +28,13 @@ describe('<MarkdownHelp />', () => {
       expect(wrapper.find('.markdown-editor-title').text()).to.include('Guide to using Markdown');
     });
 
-    it('should render the TalkMarkdownHelp component', () => {
+    it('should render the <TalkMarkdownHelp /> component', () => {
       wrapper.setProps({ talk: true });
       expect(wrapper.find('TalkMarkdownHelp')).to.have.lengthOf(1);
     });
 
     it('should render a custom title', () => {
-      wrapper.setProps({ title: "Lorem Ipsum" });
+      wrapper.setProps({ title: <h1 className="markdown-editor-title">Lorem Ipsum</h1> });
       expect(wrapper.find('.markdown-editor-title').text()).to.include('Lorem Ipsum');
     });
   });
