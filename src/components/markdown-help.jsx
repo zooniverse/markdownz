@@ -159,7 +159,7 @@ const MarkdownHelp = ({ title, talk }) => {
             </td>
             <td>
               <Markdown>
-                {'- item one\n&nbsp;&nbsp;- item two\n&nbsp;&nbsp;&nbsp;&nbsp;- item three\n- item 4'}
+                {'- item one\n  - item two\n    - item three\n- item 4'}
               </Markdown>
             </td>
           </tr>
