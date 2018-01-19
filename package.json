@@ -54,6 +54,7 @@
     "markdown-it-sup": "~1.0.0",
     "markdown-it-table-of-contents": "~0.2.2",
     "markdown-it-video": "~0.4.0",
+    "prop-types": "~15.6.0",
     "react": "~15.6",
     "react-dom": "~15.6",
     "twemoji": "~1.4.1"
