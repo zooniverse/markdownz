@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Markdown from './markdown';
 
 const TalkMarkdownHelp = () =>
@@ -251,8 +252,8 @@ MarkdownHelp.defaultProps = {
 };
 
 MarkdownHelp.propTypes = {
-  talk: React.PropTypes.bool,
-  title: React.PropTypes.node
+  talk: PropTypes.bool,
+  title: PropTypes.node
 };
 
 export default MarkdownHelp;
