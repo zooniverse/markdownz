@@ -56,15 +56,18 @@ export default class Markdown extends React.Component {
 
   captureFootnoteLinks() {
     const backrefs = '.footnote-ref > a, .footnote-backref';
-    const links = ReactDOM.findDOMNode(this).querySelectorAll(backrefs);
+    const root = ReactDOM.findDOMNode(this);
+    if (root) {
+      const links = root.querySelectorAll(backrefs);
 
-    for (let i = 0; i < links.length; i += 1) {
-      const link = links[i];
-      const target = document.getElementById(link.getAttribute('href').replace('#', ''));
-      link.onclick = function (ev) {
-        ev.preventDefault();
-        target.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      };
+      for (let i = 0; i < links.length; i += 1) {
+        const link = links[i];
+        const target = document.getElementById(link.getAttribute('href').replace('#', ''));
+        link.onclick = function (ev) {
+          ev.preventDefault();
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        };
+      }
     }
   }
 
