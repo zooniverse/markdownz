@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import MarkdownIt from 'markdown-it';
 import MarkdownItContainer from 'markdown-it-container';
 import markdownEmoji from 'markdown-it-emoji';
@@ -53,9 +52,8 @@ export default class Markdown extends React.Component {
 
   captureFootnoteLinks() {
     const backrefs = '.footnote-ref > a, .footnote-backref';
-    const root = ReactDOM.findDOMNode(this);
-    if (root) {
-      const links = root.querySelectorAll(backrefs);
+    if (this.root && this.root.querySelectorAll) {
+      const links = this.root.querySelectorAll(backrefs);
 
       for (let i = 0; i < links.length; i += 1) {
         const link = links[i];
@@ -95,7 +93,8 @@ export default class Markdown extends React.Component {
 
     return React.createElement(this.props.tag, {
       className: `markdown ${this.props.className}`,
-      dangerouslySetInnerHTML: { __html: html }
+      dangerouslySetInnerHTML: { __html: html },
+      ref: (element) => { this.root = element; }
     });
   }
 }
