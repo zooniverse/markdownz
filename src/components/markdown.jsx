@@ -32,9 +32,6 @@ function markdownIt() {
 }
 
 export default class Markdown extends React.Component {
-  displayName() {
-    return 'Markdown';
-  }
 
   markdownify(input) {
     Markdown.counter += 1;
