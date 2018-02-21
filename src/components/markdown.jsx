@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import MarkdownIt from 'markdown-it';
 import MarkdownItContainer from 'markdown-it-container';
 import markdownEmoji from 'markdown-it-emoji';
@@ -32,9 +31,6 @@ function markdownIt() {
 }
 
 export default class Markdown extends React.Component {
-  displayName() {
-    return 'Markdown';
-  }
 
   markdownify(input) {
     Markdown.counter += 1;
@@ -56,15 +52,17 @@ export default class Markdown extends React.Component {
 
   captureFootnoteLinks() {
     const backrefs = '.footnote-ref > a, .footnote-backref';
-    const links = ReactDOM.findDOMNode(this).querySelectorAll(backrefs);
+    if (this.root && this.root.querySelectorAll) {
+      const links = this.root.querySelectorAll(backrefs);
 
-    for (let i = 0; i < links.length; i += 1) {
-      const link = links[i];
-      const target = document.getElementById(link.getAttribute('href').replace('#', ''));
-      link.onclick = function (ev) {
-        ev.preventDefault();
-        target.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      };
+      for (let i = 0; i < links.length; i += 1) {
+        const link = links[i];
+        const target = document.getElementById(link.getAttribute('href').replace('#', ''));
+        link.onclick = function (ev) {
+          ev.preventDefault();
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        };
+      }
     }
   }
 
@@ -95,7 +93,8 @@ export default class Markdown extends React.Component {
 
     return React.createElement(this.props.tag, {
       className: `markdown ${this.props.className}`,
-      dangerouslySetInnerHTML: { __html: html }
+      dangerouslySetInnerHTML: { __html: html },
+      ref: (element) => { this.root = element; }
     });
   }
 }
