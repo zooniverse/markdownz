@@ -10,6 +10,8 @@ import markdownVideo from 'markdown-it-video';
 import markdownTableOfContents from 'markdown-it-table-of-contents';
 import markdownAnchor from 'markdown-it-anchor';
 import twemoji from 'twemoji';
+import html5Embed from 'markdown-it-html5-embed';
+
 
 import replaceSymbols from '../lib/default-transformer';
 import relNofollow from '../lib/links-rel-nofollow';
@@ -27,7 +29,8 @@ function markdownIt() {
     .use(markdownAnchor)
     .use(markdownTableOfContents)
     .use(MarkdownItContainer, 'partners')
-    .use(MarkdownItContainer, 'attribution');
+    .use(MarkdownItContainer, 'attribution')
+    .use(html5Embed, {});
 }
 
 export default class Markdown extends React.Component {
