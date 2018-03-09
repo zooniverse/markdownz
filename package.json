@@ -44,7 +44,7 @@
     "react-test-renderer": "~15.6"
   },
   "dependencies": {
-    "markdown-it": "~7.0.1",
+    "markdown-it": "~8.4.1",
     "markdown-it-anchor": "~2.5.0",
     "markdown-it-container": "~2.0.0",
     "markdown-it-emoji": "~1.2.0",
