@@ -41,6 +41,9 @@
     "eslint-plugin-react": "~6.3.0",
     "jsdom": "~9.5.0",
     "mocha": "~3.1.0",
+    "prop-types": "~15.6.1",
+    "react": "~15.6.2",
+    "react-dom": "~15.6.2",
     "react-test-renderer": "~15.6"
   },
   "dependencies": {
@@ -55,9 +58,6 @@
     "markdown-it-sup": "~1.0.0",
     "markdown-it-table-of-contents": "~0.2.2",
     "markdown-it-video": "~0.4.0",
-    "prop-types": "~15.6.0",
-    "react": "~15.6",
-    "react-dom": "~15.6",
     "twemoji": "~1.4.1"
   }
 }
