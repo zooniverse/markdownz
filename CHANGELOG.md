@@ -1,5 +1,20 @@
 # Change Log
 
+## [v7.6.3](https://github.com/zooniverse/markdownz/tree/v7.6.3) (2018-07-27)
+[Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.2...v7.6.3)
+
+**Merged pull requests:**
+
+- Run npm audit fix [\#72](https://github.com/zooniverse/markdownz/pull/72) ([srallen](https://github.com/srallen))
+
+## [v7.6.2](https://github.com/zooniverse/markdownz/tree/v7.6.2) (2018-06-27)
+[Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.1...v7.6.2)
+
+**Merged pull requests:**
+
+- Manually update packages based on npm audit warnings [\#70](https://github.com/zooniverse/markdownz/pull/70) ([srallen](https://github.com/srallen))
+- add a changelog [\#69](https://github.com/zooniverse/markdownz/pull/69) ([eatyourgreens](https://github.com/eatyourgreens))
+
 ## [v7.6.1](https://github.com/zooniverse/markdownz/tree/v7.6.1) (2018-06-21)
 [Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.0...v7.6.1)
 
