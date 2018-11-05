@@ -1,5 +1,12 @@
 # Change Log
 
+## [v7.6.4](https://github.com/zooniverse/markdownz/tree/v7.6.4) (2018-11-05)
+[Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.3...v7.6.4)
+
+**Merged pull requests:**
+
+- Add noopener nofollow with target=\_blank [\#73](https://github.com/zooniverse/markdownz/pull/73) ([eatyourgreens](https://github.com/eatyourgreens))
+
 ## [v7.6.3](https://github.com/zooniverse/markdownz/tree/v7.6.3) (2018-07-27)
 [Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.2...v7.6.3)
 
