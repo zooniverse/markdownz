@@ -8,13 +8,13 @@ describe('links-in-new-tabs', () => {
   });
 
   it('opens links prefixed with +tab+ in a _blank target by default', () => {
-    const md = mdIt.renderInline('[Test](+tab+http://www.example.com)');
-    expect(md).to.equal('<a href="http://www.example.com" target="_blank">Test</a>');
+    const md = mdIt.renderInline('[Test](+tab+https://www.example.com)');
+    expect(md).to.equal('<a href="https://www.example.com" target="_blank" ref="noopener nofollow">Test</a>');
   });
 
   it('renders normal links without a new tab prefix', () => {
-    const md = mdIt.renderInline('[Test](http://www.example.com)');
-    expect(md).to.equal('<a href="http://www.example.com">Test</a>');
+    const md = mdIt.renderInline('[Test](https://www.example.com)');
+    expect(md).to.equal('<a href="https://www.example.com">Test</a>');
   });
 
   it('accepts a customizable prefix', () => {
@@ -25,7 +25,7 @@ describe('links-in-new-tabs', () => {
       prefix: '=newtab='
     });
 
-    const md = mdIt.renderInline('[Test](=newtab=http://www.example.com)');
-    expect(md).to.equal('<a href="http://www.example.com" target="_blank">Test</a>');
+    const md = mdIt.renderInline('[Test](=newtab=https://www.example.com)');
+    expect(md).to.equal('<a href="https://www.example.com" target="_blank" ref="noopener nofollow">Test</a>');
   });
 });
