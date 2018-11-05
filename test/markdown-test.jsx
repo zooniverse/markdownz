@@ -34,7 +34,7 @@ describe('Markdown', () => {
 
     it('opens links in a new tab when prefixed by +tab+', () => {
       const md = markdown.markdownify('[A link](+tab+http://www.google.com)');
-      expect(md).to.equal('<p><a href="http://www.google.com" target="_blank">A link</a></p>\n');
+      expect(md).to.equal('<p><a href="http://www.google.com" target="_blank" ref="noopener nofollow">A link</a></p>\n');
     });
   });
 

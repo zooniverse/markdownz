@@ -14,12 +14,18 @@ export default function(md, opts) {
     if (prefix === href.slice(0, prefix.length)) {
       // trim prefix if href starts with prefix
       tokens[idx].attrs[hrefIndex][1] = href.slice(prefix.length, href.length);
-      const aIndex = tokens[idx].attrIndex('target');
+      var aIndex = tokens[idx].attrIndex('target');
+      var rIndex = tokens[idx].attrIndex('ref');
 
       if (aIndex < 0) {
         tokens[idx].attrPush(['target', '_blank']); // add new attribute
       } else {
-        tokens[idx].attrs[aIndex][1] = '_blank';  // replace value of existing attr
+        tokens[idx].attrs[aIndex][1] = '_blank'; // replace value of existing attr
+      }
+      if (rIndex < 0) {
+        tokens[idx].attrPush(['ref', 'noopener nofollow'])
+      } else {
+        tokens[idx].attrs[rIndex][1] = 'noopener nofollow';
       }
     }
 
