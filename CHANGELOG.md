@@ -1,5 +1,13 @@
 # Change Log
 
+## [v7.6.6](https://github.com/zooniverse/markdownz/tree/v7.6.6) (2019-07-11)
+[Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.5...v7.6.6)
+
+**Merged pull requests:**
+
+- \[Security\] Bump lodash from 4.17.11 to 4.17.14 [\#79](https://github.com/zooniverse/markdownz/pull/79) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- \[Security\] Bump lodash.merge from 4.6.0 to 4.6.2 [\#78](https://github.com/zooniverse/markdownz/pull/78) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [v7.6.5](https://github.com/zooniverse/markdownz/tree/v7.6.5) (2019-06-04)
 [Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.6.4...v7.6.5)
 
@@ -63,6 +71,10 @@
 
 ## [v7.4.2](https://github.com/zooniverse/markdownz/tree/v7.4.2) (2018-02-21)
 [Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.4.1...v7.4.2)
+
+**Merged pull requests:**
+
+- Only process footnote links if component is mounted [\#63](https://github.com/zooniverse/markdownz/pull/63) ([eatyourgreens](https://github.com/eatyourgreens))
 
 ## [v7.4.1](https://github.com/zooniverse/markdownz/tree/v7.4.1) (2018-01-19)
 [Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.4.0...v7.4.1)
