@@ -32,7 +32,8 @@ const TalkMarkdownHelp = () =>
           @admins - mention the project administrators<br />
           @moderators - mention the project moderators<br />
           @researchers or @scientists - mention the project researchers<br />
-          @team - mention the entire Zooniverse team
+          @team - mention the entire project team<br />
+          @support - mention the Zooniverse Team
         </td>
       </tr>
       <tr>
