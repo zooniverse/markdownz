@@ -29,7 +29,7 @@ const TalkMarkdownHelp = () =>
       <tr>
         <td>Mention<br />Project Teams</td>
         <td>
-          @admins - mention the project administrators<br />
+          @admins - mention the project administrators (owners and collaborators)<br />
           @moderators - mention the project moderators<br />
           @researchers or @scientists - mention the project researchers<br />
           @team - mention the entire project team<br />
