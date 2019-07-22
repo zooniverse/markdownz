@@ -6,7 +6,7 @@ const userLinker = /(^|\s)@([\w\-.]+\b)/g;
 export default function (input, { project, baseURI }) {
   let owner;
   let name;
-  const restrictedUserNames = ['admins', 'moderators', 'researchers', 'scientists', 'team'];
+  const restrictedUserNames = ['admins', 'moderators', 'researchers', 'scientists', 'team', 'support'];
   const prefix = baseURI || '';
 
   if (project) {

@@ -71,8 +71,8 @@ describe('default-transformer', () => {
   });
 
   it('it ignores restricted usernames', () => {
-    const userLink = replaceSymbols('@admins @moderators @team @researchers @scientists', { project, baseURI });
-    expect(userLink).to.equal('@admins @moderators @team @researchers @scientists');
+    const userLink = replaceSymbols('@admins @moderators @team @researchers @scientists @support', { project, baseURI });
+    expect(userLink).to.equal('@admins @moderators @team @researchers @scientists @support');
   });
 
   it('replaces @ownerslug/project-slug^S<subject_id> mentions with links', () => {
