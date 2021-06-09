@@ -11,11 +11,12 @@ export default function(md) {
     const relIndex = tokens[idx].attrIndex('rel');
 
     if (!href.match(/zooniverse.org/)) {
-      // add rel=nofollow to external links
+      // add rel=nofollow noreferrer to external links
       if (relIndex < 0) {
-        tokens[idx].attrPush(['rel', 'nofollow']);
+        tokens[idx].attrPush(['rel', 'nofollow noreferrer']);
       } else {
-        tokens[idx].attrs[relIndex][1] = 'nofollow';
+        tokens[idx].attrs[relIndex].push('nofollow');
+        tokens[idx].attrs[relIndex].push('noreferrer');
       }
     }
 
