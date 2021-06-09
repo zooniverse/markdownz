@@ -34,7 +34,7 @@ describe('Markdown', () => {
 
     it('opens links in a new tab when prefixed by +tab+', () => {
       const md = markdown.markdownify('[A link](+tab+http://www.google.com)');
-      expect(md).to.equal('<p><a href="http://www.google.com" target="_blank" ref="noopener nofollow">A link</a></p>\n');
+      expect(md).to.equal('<p><a href="http://www.google.com" target="_blank" rel="noopener nofollow noreferrer">A link</a></p>\n');
     });
   });
 
@@ -60,7 +60,7 @@ describe('Markdown', () => {
   describe('#renderer', () => {
     it('uses relNofollow when passed as a prop', () => {
       const md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', relNofollow: true }, '[Test](link)'));
-      expect(md.getHtml()).to.equal('<p><a href="link" rel="nofollow">Test</a></p>\n');
+      expect(md.getHtml()).to.equal('<p><a href="link" rel="nofollow noreferrer">Test</a></p>\n');
     });
 
     it('doesn\'t use relNofollow when not passed as a prop', () => {

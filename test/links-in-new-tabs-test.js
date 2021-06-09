@@ -9,7 +9,7 @@ describe('links-in-new-tabs', () => {
 
   it('opens links prefixed with +tab+ in a _blank target by default', () => {
     const md = mdIt.renderInline('[Test](+tab+https://www.example.com)');
-    expect(md).to.equal('<a href="https://www.example.com" target="_blank" ref="noopener nofollow">Test</a>');
+    expect(md).to.equal('<a href="https://www.example.com" target="_blank" rel="noopener nofollow noreferrer">Test</a>');
   });
 
   it('renders normal links without a new tab prefix', () => {
@@ -26,6 +26,6 @@ describe('links-in-new-tabs', () => {
     });
 
     const md = mdIt.renderInline('[Test](=newtab=https://www.example.com)');
-    expect(md).to.equal('<a href="https://www.example.com" target="_blank" ref="noopener nofollow">Test</a>');
+    expect(md).to.equal('<a href="https://www.example.com" target="_blank" rel="noopener nofollow noreferrer">Test</a>');
   });
 });

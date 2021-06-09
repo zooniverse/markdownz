@@ -15,7 +15,7 @@ export default function(md, opts) {
       // trim prefix if href starts with prefix
       tokens[idx].attrs[hrefIndex][1] = href.slice(prefix.length, href.length);
       var aIndex = tokens[idx].attrIndex('target');
-      var rIndex = tokens[idx].attrIndex('ref');
+      var rIndex = tokens[idx].attrIndex('rel');
 
       if (aIndex < 0) {
         tokens[idx].attrPush(['target', '_blank']); // add new attribute
@@ -23,9 +23,11 @@ export default function(md, opts) {
         tokens[idx].attrs[aIndex][1] = '_blank'; // replace value of existing attr
       }
       if (rIndex < 0) {
-        tokens[idx].attrPush(['ref', 'noopener nofollow'])
+        tokens[idx].attrPush(['rel', 'noopener nofollow noreferrer'])
       } else {
-        tokens[idx].attrs[rIndex][1] = 'noopener nofollow';
+        tokens[idx].attrs[rIndex].push('noopener');
+        tokens[idx].attrs[rIndex].push('nofollow');
+        tokens[idx].attrs[rIndex].push('noreferrer');
       }
     }
 
