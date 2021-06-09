@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/zooniverse/markdownz/tree/HEAD)
+## [v7.7.2](https://github.com/zooniverse/markdownz/tree/v7.7.2) (2021-06-09)
 
-[Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.7.1...HEAD)
+[Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.7.1...v7.7.2)
 
 **Security fixes:**
 
