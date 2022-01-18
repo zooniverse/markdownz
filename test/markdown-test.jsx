@@ -29,7 +29,7 @@ describe('Markdown', () => {
   describe('#markdownify', () => {
     it('renders markdown', () => {
       const md = markdown.markdownify('# test header');
-      expect(md).to.equal('<h1 id="test-header">test header</h1>\n');
+      expect(md).to.equal('<h1 id="test-header" tabindex="-1">test header</h1>\n');
     });
 
     it('opens links in a new tab when prefixed by +tab+', () => {
