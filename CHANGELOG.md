@@ -1,5 +1,17 @@
 # Changelog
 
+## [v7.8.1](https://github.com/zooniverse/markdownz/tree/v7.8.1) (2022-01-18)
+
+**Merged pull requests:**
+
+- Upgrade outdated dependencies [\#99](https://github.com/zooniverse/markdownz/pull/99)
+
+## [v7.8.0](https://github.com/zooniverse/markdownz/tree/v7.8.0) (2022-01-18)
+
+**Security fixes:**
+
+- \[Security\] Bump markdown-it from 8.4.1 to 12.3.2 [\#98](https://github.com/zooniverse/markdownz/pull/98)
+
 ## [v7.7.2](https://github.com/zooniverse/markdownz/tree/v7.7.2) (2021-06-09)
 
 [Full Changelog](https://github.com/zooniverse/markdownz/compare/v7.7.1...v7.7.2)
