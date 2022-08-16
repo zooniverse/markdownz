@@ -1,6 +1,6 @@
 {
   "name": "markdownz",
-  "version": "7.8.1",
+  "version": "7.8.2",
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "lib/index.js",
   "scripts": {

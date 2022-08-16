@@ -1,5 +1,12 @@
 # Changelog
 
+## [v7.8.2](https://github.com/zooniverse/markdownz/tree/v7.8.2) (2022-08-16)
+
+**Merged pull requests:**
+
+- Fix test setup per jsdom update [\#101](https://github.com/zooniverse/markdownz/pull/101)
+- \[Security\] Bump jsdom from 9.5.0 to 16.5.0 [\#100](https://github.com/zooniverse/markdownz/pull/100)
+
 ## [v7.8.1](https://github.com/zooniverse/markdownz/tree/v7.8.1) (2022-01-18)
 
 **Merged pull requests:**
