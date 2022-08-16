@@ -2,7 +2,7 @@ import React from 'react';
 import chai from 'chai';
 import spy from 'chai-spies';
 import MarkdownIt from 'markdown-it';
-import { jsdom } from 'jsdom';
+import jsdom from 'jsdom';
 
 chai.use(spy);
 
@@ -11,7 +11,11 @@ global.expect = chai.expect;
 global.spy = chai.spy;
 global.MarkdownIt = MarkdownIt;
 
-global.document = jsdom('');
+const { JSDOM } = jsdom;
+const { document } = (new JSDOM('', {
+  url: 'http://localhost'
+})).window;
+global.document = document;
 global.window = document.defaultView;
 
 Object.keys(document.defaultView).forEach((property) => {
