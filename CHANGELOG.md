@@ -1,5 +1,11 @@
 # Changelog
 
+## [v7.8.3](https://github.com/zooniverse/markdownz/tree/v7.8.3) (2022-10-06)
+
+**Merged pull requests:**
+
+- Bump css-what from 2.1.0 to 2.1.3 [\#103](https://github.com/zooniverse/markdownz/pull/103)
+
 ## [v7.8.2](https://github.com/zooniverse/markdownz/tree/v7.8.2) (2022-08-16)
 
 **Merged pull requests:**
