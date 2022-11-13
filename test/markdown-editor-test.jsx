@@ -152,7 +152,7 @@ describe('MarkdownEditor', () => {
       });
 
       it('should set data-previewing to true', () => {
-        const md = editor.render().find('.markdown-editor');
+        const md = editor.find('.markdown-editor').render();
         expect(md.attr('data-previewing')).to.exist;
       });
     });
@@ -168,7 +168,7 @@ describe('MarkdownEditor', () => {
       });
 
       it('should not set data-previewing', () => {
-        const md = editor.render().find('.markdown-editor');
+        const md = editor.find('.markdown-editor').render();
         expect(md.attr('data-previewing')).to.not.exist;
       });
     });
