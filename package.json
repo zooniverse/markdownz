@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register --require test/helper.js test/*-test.js*",
+    "test": "mocha --require babel-register test/helper.js test/*-test.js*",
     "preversion": "rm -rf lib && npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
@@ -46,7 +46,7 @@
     "eslint-plugin-jsx-a11y": "~6.6.1",
     "eslint-plugin-react": "~7.9.1",
     "jsdom": "~16.5.0",
-    "mocha": "~5.2.0",
+    "mocha": "~10.1.0",
     "prop-types": "~15.7.2",
     "react": "~15.6.2",
     "react-dom": "~15.6.2",
