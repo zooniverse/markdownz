@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register --require test/helper.js test/*-test.js*",
+    "test": "mocha --require babel-register test/helper.js test/*-test.js*",
     "preversion": "rm -rf lib && npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
