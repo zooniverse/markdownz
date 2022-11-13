@@ -1,5 +1,16 @@
 # Changelog
 
+## [v7.8.4](https://github.com/zooniverse/markdownz/tree/v7.8.4) (2022-11-13)
+
+**Merged pull requests:**
+
+- Bump enzyme from 2.8.2 to 3.11.0  [\#104](https://github.com/zooniverse/markdownz/pull/104)
+- Bump chai-spies from 0.7.1 to 1.0.0 [\#105](https://github.com/zooniverse/markdownz/pull/105)
+- Bump babel-preset-react from 6.16.0 to 6.24.1 [\#106](https://github.com/zooniverse/markdownz/pull/106)
+- Bump eslint-plugin-jsx-a11y from 6.0.3 to 6.6.1 [\#108](https://github.com/zooniverse/markdownz/pull/108)
+- Bump chai from 3.5.0 to 4.3.7 [\#109](https://github.com/zooniverse/markdownz/pull/109)
+- npm audit fix [\#111](https://github.com/zooniverse/markdownz/pull/111)
+
 ## [v7.8.3](https://github.com/zooniverse/markdownz/tree/v7.8.3) (2022-10-06)
 
 **Merged pull requests:**
