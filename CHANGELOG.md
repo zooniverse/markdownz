@@ -1,5 +1,11 @@
 # Changelog
 
+## [v7.8.5](https://github.com/zooniverse/markdownz/tree/v7.8.5) (2022-11-13)
+
+**Merged pull requests:**
+
+- Bump minimatch and mocha [\#112](https://github.com/zooniverse/markdownz/pull/112)
+
 ## [v7.8.4](https://github.com/zooniverse/markdownz/tree/v7.8.4) (2022-11-13)
 
 **Merged pull requests:**
