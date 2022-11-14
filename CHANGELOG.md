@@ -1,5 +1,13 @@
 # Changelog
 
+## [v7.8.6](https://github.com/zooniverse/markdownz/tree/v7.8.6) (2022-11-14)
+
+**Merged pull requests:**
+
+- Bump markdown-it-emoji from 2.0.0 to 2.0.2 [\#117](https://github.com/zooniverse/markdownz/pull/117)
+- Bump eslint-plugin-import from 2.13.0 to 2.26.0 [\#114](https://github.com/zooniverse/markdownz/pull/114)
+- Bump react from 15.6.2 to 15.7.0 [\#113](https://github.com/zooniverse/markdownz/pull/113)
+
 ## [v7.8.5](https://github.com/zooniverse/markdownz/tree/v7.8.5) (2022-11-13)
 
 **Merged pull requests:**
