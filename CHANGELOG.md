@@ -1,5 +1,15 @@
 # Changelog
 
+## [v7.9.0](https://github.com/zooniverse/markdownz/tree/v7.9.0) (2022-11-28)
+
+**Merged pull requests:**
+
+- Bump react-test-renderer from 15.6.2 to 15.7.0 [\#118](https://github.com/zooniverse/markdownz/pull/118)
+- Bump markdown-it from 12.3.2 to 13.0.1  [\#119](https://github.com/zooniverse/markdownz/pull/119)
+- Bump eslint-plugin-react from 7.9.1 to 7.31.11 [\#120](https://github.com/zooniverse/markdownz/pull/120)
+- Bump jsdom from 16.5.0 to 20.0.3 [\#121](https://github.com/zooniverse/markdownz/pull/121)
+- Bump prop-types from 15.7.2 to 15.8.1 [\#122](https://github.com/zooniverse/markdownz/pull/122)
+
 ## [v7.8.6](https://github.com/zooniverse/markdownz/tree/v7.8.6) (2022-11-14)
 
 **Merged pull requests:**
