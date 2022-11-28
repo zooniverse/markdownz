@@ -50,7 +50,7 @@
     "prop-types": "~15.8.1",
     "react": "~15.7.0",
     "react-dom": "~15.6.2",
-    "react-test-renderer": "~15.6"
+    "react-test-renderer": "~15.7"
   },
   "dependencies": {
     "markdown-it": "~13.0.1",
