@@ -64,6 +64,6 @@
     "markdown-it-sup": "~1.0.0",
     "markdown-it-table-of-contents": "~0.6.0",
     "markdown-it-video": "~0.6.3",
-    "twemoji": "~13.1.0"
+    "twemoji": "~14.0.2"
   }
 }
