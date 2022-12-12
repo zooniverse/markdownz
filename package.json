@@ -46,7 +46,7 @@
     "eslint-plugin-jsx-a11y": "~6.6.1",
     "eslint-plugin-react": "~7.31.11",
     "jsdom": "~20.0.3",
-    "mocha": "~10.1.0",
+    "mocha": "~10.2.0",
     "prop-types": "~15.8.1",
     "react": "~15.7.0",
     "react-dom": "~15.6.2",
