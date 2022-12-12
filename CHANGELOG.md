@@ -1,5 +1,14 @@
 # Changelog
 
+## [v7.10.0](https://github.com/zooniverse/markdownz/tree/v7.9.0) (2022-11-28)
+
+**Merged pull requests:**
+
+- Bump markdown-it-anchor from 8.4.1 to 8.6.5  [\#123](https://github.com/zooniverse/markdownz/pull/123)
+- Bump react-dom from 15.6.2 to 15.7.0 [\#124](https://github.com/zooniverse/markdownz/pull/124)
+- Bump twemoji from 13.1.0 to 14.0.2 [\#125](https://github.com/zooniverse/markdownz/pull/125)
+- Bump mocha from 10.1.0 to 10.2.0 [\#126](https://github.com/zooniverse/markdownz/pull/126)
+
 ## [v7.9.0](https://github.com/zooniverse/markdownz/tree/v7.9.0) (2022-11-28)
 
 **Merged pull requests:**
