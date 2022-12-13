@@ -1,6 +1,6 @@
 # Changelog
 
-## [v7.10.0](https://github.com/zooniverse/markdownz/tree/v7.9.0) (2022-11-28)
+## [v7.10.0](https://github.com/zooniverse/markdownz/tree/v7.9.0) (2022-12-12)
 
 **Merged pull requests:**
 
