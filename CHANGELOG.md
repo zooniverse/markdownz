@@ -1,6 +1,12 @@
 # Changelog
 
-## [v7.10.0](https://github.com/zooniverse/markdownz/tree/v7.9.0) (2022-12-12)
+## Pending Release
+
+**Closed issues:**
+
+- Update link to supported emoji [\#127](https://github.com/zooniverse/markdownz/issues/127)
+
+## [v7.10.0](https://github.com/zooniverse/markdownz/tree/v7.10.0) (2022-12-12)
 
 **Merged pull requests:**
 
