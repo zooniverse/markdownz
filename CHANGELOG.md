@@ -1,6 +1,6 @@
 # Changelog
 
-## Pending Release
+## [v7.10.1](https://github.com/zooniverse/markdownz/tree/v7.10.1) (2022-12-15)
 
 **Closed issues:**
 
