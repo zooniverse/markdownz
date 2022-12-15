@@ -41,7 +41,7 @@ const TalkMarkdownHelp = () =>
       </tr>
       <tr>
         <td>Complete<br />Emoji List</td>
-        <td><a href="http://www.emoji-cheat-sheet.com/" rel="noopener noreferrer" target="_blank">use this website for all supported emoji</a></td>
+        <td><a href="https://www.webfx.com/tools/emoji-cheat-sheet/" rel="noopener noreferrer" target="_blank">use this website for all supported emoji</a></td>
       </tr>
     </tbody>
   </table>);
