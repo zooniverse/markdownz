@@ -1,5 +1,14 @@
 # Changelog
 
+## [v7.10.2](https://github.com/zooniverse/markdownz/tree/v7.10.1) (2023-01-06)
+
+**Security**
+- `npm audit fix`.
+
+**Merged pull requests:**
+
+- Bump markdown-it-anchor from 8.6.5 to 8.6.6  [\#130](https://github.com/zooniverse/markdownz/pull/130)
+
 ## [v7.10.1](https://github.com/zooniverse/markdownz/tree/v7.10.1) (2022-12-15)
 
 **Closed issues:**
