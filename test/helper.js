@@ -3,7 +3,7 @@ import chai from 'chai';
 import spy from 'chai-spies';
 import MarkdownIt from 'markdown-it';
 import jsdom from 'jsdom';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 
 Enzyme.configure({

@@ -1,3 +1,23 @@
 {
-  "presets": ["react", "es2015"]
+  "presets": [
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }],
+    "@babel/preset-env"
+  ],
+  "env": {
+    "es6": {
+      "presets": [
+        ["@babel/preset-react", {
+          "runtime": "automatic"
+        }],
+        ["@babel/preset-env", {
+          "modules": false,
+          "targets": {
+            "esmodules": true
+          }
+        }]
+      ]
+    },
+  }
 }
