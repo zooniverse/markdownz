@@ -1,6 +1,12 @@
 # Changelog
 
-## [v7.10.2](https://github.com/zooniverse/markdownz/tree/v7.10.1) (2023-01-06)
+## [v8.0.0](https://github.com/zooniverse/markdownz/tree/v8.0.0) (2023-01-06)
+
+- Build with Babel 7.
+- Support the new React automatic runtime.
+- Add an ESM build.
+
+## [v7.10.2](https://github.com/zooniverse/markdownz/tree/v7.10.2) (2023-01-06)
 
 **Security**
 - `npm audit fix`.
