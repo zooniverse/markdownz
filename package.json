@@ -2,11 +2,14 @@
   "name": "markdownz",
   "version": "7.10.2",
   "description": "Markdown viewer and editor for the Zooniverse",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "babel src --out-dir lib/cjs",
+    "build:esm": "BABEL_ENV=es6 babel src --out-dir lib/esm",
     "lint": "eslint src",
-    "test": "mocha --require babel-register test/helper.js test/*-test.js*",
+    "test": "mocha --require @babel/register test/helper.js test/*-test.js*",
     "preversion": "rm -rf lib && npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
@@ -26,19 +29,19 @@
   },
   "homepage": "https://github.com/zooniverse/markdownz#readme",
   "peerDependencies": {
-    "react": ">= 15.6",
-    "react-dom": ">= 15.6"
+    "react": ">= 16.14",
+    "react-dom": ">= 16.14"
   },
   "devDependencies": {
-    "babel-cli": "~6.26.0",
-    "babel-core": "~6.26.3",
-    "babel-preset-es2015": "~6.24.1",
-    "babel-preset-react": "~6.24.1",
-    "babel-register": "~6.26.0",
+    "@babel/cli": "~7.20.7",
+    "@babel/core": "~7.20.12",
+    "@babel/preset-env": "~7.20.2",
+    "@babel/preset-react": "~7.18.6",
+    "@babel/register": "~7.18.9",
     "chai": "~4.3.7",
     "chai-spies": "~1.0.0",
     "enzyme": "~3.11.0",
-    "enzyme-adapter-react-15": "~1.4.4",
+    "enzyme-adapter-react-16": "~1.15.7",
     "eslint": "~4.19.1",
     "eslint-config-airbnb": "~17.0.0",
     "eslint-config-airbnb-base": "~13.0.0",
@@ -48,9 +51,9 @@
     "jsdom": "~20.0.3",
     "mocha": "~10.2.0",
     "prop-types": "~15.8.1",
-    "react": "~15.7.0",
-    "react-dom": "~15.7.0",
-    "react-test-renderer": "~15.7"
+    "react": "~16.14",
+    "react-dom": "~16.14",
+    "react-test-renderer": "~16.14"
   },
   "dependencies": {
     "markdown-it": "~13.0.1",
