@@ -1,5 +1,10 @@
 # Changelog
 
+## [v8.0.1](https://github.com/zooniverse/markdownz/tree/v8.0.1) (2023-01-12)
+
+* Bump jsdom from 20.0.3 to 21.0.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/132
+* use new base url for twemoji by @camallen in https://github.com/zooniverse/markdownz/pull/133
+
 ## [v8.0.0](https://github.com/zooniverse/markdownz/tree/v8.0.0) (2023-01-06)
 
 - Build with Babel 7.
