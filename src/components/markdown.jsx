@@ -87,7 +87,7 @@ export default class Markdown extends React.Component {
   }
 
   emojify(input) {
-    return twemoji.parse(input);
+    return twemoji.parse(input, { base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/' });
   }
 
   render() {
