@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.0.2](https://github.com/zooniverse/markdownz/tree/v8.0.2) (2023-01-23)
+
+* Bump eslint-plugin-import from 2.26.0 to 2.27.4 by @dependabot in https://github.com/zooniverse/markdownz/pull/134
+* Bump eslint-plugin-jsx-a11y from 6.6.1 to 6.7.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/135
+* Bump jsdom from 21.0.0 to 21.1.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/139
+* Bump eslint-plugin-react from 7.31.11 to 7.32.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/137
+* Bump twemoji to 14.1.0 by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/140
+
 ## [v8.0.1](https://github.com/zooniverse/markdownz/tree/v8.0.1) (2023-01-12)
 
 * Bump jsdom from 20.0.3 to 21.0.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/132
