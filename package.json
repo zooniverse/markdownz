@@ -56,6 +56,7 @@
     "react-test-renderer": "~16.14"
   },
   "dependencies": {
+    "@twemoji/api": "~14.1.0",
     "markdown-it": "~13.0.1",
     "markdown-it-anchor": "~8.6.5",
     "markdown-it-container": "~3.0.0",
@@ -66,7 +67,6 @@
     "markdown-it-sub": "~1.0.0",
     "markdown-it-sup": "~1.0.0",
     "markdown-it-table-of-contents": "~0.6.0",
-    "markdown-it-video": "~0.6.3",
-    "twemoji": "~14.0.2"
+    "markdown-it-video": "~0.6.3"
   }
 }

@@ -9,7 +9,7 @@ import markdownImsize from 'markdown-it-imsize';
 import markdownVideo from 'markdown-it-video';
 import markdownTableOfContents from 'markdown-it-table-of-contents';
 import markdownAnchor from 'markdown-it-anchor';
-import twemoji from 'twemoji';
+import twemoji from '@twemoji/api';
 import html5Embed from 'markdown-it-html5-embed';
 
 
@@ -87,7 +87,7 @@ export default class Markdown extends React.Component {
   }
 
   emojify(input) {
-    return twemoji.parse(input, { base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/' });
+    return twemoji.parse(input);
   }
 
   render() {
