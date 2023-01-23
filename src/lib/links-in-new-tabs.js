@@ -1,7 +1,7 @@
 // from https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md#renderer
-export default function(md, opts) {
+export default function (md, opts) {
   // Remember old renderer, if overridden, or proxy to default renderer
-  const defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+  const defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options);
   };
 
@@ -14,8 +14,8 @@ export default function(md, opts) {
     if (prefix === href.slice(0, prefix.length)) {
       // trim prefix if href starts with prefix
       tokens[idx].attrs[hrefIndex][1] = href.slice(prefix.length, href.length);
-      var aIndex = tokens[idx].attrIndex('target');
-      var rIndex = tokens[idx].attrIndex('rel');
+      const aIndex = tokens[idx].attrIndex('target');
+      const rIndex = tokens[idx].attrIndex('rel');
 
       if (aIndex < 0) {
         tokens[idx].attrPush(['target', '_blank']); // add new attribute
@@ -23,7 +23,7 @@ export default function(md, opts) {
         tokens[idx].attrs[aIndex][1] = '_blank'; // replace value of existing attr
       }
       if (rIndex < 0) {
-        tokens[idx].attrPush(['rel', 'noopener nofollow noreferrer'])
+        tokens[idx].attrPush(['rel', 'noopener nofollow noreferrer']);
       } else {
         tokens[idx].attrs[rIndex].push('noopener');
         tokens[idx].attrs[rIndex].push('nofollow');
