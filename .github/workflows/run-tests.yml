@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 'lts/hydrogen'
           cache: 'npm'
       - run: npm ci
       - run: npm test
@@ -24,7 +24,7 @@ jobs:
     needs: test
     with:
       commit_id: ${{ github.sha }}
-      node_version: '16.x'
+      node_version: 'lts/hydrogen'
       output: 'lib'
       script: 'build'
   slack_notifiaction:
