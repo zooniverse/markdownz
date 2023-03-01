@@ -1,5 +1,15 @@
 # Changelog
 
+## [v8.0.3](https://github.com/zooniverse/markdownz/tree/v8.0.3) (2023-03-01)
+
+* Bump eslint-plugin-import from 2.27.4 to 2.27.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/138
+* Bump eslint-plugin-react from 7.32.1 to 7.32.2 by @dependabot in https://github.com/zooniverse/markdownz/pull/141
+* Build and test with Node 18 by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/142
+* Bump markdown-it-anchor from 8.6.6 to 8.6.7 by @dependabot in https://github.com/zooniverse/markdownz/pull/143
+* Bump @babel/core from 7.20.12 to 7.21.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/146
+* Bump @babel/register from 7.18.9 to 7.21.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/144
+* Bump @babel/cli from 7.20.7 to 7.21.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/145
+
 ## [v8.0.2](https://github.com/zooniverse/markdownz/tree/v8.0.2) (2023-01-23)
 
 * Bump eslint-plugin-import from 2.26.0 to 2.27.4 by @dependabot in https://github.com/zooniverse/markdownz/pull/134
