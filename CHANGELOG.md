@@ -1,5 +1,16 @@
 # Changelog
 
+## [v8.0.4](https://github.com/zooniverse/markdownz/tree/v8.0.4) (2023-05-11)
+
+* Bump jsdom from 21.1.0 to 21.1.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/147
+* Bump @babel/core from 7.21.0 to 7.21.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/148
+* Bump @twemoji/api from 14.1.0 to 14.1.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/149
+* Bump @twemoji/api from 14.1.1 to 14.1.2 by @dependabot in https://github.com/zooniverse/markdownz/pull/150
+* Bump @babel/preset-env from 7.20.2 to 7.21.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/153
+* Bump @babel/core from 7.21.3 to 7.21.8 by @dependabot in https://github.com/zooniverse/markdownz/pull/157
+* Bump @babel/cli from 7.21.0 to 7.21.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/155
+* Bump jsdom from 21.1.1 to 22.0.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/156
+
 ## [v8.0.3](https://github.com/zooniverse/markdownz/tree/v8.0.3) (2023-03-01)
 
 * Bump eslint-plugin-import from 2.27.4 to 2.27.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/138
