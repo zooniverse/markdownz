@@ -1,5 +1,17 @@
 # Changelog
 
+## [v8.0.5](https://github.com/zooniverse/markdownz/tree/v8.0.5) (2023-06-13)
+
+* Bump jsdom from 22.0.0 to 22.1.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/158
+* Bump @babel/preset-env from 7.21.5 to 7.22.2 by @dependabot in https://github.com/zooniverse/markdownz/pull/160
+* Bump @babel/preset-react from 7.18.6 to 7.22.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/159
+* Bump @babel/core from 7.21.8 to 7.22.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/161
+* Bump @babel/cli from 7.21.5 to 7.22.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/163
+* Bump @babel/core from 7.22.1 to 7.22.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/167
+* Bump @babel/preset-react from 7.22.3 to 7.22.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/164
+* Bump @babel/register from 7.21.0 to 7.22.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/165
+* Bump @babel/preset-env from 7.22.2 to 7.22.5 by @dependabot in https://github.com/zooniverse/markdownz/pull/166
+
 ## [v8.0.4](https://github.com/zooniverse/markdownz/tree/v8.0.4) (2023-05-11)
 
 * Bump jsdom from 21.1.0 to 21.1.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/147
