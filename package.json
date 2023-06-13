@@ -37,7 +37,7 @@
     "@babel/core": "~7.22.1",
     "@babel/preset-env": "~7.22.2",
     "@babel/preset-react": "~7.22.3",
-    "@babel/register": "~7.21.0",
+    "@babel/register": "~7.22.5",
     "chai": "~4.3.7",
     "chai-spies": "~1.0.0",
     "enzyme": "~3.11.0",
