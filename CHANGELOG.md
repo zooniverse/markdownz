@@ -1,5 +1,9 @@
 # Changelog
 
+## [v8.0.6](https://github.com/zooniverse/markdownz/tree/v8.0.6) (2023-07-10)
+
+* Bump tough-cookie from 4.1.2 to 4.1.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/168
+
 ## [v8.0.5](https://github.com/zooniverse/markdownz/tree/v8.0.5) (2023-06-13)
 
 * Bump jsdom from 22.0.0 to 22.1.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/158
