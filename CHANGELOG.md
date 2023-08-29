@@ -1,5 +1,26 @@
 # Changelog
 
+## [v8.0.7](https://github.com/zooniverse/markdownz/tree/v8.0.7) (2023-08-29)
+
+* Bump @babel/cli from 7.22.5 to 7.22.6 by @dependabot in https://github.com/zooniverse/markdownz/pull/169
+* Bump @babel/core from 7.22.5 to 7.22.8 by @dependabot in https://github.com/zooniverse/markdownz/pull/170
+* Bump @babel/preset-env from 7.22.5 to 7.22.7 by @dependabot in https://github.com/zooniverse/markdownz/pull/171
+* Bump @babel/preset-env from 7.22.7 to 7.22.9 by @dependabot in https://github.com/zooniverse/markdownz/pull/172
+* Bump @babel/core from 7.22.8 to 7.22.9 by @dependabot in https://github.com/zooniverse/markdownz/pull/174
+* Bump @babel/cli from 7.22.6 to 7.22.9 by @dependabot in https://github.com/zooniverse/markdownz/pull/173
+* Bump eslint-plugin-react from 7.32.2 to 7.33.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/175
+* Bump eslint-plugin-react from 7.33.0 to 7.33.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/176
+* Bump @babel/cli from 7.22.9 to 7.22.10 by @dependabot in https://github.com/zooniverse/markdownz/pull/178
+* Bump eslint-plugin-import from 2.27.5 to 2.28.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/177
+* Bump @babel/preset-env from 7.22.9 to 7.22.10 by @dependabot in https://github.com/zooniverse/markdownz/pull/180
+* Bump @babel/core from 7.22.9 to 7.22.10 by @dependabot in https://github.com/zooniverse/markdownz/pull/179
+* Bump eslint-plugin-import from 2.28.0 to 2.28.1 by @dependabot in https://github.com/zooniverse/markdownz/pull/181
+* Bump eslint-plugin-react from 7.33.1 to 7.33.2 by @dependabot in https://github.com/zooniverse/markdownz/pull/182
+* Bump @babel/core from 7.22.10 to 7.22.11 by @dependabot in https://github.com/zooniverse/markdownz/pull/183
+* Bump chai from 4.3.7 to 4.3.8 by @dependabot in https://github.com/zooniverse/markdownz/pull/184
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.0.6...v8.0.7
+
 ## [v8.0.6](https://github.com/zooniverse/markdownz/tree/v8.0.6) (2023-07-10)
 
 * Bump tough-cookie from 4.1.2 to 4.1.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/168
