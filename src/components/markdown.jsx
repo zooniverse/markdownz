@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { PureComponent, createElement } from 'react';
 
 import * as utils from '../lib/utils';
 
@@ -33,7 +33,7 @@ export default class Markdown extends PureComponent {
     const html = this.getHtml();
     setTimeout(() => this.captureFootnoteLinks(), 1);
 
-    return React.createElement(this.props.tag, {
+    return createElement(this.props.tag, {
       className: `markdown ${this.props.className}`,
       dangerouslySetInnerHTML: { __html: html },
       ref: (element) => { this.root = element; }
