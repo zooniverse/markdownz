@@ -4,6 +4,9 @@
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "babel src --out-dir lib/cjs",
