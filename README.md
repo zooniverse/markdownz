@@ -32,6 +32,19 @@ import { MarkdownHelp } from 'markdownz'
 <MarkdownHelp talk={true} title={<h1>Guide to Markdown</h1>} />
 ```
 
+Utilities:
+
+```js
+import { utils } from 'markdownz';
+
+const content = `
+# A test document
+
+This is a test [with a link](https://www.zooniverse.org).
+`
+const html = utils.getHTML({ content });
+```
+
 ## Supported Properties
 
 ### Viewer
