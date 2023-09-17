@@ -1,5 +1,6 @@
 import TestUtils from 'react-dom/test-utils';
 import { Markdown } from '../src/index';
+import * as utils from '../src/lib/utils';
 
 describe('Markdown', () => {
   let markdown;
@@ -20,52 +21,8 @@ describe('Markdown', () => {
       baseURI: null,
       project: null,
       relNofollow: false,
-      transform: Markdown.defaultProps.transform,
       className: '',
       idPrefix: null
-    });
-  });
-
-  describe('#markdownify', () => {
-    it('renders markdown', () => {
-      const md = markdown.markdownify('# test header');
-      expect(md).to.equal('<h1 id="test-header" tabindex="-1">test header</h1>\n');
-    });
-
-    it('opens links in a new tab when prefixed by +tab+', () => {
-      const md = markdown.markdownify('[A link](+tab+http://www.google.com)');
-      expect(md).to.equal('<p><a href="http://www.google.com" target="_blank" rel="noopener nofollow noreferrer">A link</a></p>\n');
-    });
-  });
-
-  describe('#getHtml', () => {
-    const errorTransform = () => {
-      throw new Error('fail');
-    };
-
-    it('returns the formatted html', () => {
-      let md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent' }, 'Test text'));
-
-      let html = md.getHtml();
-      expect(html).to.equal('<p>Test text</p>\n');
-    });
-
-    it('renders bare child content on error', () => {
-      const md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', transform: errorTransform }, 'Test text'));
-      const html = md.getHtml();
-      expect(html).to.equal('Test text');
-    });
-  });
-
-  describe('#renderer', () => {
-    it('uses relNofollow when passed as a prop', () => {
-      const md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', relNofollow: true }, '[Test](link)'));
-      expect(md.getHtml()).to.equal('<p><a href="link" rel="nofollow noreferrer">Test</a></p>\n');
-    });
-
-    it('doesn\'t use relNofollow when not passed as a prop', () => {
-      const md = TestUtils.renderIntoDocument(React.createElement(Markdown, { className: 'MyComponent', relNofollow: false }, '[Test](link)'));
-      expect(md.getHtml()).to.equal('<p><a href="link">Test</a></p>\n');
     });
   });
 
@@ -89,7 +46,7 @@ describe('Markdown', () => {
     });
 
     it('calls getHtml in render', () => {
-      const getHtmlSpy = spy.on(md, 'getHtml');
+      const getHtmlSpy = spy.on(utils, 'getHtml');
       md.render();
       expect(getHtmlSpy).to.have.been.called();
     });

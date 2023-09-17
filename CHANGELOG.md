@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-09-17)
+Export the HTML utilities separately from the React components.
+```js
+import { utils } from 'markdownz';
+
+const content = `
+# A test document
+
+This is a test [with a link](https://www.zooniverse.org).
+`
+const html = utils.getHTML({ content });
+```
+
 ## [v8.0.7](https://github.com/zooniverse/markdownz/tree/v8.0.7) (2023-08-29)
 
 * Bump @babel/cli from 7.22.5 to 7.22.6 by @dependabot in https://github.com/zooniverse/markdownz/pull/169
