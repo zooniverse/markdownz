@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-09-17)
+## [v8.1.0](https://github.com/zooniverse/markdownz/tree/v8.1.0) (2023-09-17)
 Export the HTML utilities separately from the React components.
 ```js
 import { utils } from 'markdownz';
@@ -12,6 +12,16 @@ This is a test [with a link](https://www.zooniverse.org).
 `
 const html = utils.getHTML({ content });
 ```
+
+* Bump @babel/register from 7.22.5 to 7.22.15 by @dependabot in https://github.com/zooniverse/markdownz/pull/186
+* Bump @babel/preset-react from 7.22.5 to 7.22.15 by @dependabot in https://github.com/zooniverse/markdownz/pull/189
+* Bump @babel/core from 7.22.11 to 7.22.20 by @dependabot in https://github.com/zooniverse/markdownz/pull/191
+* Bump @babel/cli from 7.22.10 to 7.22.15 by @dependabot in https://github.com/zooniverse/markdownz/pull/187
+* Bump @babel/preset-env from 7.22.10 to 7.22.20 by @dependabot in https://github.com/zooniverse/markdownz/pull/192
+* Export HTML utilities by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/193
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.0.7...v8.1.0
 
 ## [v8.0.7](https://github.com/zooniverse/markdownz/tree/v8.0.7) (2023-08-29)
 
