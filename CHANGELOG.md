@@ -1,7 +1,9 @@
 # Changelog
 
 ## [v8.1.2](https://github.com/zooniverse/markdownz/tree/v8.1.2) (2023-09-18)
-Bugfix for 'React is undefined' in v8.1.0.
+Add debug mode: `<Markdownz debug>Some content.</Markdown>`.
+
+* Add debug mode by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/194
 
 **Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.1.1...v8.1.2
 
