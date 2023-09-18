@@ -63,6 +63,7 @@ export function markdownify({
 export function getHtml({
   baseURI,
   content,
+  debug = false,
   idPrefix,
   inline = false,
   project,
@@ -78,6 +79,10 @@ export function getHtml({
     const html = markdownify({ idPrefix, inline, input, relNoFollow });
     return emojify(html);
   } catch (e) {
+    if (debug) {
+      console.error(e)
+      return e.message
+    }
     return content;
   }
 }

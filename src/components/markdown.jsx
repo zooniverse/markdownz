@@ -20,17 +20,13 @@ export default class Markdown extends PureComponent {
     }
   }
 
-  getHtml() {
+  render() {
     const { children, ...props } = this.props;
     const content = children || this.props.content;
-    return utils.getHtml({
+    const html = utils.getHtml({
       ...props,
       content
     });
-  }
-
-  render() {
-    const html = this.getHtml();
     setTimeout(() => this.captureFootnoteLinks(), 1);
 
     return createElement(this.props.tag, {
@@ -46,6 +42,7 @@ Markdown.counter = 0;
 Markdown.defaultProps = {
   tag: 'div',
   content: '',
+  debug: false,
   inline: false,
   project: null,
   baseURI: null,
