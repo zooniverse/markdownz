@@ -1,9 +1,14 @@
 # Changelog
 
+## [v8.1.2](https://github.com/zooniverse/markdownz/tree/v8.1.2) (2023-09-18)
+Bugfix for 'React is undefined' in v8.1.0.
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.1.1...v8.1.2
+
 ## [v8.1.1](https://github.com/zooniverse/markdownz/tree/v8.1.1) (2023-09-17)
 Bugfix for 'React is undefined' in v8.1.0.
 
-**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.0.7...v8.1.0
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.1.0...v8.1.1
 
 ## [v8.1.0](https://github.com/zooniverse/markdownz/tree/v8.1.0) (2023-09-17)
 Export the HTML utilities separately from the React components.

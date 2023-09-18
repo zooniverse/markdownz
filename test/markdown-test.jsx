@@ -1,3 +1,4 @@
+import { createElement } from 'react';
 import TestUtils from 'react-dom/test-utils';
 import { Markdown } from '../src/index';
 import * as utils from '../src/lib/utils';
@@ -10,13 +11,14 @@ describe('Markdown', () => {
   });
 
   it('exists', () => {
-    expect(Markdown).to.be.ok;
+    expect(markdown).to.be.ok;
   });
 
   it('#getDefaultProps', () => {
     expect(Markdown.defaultProps).to.deep.equal({
       tag: 'div',
       content: '',
+      debug: false,
       inline: false,
       baseURI: null,
       project: null,
@@ -31,10 +33,10 @@ describe('Markdown', () => {
     let md;
 
     before(() => {
-      editor = React.createElement(Markdown, {
+      editor = createElement(Markdown, {
         className: 'MyComponent',
         tag: 'div',
-        transform: ((html) => html.replace('foo', 'bar'))
+        transform: (html => html.replace('foo', 'bar'))
       }, 'Test children foo');
 
       md = TestUtils.renderIntoDocument(editor);
@@ -52,7 +54,7 @@ describe('Markdown', () => {
     });
 
     it('returns a react component, with customizable tag', () => {
-      const ed = React.createElement(Markdown, { className: 'PMarkdown', tag: 'p' }, 'Test p tag');
+      const ed = createElement(Markdown, { className: 'PMarkdown', tag: 'p' }, 'Test p tag');
       const mdEditor = TestUtils.renderIntoDocument(ed);
       const renderValue = mdEditor.render();
       expect(renderValue.type).to.equal('p');

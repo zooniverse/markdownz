@@ -16,6 +16,14 @@ import { Markdown } from 'markdownz';
 <Markdown>{A String of `Markdown`}</Markdown>
 ```
 
+Debug the viewer with the `debug` prop:
+
+```jsx
+import { Markdown } from 'markdownz';
+
+<Markdown debug>{A String of `Markdown`}</Markdown>
+```
+
 Editor:
 
 ```jsx
