@@ -21,16 +21,15 @@ export default class Markdown extends PureComponent {
   }
 
   render() {
-    const { children, ...props } = this.props;
-    const content = children || this.props.content;
+    const { className, children, content, tag, ...props } = this.props;
     const html = utils.getHtml({
       ...props,
-      content
+      content: children || content
     });
     setTimeout(() => this.captureFootnoteLinks(), 1);
 
-    return createElement(this.props.tag, {
-      className: `markdown ${this.props.className}`,
+    return createElement(tag, {
+      className: `markdown ${className}`,
       dangerouslySetInnerHTML: { __html: html },
       ref: (element) => { this.root = element; }
     });
