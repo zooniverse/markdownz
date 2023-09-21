@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.1.3](https://github.com/zooniverse/markdownz/tree/v8.1.3) (2023-09-21)
+Split the `className`, `content` and `tag` props out from props that are passed as options to `getHtml`.
+
+* Refactor Markdownz props by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/195
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.1.2...v8.1.3
+
 ## [v8.1.2](https://github.com/zooniverse/markdownz/tree/v8.1.2) (2023-09-18)
 Add debug mode: `<Markdownz debug>Some content.</Markdown>`.
 
