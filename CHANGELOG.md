@@ -1,5 +1,16 @@
 # Changelog
 
+## [v8.1.4](https://github.com/zooniverse/markdownz/tree/v8.1.4) (2023-10-02)
+Dependency updates.
+
+* Bump @babel/cli from 7.22.15 to 7.23.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/196
+* Bump @babel/core from 7.22.20 to 7.23.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/197
+* Bump chai from 4.3.8 to 4.3.10 by @dependabot in https://github.com/zooniverse/markdownz/pull/198
+* Bump markdown-it from 13.0.1 to 13.0.2 by @dependabot in https://github.com/zooniverse/markdownz/pull/199
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.1.3...v8.1.4
+
 ## [v8.1.3](https://github.com/zooniverse/markdownz/tree/v8.1.3) (2023-09-21)
 Split the `className`, `content` and `tag` props out from props that are passed as options to `getHtml`.
 
