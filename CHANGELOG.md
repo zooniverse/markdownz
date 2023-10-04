@@ -1,5 +1,12 @@
 # Changelog
 
+## [v8.2.0](https://github.com/zooniverse/markdownz/tree/v8.2.0) (2023-10-04)
+Allow (@test-user) to be auto-linked as a username mention.
+
+* Allow username mentions in brackets by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/200
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.1.4...v8.2.0
+
 ## [v8.1.4](https://github.com/zooniverse/markdownz/tree/v8.1.4) (2023-10-02)
 Dependency updates.
 
