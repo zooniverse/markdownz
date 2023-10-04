@@ -1,7 +1,7 @@
 const tagReplacer = /(^|\s)#([-\w\d]{3,40})/g;
 const projectSubjectLinker = /(^|\s)@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g;
 const subjectLinker = /(^|\s)\^S([0-9]+)/g;
-const userLinker = /(^|\s)@([\w\-.]+\b)/g;
+const userLinker = /(^|\s|\()@([\w\-.]+\b)/g;
 
 export default function (input, { project, baseURI }) {
   let owner;

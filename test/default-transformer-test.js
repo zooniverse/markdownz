@@ -56,8 +56,8 @@ describe('default-transformer', () => {
   });
 
   it('replaces @user.name mentions with user links', () => {
-    const userLink = replaceSymbols('@test.user', { project, baseURI });
-    expect(userLink).to.equal('[@test.user](/users/test.user)');
+    const userLink = replaceSymbols('(@test.user)', { project, baseURI });
+    expect(userLink).to.equal('([@test.user](/users/test.user))');
   });
 
   it('ignores non-separated @-names', () => {
