@@ -1,5 +1,14 @@
 # Changelog
 
+
+## [v8.3.0](https://github.com/zooniverse/markdownz/tree/v8.3.0) (2023-10-06)
+Require `markdown-it` 13 for all plugins and samitise output HTML by default.
+
+* [Security] Sanitise HTML and update dependencies by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/201
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.2.0...v8.3.0
+
 ## [v8.2.0](https://github.com/zooniverse/markdownz/tree/v8.2.0) (2023-10-04)
 Allow (@test-user) to be auto-linked as a username mention.
 
