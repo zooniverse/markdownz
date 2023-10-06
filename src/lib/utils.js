@@ -78,7 +78,9 @@ export function getHtml({
     }
 
     const html = markdownify({ idPrefix, inline, input, relNoFollow });
-    const sanitizedHTML = sanitize(html);
+    const sanitizedHTML = sanitize(html, {
+      ADD_ATTR: ['target']
+    });
     return emojify(sanitizedHTML);
   } catch (e) {
     if (debug) {

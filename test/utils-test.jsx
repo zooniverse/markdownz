@@ -36,5 +36,10 @@ describe('Utilities', () => {
     it('doesn\'t use relNofollow when not passed as a prop', () => {
       expect(utils.getHtml({ content: '[Test](link)' })).to.equal('<p><a href="link">Test</a></p>\n');
     });
+
+    it('opens +tab+ links in a new tab', function () {
+      const html = utils.getHtml({ content: '[Test](+tab+https://www.example.com)', inline: true });
+        expect(html).to.equal('<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.example.com">Test</a>');
+    });
   });
 });
