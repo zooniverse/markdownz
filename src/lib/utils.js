@@ -79,7 +79,8 @@ export function getHtml({
 
     const html = markdownify({ idPrefix, inline, input, relNoFollow });
     const sanitizedHTML = sanitize(html, {
-      ADD_ATTR: ['target']
+      ADD_ATTR: ['allowfullscreen','target'],
+      ADD_TAGS:['iframe']
     });
     return emojify(sanitizedHTML);
   } catch (e) {

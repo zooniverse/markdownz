@@ -41,5 +41,10 @@ describe('Utilities', () => {
       const html = utils.getHtml({ content: '[Test](+tab+https://www.example.com)', inline: true });
         expect(html).to.equal('<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.example.com">Test</a>');
     });
+
+    it('embeds YoutTube videos with modified image syntax', function () {
+      const html = utils.getHtml({ content: '@[youtube](dQw4w9WgXcQ)', inline: true });
+        expect(html).to.equal('<div class="embed-responsive embed-responsive-16by9"><iframe allowfullscreen="" src="https://www.youtube.com/embed/dQw4w9WgXcQ" height="390" width="640" type="text/html" class="embed-responsive-item youtube-player"></iframe></div>');
+    });
   });
 });
