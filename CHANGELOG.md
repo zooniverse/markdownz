@@ -1,5 +1,13 @@
 # Changelog
 
+## [v8.3.2](https://github.com/zooniverse/markdownz/tree/v8.3.2) (2023-10-06)
+Allow embedded YouTube iframes.
+
+* Allow embedded iframes for YouTube content by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/203
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.3.1...v8.3.2
+
 ## [v8.3.1](https://github.com/zooniverse/markdownz/tree/v8.3.1) (2023-10-06)
 Allow `target=_blank` on external links, in sanitised HTML.
 
