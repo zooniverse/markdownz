@@ -30,7 +30,7 @@ describe('Utilities', () => {
     });
 
     it('uses relNofollow when passed as a prop', () => {
-      expect(utils.getHtml({ content: '[Test](link)', relNoFollow: true })).to.equal('<p><a href="link" rel="nofollow noreferrer">Test</a></p>\n');
+      expect(utils.getHtml({ content: '[Test](link)', relNoFollow: true })).to.equal('<p><a rel="nofollow noreferrer" href="link">Test</a></p>\n');
     });
 
     it('doesn\'t use relNofollow when not passed as a prop', () => {

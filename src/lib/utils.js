@@ -10,6 +10,7 @@ import markdownTableOfContents from 'markdown-it-table-of-contents';
 import markdownAnchor from 'markdown-it-anchor';
 import html5Embed from 'markdown-it-html5-embed';
 import twemoji from '@twemoji/api';
+import { sanitize } from 'dompurify';
 
 import markdownNewTab from '../lib/links-in-new-tabs';
 import relNofollow from '../lib/links-rel-nofollow';
@@ -77,7 +78,8 @@ export function getHtml({
     }
 
     const html = markdownify({ idPrefix, inline, input, relNoFollow });
-    return emojify(html);
+    const sanitizedHTML = sanitize(html);
+    return emojify(sanitizedHTML);
   } catch (e) {
     if (debug) {
       console.error(e)
