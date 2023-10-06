@@ -1,5 +1,12 @@
 # Changelog
 
+## [v8.3.1](https://github.com/zooniverse/markdownz/tree/v8.3.1) (2023-10-06)
+Allow `target=_blank` on external links, in sanitised HTML.
+
+* Allow links to open with target=_blank by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/202
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.3.0...v8.3.1
 
 ## [v8.3.0](https://github.com/zooniverse/markdownz/tree/v8.3.0) (2023-10-06)
 Require `markdown-it` 13 for all plugins and samitise output HTML by default.
