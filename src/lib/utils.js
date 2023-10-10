@@ -10,7 +10,7 @@ import markdownTableOfContents from 'markdown-it-table-of-contents';
 import markdownAnchor from 'markdown-it-anchor';
 import html5Embed from 'markdown-it-html5-embed';
 import twemoji from '@twemoji/api';
-import { sanitize } from 'dompurify';
+import { sanitize } from 'isomorphic-dompurify';
 
 import markdownNewTab from '../lib/links-in-new-tabs';
 import relNofollow from '../lib/links-rel-nofollow';
