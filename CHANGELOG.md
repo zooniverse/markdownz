@@ -1,5 +1,12 @@
 # Changelog
 
+## [v8.3.3](https://github.com/zooniverse/markdownz/tree/v8.3.3) (2023-10-10)
+Support NodeJS runtimes.
+
+* Support DOMPurify on Node by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/206
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.3.2...v8.3.3
+
 ## [v8.3.2](https://github.com/zooniverse/markdownz/tree/v8.3.2) (2023-10-06)
 Allow embedded YouTube iframes.
 
