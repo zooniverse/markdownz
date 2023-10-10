@@ -4,6 +4,7 @@
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
+  "sideEffects": false,
   "files": [
     "lib/*"
   ],

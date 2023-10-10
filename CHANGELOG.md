@@ -1,5 +1,10 @@
 # Changelog
 
+## [v8.4.0](https://github.com/zooniverse/markdownz/tree/v8.4.0) (2023-10-10)
+Support tree-shaking with `sideEffects: false`.
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.3.3...v8.4.0
+
 ## [v8.3.3](https://github.com/zooniverse/markdownz/tree/v8.3.3) (2023-10-10)
 Support NodeJS runtimes.
 
