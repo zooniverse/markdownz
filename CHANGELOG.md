@@ -1,5 +1,10 @@
 # Changelog
 
+## [v8.4.1](https://github.com/zooniverse/markdownz/tree/v8.4.1) (2023-10-24)
+Dependency updates. Upgrade ESLint from 4 to 8.
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.4.0...v8.4.1
+
 ## [v8.4.0](https://github.com/zooniverse/markdownz/tree/v8.4.0) (2023-10-10)
 Support tree-shaking with `sideEffects: false`.
 
