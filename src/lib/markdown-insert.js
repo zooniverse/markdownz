@@ -91,12 +91,12 @@ module.exports = {
     const endInputValue = inputVal.substring(cursorEnd, inputVal.length);
     const newSelectionStart = cursorPos + cursor.start + newLineChar.length;
     const newSelectionEnd = cursorPos + cursor.end + newLineChar.length;
-    const scrollTop = input.scrollTop;
+    const scrollPosition = input.scrollTop;
 
     // update input value with new values
     input.value = begInputValue + midInputValue + endInputValue;
     input.focus();
-    input.scrollTop = scrollTop;
+    input.scrollTop = scrollPosition;
     if (input.setSelectionRange) {
       input.setSelectionRange(newSelectionStart, newSelectionEnd);
     }

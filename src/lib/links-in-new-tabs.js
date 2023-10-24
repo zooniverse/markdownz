@@ -1,13 +1,15 @@
+function renderMarkdown(tokens, idx, options, env, self) {
+  return self.renderToken(tokens, idx, options);
+}
+
 // from https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md#renderer
 export default function (md, opts) {
   // Remember old renderer, if overridden, or proxy to default renderer
-  const defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
-    return self.renderToken(tokens, idx, options);
-  };
+  const defaultRender = md.renderer.rules.link_open || renderMarkdown;
 
   const prefix = (opts && opts.prefix) ? opts.prefix : '+tab+';
 
-  md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+  md.renderer.rules.link_open = function addTargetToLinks(tokens, idx, options, env, self) {
     const hrefIndex = tokens[idx].attrIndex('href');
     const href = tokens[idx].attrs[hrefIndex][1];
 

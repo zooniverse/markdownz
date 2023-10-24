@@ -12,9 +12,9 @@ import html5Embed from 'markdown-it-html5-embed';
 import twemoji from '@twemoji/api';
 import { sanitize } from 'isomorphic-dompurify';
 
-import markdownNewTab from '../lib/links-in-new-tabs';
-import relNofollow from '../lib/links-rel-nofollow';
-import replaceSymbols from '../lib/default-transformer';
+import markdownNewTab from './links-in-new-tabs';
+import relNofollow from './links-rel-nofollow';
+import replaceSymbols from './default-transformer';
 
 let counter = 0;
 
@@ -77,16 +77,18 @@ export function getHtml({
       input = transform(content, { project, baseURI });
     }
 
-    const html = markdownify({ idPrefix, inline, input, relNoFollow });
+    const html = markdownify({
+      idPrefix, inline, input, relNoFollow
+    });
     const sanitizedHTML = sanitize(html, {
-      ADD_ATTR: ['allowfullscreen','target'],
-      ADD_TAGS:['iframe']
+      ADD_ATTR: ['allowfullscreen', 'target'],
+      ADD_TAGS: ['iframe']
     });
     return emojify(sanitizedHTML);
   } catch (e) {
     if (debug) {
-      console.error(e)
-      return e.message
+      console.error(e);
+      return e.message;
     }
     return content;
   }
