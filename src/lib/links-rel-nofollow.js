@@ -3,7 +3,7 @@ function renderMarkdown(tokens, idx, options, env, self) {
 }
 
 // from https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md#renderer
-export default function (md) {
+export default function linksRelNofollow(md) {
   // Remember old renderer, if overridden, or proxy to default renderer
   const defaultRender = md.renderer.rules.link_open || renderMarkdown;
 

@@ -3,7 +3,7 @@ const projectSubjectLinker = /(^|\s)@(\b[\w-]+\b)\/(\b[\w-]+\b)\^S([0-9]+)/g;
 const subjectLinker = /(^|\s)\^S([0-9]+)/g;
 const userLinker = /(^|\s|\()@([\w\-.]+\b)/g;
 
-export default function (input, { project, baseURI }) {
+export default function defaultTransformer(input, { project, baseURI }) {
   let owner;
   let name;
   const restrictedUserNames = ['admins', 'moderators', 'researchers', 'scientists', 'team', 'support'];
