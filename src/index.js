@@ -2,3 +2,4 @@ export { default as Markdown } from './components/markdown';
 export { default as MarkdownEditor } from './components/markdown-editor';
 export { default as MarkdownHelp } from './components/markdown-help';
 export * as utils from './lib/utils';
+export { default as useMarkdownz } from './hooks/use-markdownz';
