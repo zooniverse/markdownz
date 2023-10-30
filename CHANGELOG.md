@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-30)
+Add a `useMarkdownz` hook.
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.4.1...master
+
 ## [v8.4.1](https://github.com/zooniverse/markdownz/tree/v8.4.1) (2023-10-24)
 Dependency updates. Upgrade ESLint from 4 to 8.
 

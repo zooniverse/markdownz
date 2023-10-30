@@ -53,6 +53,16 @@ This is a test [with a link](https://www.zooniverse.org).
 const html = utils.getHTML({ content });
 ```
 
+Hooks:
+
+The `useMarkdownz` hook accepts the same props as the `Markdown` component. It returns the parsed content as HTML.
+
+```js
+import { useMarkdownz } from 'markdownz';
+
+const html = useMarkdownz({ content: 'This is some markdown', debug: true })
+```
+
 ## Supported Properties
 
 ### Viewer
@@ -61,6 +71,7 @@ const html = utils.getHTML({ content });
 |----------|:-------:|--------|
 | children  | `null` | Markdown String to Render |
 | content | `''` | Markdown String to Render used if `this.props.children` is null |
+| debug | `false` | Return error messages, if true, for easier debugging |
 | tag | `div` | HTML tag to wrap markdown content with |
 | className | `''` | css classes for the element |
 | project | `null` | Panoptes project for links |
