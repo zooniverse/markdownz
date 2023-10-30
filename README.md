@@ -55,6 +55,14 @@ This is a test [with a link](https://www.zooniverse.org).
 const html = utils.getHTML({ content });
 ```
 
+```jsx
+// render HTML as JSX with utils.getComponentTree
+import { utils } from 'markdownz';
+const html = '<p>This is a test paragraph, with <a href="https://www.zooniverse.org">a link.</a>';
+const markdownChildren = utils.getComponentTree({ html });
+return <div>{markdownChildren}</div>;
+```
+
 Hooks:
 
 The `useMarkdownz` hook accepts the same props as the `Markdown` component. It returns the parsed content as HTML.
