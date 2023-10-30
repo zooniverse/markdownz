@@ -17,13 +17,15 @@ describe('Markdown', () => {
   it('#getDefaultProps', () => {
     expect(Markdown.defaultProps).to.deep.equal({
       tag: 'div',
+      components: null,
       content: '',
       debug: false,
       inline: false,
-      baseURI: null,
       project: null,
-      relNofollow: false,
+      settings: {},
+      baseURI: null,
       className: '',
+      relNofollow: false,
       idPrefix: null
     });
   });
