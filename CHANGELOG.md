@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-30)
+Refactor the Rehype code into `utils.getComponentTree`.
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.0.0...master
+
 ## [v9.0.0](https://github.com/zooniverse/markdownz/tree/v9.0.0) (2023-10-30)
 Remove `dangerouslySetInnerHTML`. Render the HTML output with `rehype-react`.
 

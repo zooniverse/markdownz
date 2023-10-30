@@ -12,6 +12,10 @@ import html5Embed from 'markdown-it-html5-embed';
 import twemoji from '@twemoji/api';
 import { sanitize } from 'isomorphic-dompurify';
 
+import { Fragment, createElement } from 'react';
+import rehype from 'rehype';
+import rehype2react from 'rehype-react';
+
 import markdownNewTab from './links-in-new-tabs';
 import relNofollow from './links-rel-nofollow';
 import replaceSymbols from './default-transformer';
@@ -92,4 +96,26 @@ export function getHtml({
     }
     return content;
   }
+}
+
+export function getComponentTree({ html, settings, components }) {
+  const rehypeSettings = {
+    fragment: true,
+    ...settings
+  };
+
+  let parsedHTML = null;
+  try {
+    parsedHTML = rehype()
+      .data('settings', rehypeSettings)
+      .use(rehype2react, {
+        Fragment,
+        createElement,
+        components
+      })
+      .processSync(html).result;
+  } catch (error) {
+    parsedHTML = error.message;
+  }
+  return parsedHTML
 }

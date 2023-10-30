@@ -1,6 +1,4 @@
-import { Fragment, PureComponent, createElement } from 'react';
-import rehype from 'rehype';
-import rehype2react from 'rehype-react';
+import { PureComponent, createElement } from 'react';
 
 import * as utils from '../lib/utils';
 
@@ -28,26 +26,14 @@ export default class Markdown extends PureComponent {
       ...props,
       content: children || content
     });
+
+    const parsedHTML = utils.getComponentTree({
+      components,
+      html,
+      settings
+    });
+
     setTimeout(() => this.captureFootnoteLinks(), 1);
-
-    const rehypeSettings = {
-      fragment: true,
-      ...settings
-    };
-
-    let parsedHTML = null;
-    try {
-      parsedHTML = rehype()
-        .data('settings', rehypeSettings)
-        .use(rehype2react, {
-          Fragment,
-          createElement,
-          components
-        })
-        .processSync(html).result;
-    } catch (error) {
-      parsedHTML = error.message;
-    }
 
     return createElement(tag, {
       className: `markdown ${className}`,
