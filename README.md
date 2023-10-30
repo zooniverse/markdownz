@@ -1,6 +1,6 @@
 # markdownz [![Build Status](https://travis-ci.org/zooniverse/markdownz.svg?branch=master)](https://travis-ci.org/zooniverse/markdownz)
 
-Markdown viewer, editor, and help components for the [Zooniverse](https://www.zooniverse.org). Requires React 15.
+Markdown viewer, editor, and help components for the [Zooniverse](https://www.zooniverse.org). Requires React 16.8 or higher.
 
 ## Usage
 
@@ -9,6 +9,8 @@ Available on [npm](http://npmjs.com), include as a dependency using `npm install
 This package contains three publicly accessible components: a Markdown viewer and a Markdown editor for Zooniverse-flavored Markdown, and a MarkdownHelp component.
 
 Viewer:
+
+Parse markdown to HTML with `markdown-it`, then render the result as a React component tree with `rehype-react`.
 
 ```jsx
 import { Markdown } from 'markdownz';
@@ -70,8 +72,10 @@ const html = useMarkdownz({ content: 'This is some markdown', debug: true })
 | property | default | effect |
 |----------|:-------:|--------|
 | children  | `null` | Markdown String to Render |
+| components | `null` | Rehype component mappings for the parsed output |
 | content | `''` | Markdown String to Render used if `this.props.children` is null |
 | debug | `false` | Return error messages, if true, for easier debugging |
+| settings | `{}` | Rehype settings for the parsed output |
 | tag | `div` | HTML tag to wrap markdown content with |
 | className | `''` | css classes for the element |
 | project | `null` | Panoptes project for links |

@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-30)
+Remove `dangerouslySetInnerHTML`. Render the HTML output with `rehype-react`.
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v8.5.0...master
+
 ## [v8.5.0](https://github.com/zooniverse/markdownz/tree/8.5.0) (2023-10-30)
 Add a `useMarkdownz` hook.
 
