@@ -67,7 +67,7 @@ export function markdownify({
 
 export function getHtml({
   baseURI,
-  content,
+  content = '',
   debug = false,
   idPrefix,
   inline = false,
@@ -75,8 +75,9 @@ export function getHtml({
   relNoFollow = false,
   transform = replaceSymbols
 }) {
-  let input = content.toString();
+  let input = '';
   try {
+    input = content.toString();
     if (typeof transform === 'function') {
       input = transform(input, { project, baseURI });
     }
