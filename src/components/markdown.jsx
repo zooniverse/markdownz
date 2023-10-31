@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import * as utils from '../lib/utils';
+import useMarkdownz from '../hooks/use-markdownz';
 import replaceSymbols from '../lib/default-transformer';
 
 export default function Markdown({
@@ -37,21 +37,17 @@ export default function Markdown({
     }
   }
 
-  const html = utils.getHtml({
+  const reactChildren = useMarkdownz({
     baseURI,
+    components,
     content: children || content,
     debug,
     idPrefix,
     inline,
     project,
     relNoFollow,
+    settings,
     transform
-  });
-
-  const reactChildren = utils.getComponentTree({
-    components,
-    html,
-    settings
   });
 
   setTimeout(captureFootnoteLinks, 1);

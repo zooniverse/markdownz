@@ -65,12 +65,13 @@ return <div>{markdownChildren}</div>;
 
 Hooks:
 
-The `useMarkdownz` hook accepts the same props as the `Markdown` component. It returns the parsed content as HTML.
+The `useMarkdownz` hook accepts the same props as the `Markdown` component. It returns the parsed content as a React component tree, which can be rendered as JSX or with `React.createElement`;
 
-```js
+```jsx
 import { useMarkdownz } from 'markdownz';
 
-const html = useMarkdownz({ content: 'This is some markdown', debug: true })
+const markdownChildren = useMarkdownz({ content: 'This is some markdown', debug: true });
+return <>{markdownChildren}</>;
 ```
 
 ## Supported Properties

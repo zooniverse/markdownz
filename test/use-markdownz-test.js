@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import TestUtils from 'react-dom/test-utils';
 
 import useMarkdownz from '../src/hooks/use-markdownz';
@@ -6,13 +6,13 @@ import useMarkdownz from '../src/hooks/use-markdownz';
 function MarkdownStub({ children, ...props }) {
   const html = useMarkdownz({ content: children, ...props });
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <div className="testStub">
+      {html}
+    </div>
   );
 }
 
-class TestComponent extends Component {
+class TestComponent extends PureComponent {
   render() {
     return <MarkdownStub {...this.props} />;
   }
@@ -79,7 +79,7 @@ describe('useMarkdownz', () => {
         @[youtube](dQw4w9WgXcQ)
       </TestComponent>
     );
-    const markdownDiv = TestUtils.findRenderedDOMComponentWithTag(md, 'div');
+    const markdownDiv = TestUtils.findRenderedDOMComponentWithClass(md, 'testStub');
     expect(markdownDiv.innerHTML).to.equal('<div class="embed-responsive embed-responsive-16by9"><iframe allowfullscreen="" src="https://www.youtube.com/embed/dQw4w9WgXcQ" height="390" width="640" type="text/html" class="embed-responsive-item youtube-player"></iframe></div>');
   });
 });

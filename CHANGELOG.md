@@ -1,7 +1,24 @@
 # Changelog
 
 ## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-30)
-Refactor the Rehype code into `utils.getComponentTree`.
+- Refactor `Markdownz` as a functional component.
+- Refactor the Rehype code into `utils.getComponentTree`.
+- Return a React component tree from the `useMarkdownz` hook.
+
+```jsx
+// render HTML as JSX
+import { utils } from 'markdownz';
+const html = '<p>This is a test paragraph, with <a href="https://www.zooniverse.org">a link.</a>';
+const reactChildren = utils.getComponentTree({ html });
+return <div>{reactChildren}</div>;
+```
+
+```jsx
+import { useMarkdownz } from 'markdownz';
+
+const markdownChildren = useMarkdownz({ content: 'This is some markdown', debug: true });
+return <>{markdownChildren}</>;
+```
 
 **Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.0.0...master
 
