@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-30)
+## [v9.1.0](https://github.com/zooniverse/markdownz/tree/v9.1.0) (2023-10-31)
 - Refactor `Markdownz` as a functional component.
 - Refactor the Rehype code into `utils.getComponentTree`.
 - Return a React component tree from the `useMarkdownz` hook.
@@ -20,7 +20,7 @@ const markdownChildren = useMarkdownz({ content: 'This is some markdown', debug:
 return <>{markdownChildren}</>;
 ```
 
-**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.0.0...master
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.0.0...v9.1.0
 
 ## [v9.0.0](https://github.com/zooniverse/markdownz/tree/v9.0.0) (2023-10-30)
 Remove `dangerouslySetInnerHTML`. Render the HTML output with `rehype-react`.
