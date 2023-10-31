@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-31)
+Bugfix: handle null values as empty strings.
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.2...master
+
 ## [v9.1.2](https://github.com/zooniverse/markdownz/tree/v9.1.2) (2023-10-31)
 Bugfix: cast all input values to strings.
 
