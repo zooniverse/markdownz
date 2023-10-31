@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased](https://github.com/zooniverse/markdownz/tree/master) (2023-10-31)
+Bugfix: cast all input values to strings.
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.1...master
+
 ## [v9.1.1](https://github.com/zooniverse/markdownz/tree/v9.1.1) (2023-10-31)
 - Optimise Markdown and useMarkdownz by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/217
 

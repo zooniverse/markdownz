@@ -33,6 +33,16 @@ describe('useMarkdownz', () => {
     expect(markdownDiv.innerHTML).to.equal('<p>Test text</p>\n');
   });
 
+  it('renders numbers as HTML', () => {
+    const md = TestUtils.renderIntoDocument(
+      <TestComponent>
+        {1234}
+      </TestComponent>
+    );
+    const markdownDiv = TestUtils.findRenderedDOMComponentWithTag(md, 'div');
+    expect(markdownDiv.innerHTML).to.equal('<p>1234</p>\n');
+  });
+
   it('renders bare child content on error', () => {
     const md = TestUtils.renderIntoDocument(
       <TestComponent transform={errorTransform}>
