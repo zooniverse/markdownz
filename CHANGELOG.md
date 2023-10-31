@@ -1,5 +1,11 @@
 # Changelog
 
+## [v9.1.1](https://github.com/zooniverse/markdownz/tree/v9.1.1) (2023-10-31)
+- Optimise Markdown and useMarkdownz by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/217
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.0...v9.1.1
+
 ## [v9.1.0](https://github.com/zooniverse/markdownz/tree/v9.1.0) (2023-10-31)
 - Refactor `Markdownz` as a functional component.
 - Refactor the Rehype code into `utils.getComponentTree`.
