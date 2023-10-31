@@ -5,15 +5,17 @@ import replaceSymbols from '../lib/default-transformer';
 
 export default function useMarkdownz({
   baseURI,
+  components = null,
   content,
   debug = false,
   idPrefix,
   inline = false,
   project,
   relNoFollow = false,
+  settings = {},
   transform = replaceSymbols
 }) {
-  return useMemo(() => utils.getHtml({
+  const html = useMemo(() => utils.getHtml({
     baseURI,
     content,
     debug,
@@ -22,5 +24,11 @@ export default function useMarkdownz({
     project,
     relNoFollow,
     transform
+  }));
+
+  return useMemo(() => utils.getComponentTree({
+    components,
+    html,
+    settings
   }));
 }

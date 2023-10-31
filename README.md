@@ -55,14 +55,23 @@ This is a test [with a link](https://www.zooniverse.org).
 const html = utils.getHTML({ content });
 ```
 
+```jsx
+// render HTML as JSX with utils.getComponentTree
+import { utils } from 'markdownz';
+const html = '<p>This is a test paragraph, with <a href="https://www.zooniverse.org">a link.</a>';
+const markdownChildren = utils.getComponentTree({ html });
+return <div>{markdownChildren}</div>;
+```
+
 Hooks:
 
-The `useMarkdownz` hook accepts the same props as the `Markdown` component. It returns the parsed content as HTML.
+The `useMarkdownz` hook accepts the same props as the `Markdown` component. It returns the parsed content as a React component tree, which can be rendered as JSX or with `React.createElement`;
 
-```js
+```jsx
 import { useMarkdownz } from 'markdownz';
 
-const html = useMarkdownz({ content: 'This is some markdown', debug: true })
+const markdownChildren = useMarkdownz({ content: 'This is some markdown', debug: true });
+return <>{markdownChildren}</>;
 ```
 
 ## Supported Properties

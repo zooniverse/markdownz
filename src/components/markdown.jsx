@@ -1,15 +1,30 @@
-import { Fragment, PureComponent, createElement } from 'react';
-import rehype from 'rehype';
-import rehype2react from 'rehype-react';
+import { useRef } from 'react';
 
-import * as utils from '../lib/utils';
+import useMarkdownz from '../hooks/use-markdownz';
+import replaceSymbols from '../lib/default-transformer';
 
-export default class Markdown extends PureComponent {
+export default function Markdown({
+  baseURI = null,
+  className = '',
+  children,
+  components = null,
+  content = '',
+  debug = false,
+  idPrefix = null,
+  inline = false,
+  project = null,
+  relNoFollow = false,
+  settings = {},
+  tag = 'div',
+  transform = replaceSymbols
+}) {
+  const Tag = tag;
+  const root = useRef();
 
-  captureFootnoteLinks() {
+  function captureFootnoteLinks() {
     const backrefs = '.footnote-ref > a, .footnote-backref';
-    if (this.root && this.root.querySelectorAll) {
-      const links = this.root.querySelectorAll(backrefs);
+    if (root.current && root.current.querySelectorAll) {
+      const links = root.current.querySelectorAll(backrefs);
 
       for (let i = 0; i < links.length; i += 1) {
         const link = links[i];
@@ -22,53 +37,29 @@ export default class Markdown extends PureComponent {
     }
   }
 
-  render() {
-    const { className, children, components, content, settings, tag, ...props } = this.props;
-    const html = utils.getHtml({
-      ...props,
-      content: children || content
-    });
-    setTimeout(() => this.captureFootnoteLinks(), 1);
+  const reactChildren = useMarkdownz({
+    baseURI,
+    components,
+    content: children || content,
+    debug,
+    idPrefix,
+    inline,
+    project,
+    relNoFollow,
+    settings,
+    transform
+  });
 
-    const rehypeSettings = {
-      fragment: true,
-      ...settings
-    };
+  setTimeout(captureFootnoteLinks, 1);
 
-    let parsedHTML = null;
-    try {
-      parsedHTML = rehype()
-        .data('settings', rehypeSettings)
-        .use(rehype2react, {
-          Fragment,
-          createElement,
-          components
-        })
-        .processSync(html).result;
-    } catch (error) {
-      parsedHTML = error.message;
-    }
-
-    return createElement(tag, {
-      className: `markdown ${className}`,
-      children: parsedHTML,
-      ref: (element) => { this.root = element; }
-    });
-  }
+  return (
+    <Tag
+      ref={root}
+      className={`markdown ${className}`}
+    >
+      {reactChildren}
+    </Tag>
+  );
 }
 
 Markdown.counter = 0;
-
-Markdown.defaultProps = {
-  tag: 'div',
-  components: null,
-  content: '',
-  debug: false,
-  inline: false,
-  project: null,
-  settings: {},
-  baseURI: null,
-  className: '',
-  relNofollow: false,
-  idPrefix: null
-};
