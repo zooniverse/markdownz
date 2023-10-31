@@ -1,20 +1,23 @@
+import PropTypes from 'prop-types';
 import { useRef } from 'react';
 
 import useMarkdownz from '../hooks/use-markdownz';
 import replaceSymbols from '../lib/default-transformer';
 
+const defaultSettings = {};
+
 export default function Markdown({
-  baseURI = null,
+  baseURI = '',
   className = '',
-  children,
+  children = null,
   components = null,
   content = '',
   debug = false,
-  idPrefix = null,
+  idPrefix = '',
   inline = false,
   project = null,
   relNoFollow = false,
-  settings = {},
+  settings = defaultSettings,
   tag = 'div',
   transform = replaceSymbols
 }) {
@@ -63,3 +66,21 @@ export default function Markdown({
 }
 
 Markdown.counter = 0;
+
+Markdown.propTypes = {
+  baseURI: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  components: PropTypes.object,
+  content: PropTypes.string,
+  debug: PropTypes.bool,
+  idPrefix: PropTypes.string,
+  inline: PropTypes.bool,
+  project: PropTypes.shape({
+    slug: PropTypes.string
+  }),
+  relNoFollow: PropTypes.bool,
+  settings: PropTypes.object,
+  tag: PropTypes.string,
+  transform: PropTypes.func
+};

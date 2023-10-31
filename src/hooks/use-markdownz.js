@@ -3,16 +3,18 @@ import { useMemo } from 'react';
 import * as utils from '../lib/utils';
 import replaceSymbols from '../lib/default-transformer';
 
+const defaultSettings = {};
+
 export default function useMarkdownz({
-  baseURI,
+  baseURI = '',
   components = null,
-  content,
+  content = '',
   debug = false,
-  idPrefix,
+  idPrefix = '',
   inline = false,
-  project,
+  project = null,
   relNoFollow = false,
-  settings = {},
+  settings = defaultSettings,
   transform = replaceSymbols
 }) {
   const html = useMemo(() => utils.getHtml({
@@ -24,11 +26,11 @@ export default function useMarkdownz({
     project,
     relNoFollow,
     transform
-  }));
+  }), [baseURI, content, debug, idPrefix, inline, project, relNoFollow, transform]);
 
   return useMemo(() => utils.getComponentTree({
     components,
     html,
     settings
-  }));
+  }), [components, html, settings]);
 }
