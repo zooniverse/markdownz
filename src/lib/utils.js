@@ -75,10 +75,10 @@ export function getHtml({
   relNoFollow = false,
   transform = replaceSymbols
 }) {
-  let input = content;
+  let input = content.toString();
   try {
     if (typeof transform === 'function') {
-      input = transform(content, { project, baseURI });
+      input = transform(input, { project, baseURI });
     }
 
     const html = markdownify({
