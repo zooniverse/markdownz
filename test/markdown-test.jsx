@@ -1,33 +1,21 @@
-import { createElement } from 'react';
+import { createElement, PureComponent } from 'react';
 import TestUtils from 'react-dom/test-utils';
 import { Markdown } from '../src/index';
-import * as utils from '../src/lib/utils';
 
 describe('Markdown', () => {
+  class TestWrapper extends PureComponent {
+    render() {
+      return <Markdown {...this.props} />;
+    }
+  }
   let markdown;
 
   beforeEach(() => {
-    markdown = TestUtils.renderIntoDocument(<Markdown />);
+    markdown = TestUtils.renderIntoDocument(<TestWrapper />);
   });
 
   it('exists', () => {
     expect(markdown).to.be.ok;
-  });
-
-  it('#getDefaultProps', () => {
-    expect(Markdown.defaultProps).to.deep.equal({
-      tag: 'div',
-      components: null,
-      content: '',
-      debug: false,
-      inline: false,
-      project: null,
-      settings: {},
-      baseURI: null,
-      className: '',
-      relNofollow: false,
-      idPrefix: null
-    });
   });
 
   describe('#render', () => {
@@ -35,7 +23,7 @@ describe('Markdown', () => {
     let md;
 
     before(() => {
-      editor = createElement(Markdown, {
+      editor = createElement(TestWrapper, {
         className: 'MyComponent',
         tag: 'div',
         transform: (html => html.replace('foo', 'bar'))
@@ -49,17 +37,14 @@ describe('Markdown', () => {
       expect(markdownDiv.innerHTML).to.equal('<p>Test children bar</p>\n');
     });
 
-    it('calls getHtml in render', () => {
-      const getHtmlSpy = spy.on(utils, 'getHtml');
-      md.render();
-      expect(getHtmlSpy).to.have.been.called();
-    });
-
     it('returns a react component, with customizable tag', () => {
-      const ed = createElement(Markdown, { className: 'PMarkdown', tag: 'p' }, 'Test p tag');
+      const ed = createElement(TestWrapper, { className: 'PMarkdown', tag: 'p', inline: true }, 'Test p tag');
       const mdEditor = TestUtils.renderIntoDocument(ed);
       const renderValue = mdEditor.render();
-      expect(renderValue.type).to.equal('p');
+      expect(renderValue.type).to.equal(Markdown);
+      const markdownP = TestUtils.findRenderedDOMComponentWithTag(mdEditor, 'p');
+      expect(markdownP.getAttribute('class')).to.equal('markdown PMarkdown');
+      expect(markdownP.innerHTML).to.equal('Test p tag');
     });
   });
 });

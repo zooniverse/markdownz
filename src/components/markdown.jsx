@@ -1,13 +1,30 @@
-import { PureComponent } from 'react';
+import { useRef } from 'react';
 
 import * as utils from '../lib/utils';
+import replaceSymbols from '../lib/default-transformer';
 
-export default class Markdown extends PureComponent {
+export default function Markdown({
+  baseURI = null,
+  className = '',
+  children,
+  components = null,
+  content = '',
+  debug = false,
+  idPrefix = null,
+  inline = false,
+  project = null,
+  relNoFollow = false,
+  settings = {},
+  tag = 'div',
+  transform = replaceSymbols
+}) {
+  const Tag = tag;
+  const root = useRef();
 
-  captureFootnoteLinks() {
+  function captureFootnoteLinks() {
     const backrefs = '.footnote-ref > a, .footnote-backref';
-    if (this.root && this.root.querySelectorAll) {
-      const links = this.root.querySelectorAll(backrefs);
+    if (root.current && root.current.querySelectorAll) {
+      const links = root.current.querySelectorAll(backrefs);
 
       for (let i = 0; i < links.length; i += 1) {
         const link = links[i];
@@ -20,44 +37,33 @@ export default class Markdown extends PureComponent {
     }
   }
 
-  render() {
-    const { className, children, components, content, settings, tag: Tag, ...props } = this.props;
-    const html = utils.getHtml({
-      ...props,
-      content: children || content
-    });
+  const html = utils.getHtml({
+    baseURI,
+    content: children || content,
+    debug,
+    idPrefix,
+    inline,
+    project,
+    relNoFollow,
+    transform
+  });
 
-    const reactChildren = utils.getComponentTree({
-      components,
-      html,
-      settings
-    });
+  const reactChildren = utils.getComponentTree({
+    components,
+    html,
+    settings
+  });
 
-    setTimeout(() => this.captureFootnoteLinks(), 1);
+  setTimeout(captureFootnoteLinks, 1);
 
-    return (
-      <Tag
-        ref={(element) => { this.root = element; }}
-        className={`markdown ${className}`}
-      >
-        {reactChildren}
-      </Tag>
-    );
-  }
+  return (
+    <Tag
+      ref={root}
+      className={`markdown ${className}`}
+    >
+      {reactChildren}
+    </Tag>
+  );
 }
 
 Markdown.counter = 0;
-
-Markdown.defaultProps = {
-  tag: 'div',
-  components: null,
-  content: '',
-  debug: false,
-  inline: false,
-  project: null,
-  settings: {},
-  baseURI: null,
-  className: '',
-  relNofollow: false,
-  idPrefix: null
-};
