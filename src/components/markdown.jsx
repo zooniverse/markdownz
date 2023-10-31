@@ -1,4 +1,4 @@
-import { PureComponent, createElement } from 'react';
+import { PureComponent } from 'react';
 
 import * as utils from '../lib/utils';
 
@@ -21,13 +21,13 @@ export default class Markdown extends PureComponent {
   }
 
   render() {
-    const { className, children, components, content, settings, tag, ...props } = this.props;
+    const { className, children, components, content, settings, tag: Tag, ...props } = this.props;
     const html = utils.getHtml({
       ...props,
       content: children || content
     });
 
-    const parsedHTML = utils.getComponentTree({
+    const reactChildren = utils.getComponentTree({
       components,
       html,
       settings
@@ -35,11 +35,14 @@ export default class Markdown extends PureComponent {
 
     setTimeout(() => this.captureFootnoteLinks(), 1);
 
-    return createElement(tag, {
-      className: `markdown ${className}`,
-      children: parsedHTML,
-      ref: (element) => { this.root = element; }
-    });
+    return (
+      <Tag
+        ref={(element) => { this.root = element; }}
+        className={`markdown ${className}`}
+      >
+        {reactChildren}
+      </Tag>
+    );
   }
 }
 
