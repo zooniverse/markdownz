@@ -1,5 +1,17 @@
 # Changelog
 
+## [v9.1.4](https://github.com/zooniverse/markdownz/tree/v9.1.4) (2023-11-06)
+Dependency updates.
+
+* Bump eslint-plugin-jsx-a11y from 6.7.1 to 6.8.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/220
+* Run CI on Node 20 by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/222
+* Bump chai-spies from 1.0.0 to 1.1.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/221
+* Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/zooniverse/markdownz/pull/224
+* Bump actions/setup-node from 3 to 4 by @dependabot in https://github.com/zooniverse/markdownz/pull/225
+* Bump eslint from 8.52.0 to 8.53.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/223
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.3...v9.1.4
+
 ## [v9.1.3](https://github.com/zooniverse/markdownz/tree/v9.1.3) (2023-10-31)
 Bugfix: handle null values as empty strings.
 
