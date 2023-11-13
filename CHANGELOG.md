@@ -1,5 +1,16 @@
 # Changelog
 
+## [v9.1.5](https://github.com/zooniverse/markdownz/tree/v9.1.5) (2023-11-13)
+Dependency updates.
+
+## What's Changed
+* Bump @babel/core from 7.23.2 to 7.23.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/226
+* Bump @babel/preset-env from 7.23.2 to 7.23.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/228
+* Bump @babel/preset-react from 7.22.15 to 7.23.3 by @dependabot in https://github.com/zooniverse/markdownz/pull/227
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.4...v9.1.5
+
 ## [v9.1.4](https://github.com/zooniverse/markdownz/tree/v9.1.4) (2023-11-06)
 Dependency updates.
 
