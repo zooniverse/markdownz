@@ -1,6 +1,6 @@
 {
   "name": "markdownz",
-  "version": "9.1.4",
+  "version": "9.1.5",
   "description": "Markdown viewer and editor for the Zooniverse",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
