@@ -125,6 +125,12 @@ TODO: Document custom extensions.
 
 See [CONTRIBUTING.md](https://github.com/zooniverse/markdownz/tree/master/CONTRIBUTING.md)
 
+## Publishing
+
+1. Add the new version to the changelog.
+2. `npm version major|minor|patch` to test, build, push and publish a new version tag. https://github.com/zooniverse/markdownz/blob/a28604159282a20530c5e88625e0f4823485fa60/package.json#L17-L20
+3. Publish a new tagged release on GitHub.
+
 ## License
 
 Copyright 2015 by The Zooniverse. Licensed under the Apache Public License v2. See [LICENSE](https://github.com/zooniverse/markdownz/tree/master/LICENSE) for details.
