@@ -74,7 +74,7 @@
     "markdown-it-sup": "~1.0.0",
     "markdown-it-table-of-contents": "~0.6.0",
     "markdown-it-video": "~0.6.3",
-    "rehype": "~11.0.0",
+    "rehype": "~13.0.1",
     "rehype-react": "~6.2.1"
   },
   "overrides": {
