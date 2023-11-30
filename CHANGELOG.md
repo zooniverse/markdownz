@@ -1,5 +1,16 @@
 # Changelog
 
+## [v9.1.6](https://github.com/zooniverse/markdownz/tree/v9.1.6) (2023-11-30)
+Dependency updates.
+
+## What's Changed
+* Bump eslint from 8.53.0 to 8.54.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/229
+* Bump jsdom from 22.1.0 to 23.0.0 by @dependabot in https://github.com/zooniverse/markdownz/pull/230
+* Bump @babel/cli from 7.23.0 to 7.23.4 by @dependabot in https://github.com/zooniverse/markdownz/pull/231
+
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.5...v9.1.6
+
 ## [v9.1.5](https://github.com/zooniverse/markdownz/tree/v9.1.5) (2023-11-13)
 Dependency updates.
 
