@@ -61,7 +61,7 @@
     "react-test-renderer": "~16.14"
   },
   "dependencies": {
-    "@twemoji/api": "~14.1.0",
+    "@twemoji/api": "~15.0.3",
     "isomorphic-dompurify": "~1.12.0",
     "markdown-it": "~13.0.1",
     "markdown-it-anchor": "~8.6.5",
