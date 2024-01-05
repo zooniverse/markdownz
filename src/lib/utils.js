@@ -1,6 +1,6 @@
 import MarkdownIt from 'markdown-it';
 import MarkdownItContainer from 'markdown-it-container';
-import markdownEmoji from 'markdown-it-emoji';
+import { full as markdownEmoji } from 'markdown-it-emoji';
 import markdownSub from 'markdown-it-sub';
 import markdownSup from 'markdown-it-sup';
 import markdownFootnote from 'markdown-it-footnote';
@@ -118,5 +118,5 @@ export function getComponentTree({ html, settings, components }) {
   } catch (error) {
     parsedHTML = error.message;
   }
-  return parsedHTML
+  return parsedHTML;
 }

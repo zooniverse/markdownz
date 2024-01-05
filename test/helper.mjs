@@ -1,20 +1,20 @@
 import React from 'react';
-import chai from 'chai';
-import spy from 'chai-spies';
+import { expect, use } from 'chai';
+import spies from 'chai-spies';
 import MarkdownIt from 'markdown-it';
 import jsdom from 'jsdom';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 
+const { spy } = use(spies);
+
 Enzyme.configure({
   adapter: new Adapter()
 });
 
-chai.use(spy);
-
 global.React = React;
-global.expect = chai.expect;
-global.spy = chai.spy;
+global.expect = expect;
+global.spy = spy;
 global.MarkdownIt = MarkdownIt;
 
 const { JSDOM } = jsdom;
