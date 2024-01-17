@@ -93,7 +93,33 @@ describe('useMarkdownz', () => {
     expect(markdownDiv.innerHTML).to.equal('<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.example.com">Test</a>');
   });
 
-  it('embeds YoutTube videos with modified image syntax', function () {
+  it('embeds HTML5 video with modified image syntax', function () {
+    const md = TestUtils.renderIntoDocument(
+      <TestComponent inline>
+        ![This is a video file.](https://panoptes-uploads.zooniverse.org/someVideo.mp4)
+      </TestComponent>
+    );
+    const markdownDiv = TestUtils.findRenderedDOMComponentWithClass(md, 'testStub');
+    expect(markdownDiv.innerHTML).to.equal(`<video preload="metadata" controls="">
+<source src="https://panoptes-uploads.zooniverse.org/someVideo.mp4" type="video/mp4">
+Your browser does not support playing HTML5 video. You can <a download="" href="https://panoptes-uploads.zooniverse.org/someVideo.mp4">download a copy of the video file</a> instead.
+</video>`);
+  });
+
+  it('embeds HTML5 audio with modified image syntax', function () {
+    const md = TestUtils.renderIntoDocument(
+      <TestComponent inline>
+        ![This is an audio file.](https://panoptes-uploads.zooniverse.org/someAudio.mp3)
+      </TestComponent>
+    );
+    const markdownDiv = TestUtils.findRenderedDOMComponentWithClass(md, 'testStub');
+    expect(markdownDiv.innerHTML).to.equal(`<audio preload="metadata" controls="">
+<source src="https://panoptes-uploads.zooniverse.org/someAudio.mp3" type="audio/mpeg">
+Your browser does not support playing HTML5 audio. You can <a download="" href="https://panoptes-uploads.zooniverse.org/someAudio.mp3">download a copy of the audio file</a> instead.
+</audio>`);
+  });
+
+  it('embeds YouTube videos with modified image syntax', function () {
     const md = TestUtils.renderIntoDocument(
       <TestComponent inline>
         @[youtube](dQw4w9WgXcQ)

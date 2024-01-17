@@ -42,9 +42,25 @@ describe('Utilities', () => {
         expect(html).to.equal('<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.example.com">Test</a>');
     });
 
-    it('embeds YoutTube videos with modified image syntax', function () {
+    it('embeds HTML5 video with modified image syntax', function () {
+      const html = utils.getHtml({ content: '![This is a video file.](https://panoptes-uploads.zooniverse.org/someVideo.mp4)', inline: true });
+      expect(html).to.equal(`<video preload="metadata" controls="">
+<source src="https://panoptes-uploads.zooniverse.org/someVideo.mp4" type="video/mp4">
+Your browser does not support playing HTML5 video. You can <a download="" href="https://panoptes-uploads.zooniverse.org/someVideo.mp4">download a copy of the video file</a> instead.
+</video>`);
+    });
+
+    it('embeds HTML5 audio with modified image syntax', function () {
+      const html = utils.getHtml({ content: '![This is an audio file.](https://panoptes-uploads.zooniverse.org/someAudio.mp3)', inline: true });
+      expect(html).to.equal(`<audio preload="metadata" controls="">
+<source src="https://panoptes-uploads.zooniverse.org/someAudio.mp3" type="audio/mpeg">
+Your browser does not support playing HTML5 audio. You can <a download="" href="https://panoptes-uploads.zooniverse.org/someAudio.mp3">download a copy of the audio file</a> instead.
+</audio>`);
+    });
+
+    it('embeds YouTube videos with modified image syntax', function () {
       const html = utils.getHtml({ content: '@[youtube](dQw4w9WgXcQ)', inline: true });
-        expect(html).to.equal('<div class="embed-responsive embed-responsive-16by9"><iframe allowfullscreen="" src="https://www.youtube.com/embed/dQw4w9WgXcQ" height="390" width="640" type="text/html" class="embed-responsive-item youtube-player"></iframe></div>');
+      expect(html).to.equal('<div class="embed-responsive embed-responsive-16by9"><iframe allowfullscreen="" src="https://www.youtube.com/embed/dQw4w9WgXcQ" height="390" width="640" type="text/html" class="embed-responsive-item youtube-player"></iframe></div>');
     });
   });
 });
