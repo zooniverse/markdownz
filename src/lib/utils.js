@@ -12,7 +12,7 @@ import twemoji from '@twemoji/api';
 import { sanitize } from 'isomorphic-dompurify';
 
 import { Fragment, createElement } from 'react';
-import rehype from 'rehype';
+import rehypeDom from 'rehype-dom';
 import rehype2react from 'rehype-react';
 
 import html5Embed from './html5-embed';
@@ -21,6 +21,11 @@ import relNofollow from './links-rel-nofollow';
 import replaceSymbols from './default-transformer';
 
 let counter = 0;
+let rehypeParser = rehypeDom;
+
+if (typeof window === 'undefined') {
+  rehypeParser = require('rehype');
+}
 
 export function emojify(input) {
   return twemoji.parse(input);
@@ -107,7 +112,7 @@ export function getComponentTree({ html, settings, components }) {
 
   let parsedHTML = null;
   try {
-    parsedHTML = rehype()
+    parsedHTML = rehypeParser()
       .data('settings', rehypeSettings)
       .use(rehype2react, {
         Fragment,
