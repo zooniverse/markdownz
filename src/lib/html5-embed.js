@@ -202,85 +202,87 @@ function translate(messageObj) {
   return rv;
 }
 
-module.exports = function html5_embed_plugin(md, options) {
-  var gstate;
-  var defaults = {
-    attributes: {
-      audio: 'controls preload="metadata"',
-      video: 'controls preload="metadata"'
-    },
-    useImageSyntax: true,
-    inline: true,
-    autoAppend: false,
-    embedPlaceDirectiveRegexp: /^\[\[html5media\]\]/im,
-    messages: messages
-  };
-  var options = md.utils.assign({}, defaults, options.html5embed);
+module.exports = {
+  html5_embed_plugin(md, options) {
+    var gstate;
+    var defaults = {
+      attributes: {
+        audio: 'controls preload="metadata"',
+        video: 'controls preload="metadata"'
+      },
+      useImageSyntax: true,
+      inline: true,
+      autoAppend: false,
+      embedPlaceDirectiveRegexp: /^\[\[html5media\]\]/im,
+      messages: messages
+    };
+    var options = md.utils.assign({}, defaults, options.html5embed);
 
-  if (!options.inline) {
-    md.block.ruler.before("paragraph", "html5embed", function(state, startLine, endLine, silent) {
-      return findDirective(state, startLine, endLine, silent, options.embedPlaceDirectiveRegexp, function() {
-        return state.push("html5media", "html5media", 0);
+    if (!options.inline) {
+      md.block.ruler.before("paragraph", "html5embed", function(state, startLine, endLine, silent) {
+        return findDirective(state, startLine, endLine, silent, options.embedPlaceDirectiveRegexp, function() {
+          return state.push("html5media", "html5media", 0);
+        });
       });
-    });
 
-    md.renderer.rules.html5media = function(tokens, index, _, env) {
-      var result = "";
-      forEachLinkOpen(gstate, function(tokens, idx) {
-        var parsed = parseToken(tokens, idx, env);
+      md.renderer.rules.html5media = function(tokens, index, _, env) {
+        var result = "";
+        forEachLinkOpen(gstate, function(tokens, idx) {
+          var parsed = parseToken(tokens, idx, env);
 
-        if (!isAllowedToEmbed(parsed, options)) {
-          return;
+          if (!isAllowedToEmbed(parsed, options)) {
+            return;
+          }
+
+          result += renderMediaEmbed(parsed, options.attributes);
+        });
+        if (result.length) {
+          result += "\n";
         }
+        return result;
+      };
 
-        result += renderMediaEmbed(parsed, options.attributes);
+      // Catch all the tokens for iteration later
+      md.core.ruler.push("grab_state", function(state) {
+        gstate = state;
+
+        if (options.autoAppend) {
+          var token = new state.Token("html5media", "", 0);
+          state.tokens.push(token);
+        }
       });
-      if (result.length) {
-        result += "\n";
-      }
-      return result;
-    };
-
-    // Catch all the tokens for iteration later
-    md.core.ruler.push("grab_state", function(state) {
-      gstate = state;
-
-      if (options.autoAppend) {
-        var token = new state.Token("html5media", "", 0);
-        state.tokens.push(token);
-      }
-    });
-  }
-
-  if (typeof options.isAllowedMimeType === "undefined") {
-    options.isAllowedMimeType = options.is_allowed_mime_type;
-  }
-
-  if (options.inline && options.useImageSyntax) {
-    var defaultRender = md.renderer.rules.image;
-    md.renderer.rules.image = function(tokens, idx, opt, env, self) {
-      opt.html5embed = options;
-      return html5EmbedRenderer(tokens, idx, opt, env, self, defaultRender);
     }
-  }
 
-  if (options.inline && options.useLinkSyntax) {
-    var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
-      return self.renderToken(tokens, idx, options);
-    };
-    md.renderer.rules.link_open = function(tokens, idx, opt, env, self) {
-      opt.html5embed = options;
-      return html5EmbedRenderer(tokens, idx, opt, env, self, defaultRender);
-    };
-  }
+    if (typeof options.isAllowedMimeType === "undefined") {
+      options.isAllowedMimeType = options.is_allowed_mime_type;
+    }
 
-  // options.messages will be set to built-in messages at the beginning of this
-  // file if not configured
-  translate = typeof options.translateFn == 'function' ?
-    options.translateFn.bind(options.messages) :
-    translate.bind(options.messages);
+    if (options.inline && options.useImageSyntax) {
+      var defaultRender = md.renderer.rules.image;
+      md.renderer.rules.image = function(tokens, idx, opt, env, self) {
+        opt.html5embed = options;
+        return html5EmbedRenderer(tokens, idx, opt, env, self, defaultRender);
+      }
+    }
 
-  if (typeof options.renderFn == 'function') {
-    renderMediaEmbed = options.renderFn;
+    if (options.inline && options.useLinkSyntax) {
+      var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
+      md.renderer.rules.link_open = function(tokens, idx, opt, env, self) {
+        opt.html5embed = options;
+        return html5EmbedRenderer(tokens, idx, opt, env, self, defaultRender);
+      };
+    }
+
+    // options.messages will be set to built-in messages at the beginning of this
+    // file if not configured
+    translate = typeof options.translateFn == 'function' ?
+      options.translateFn.bind(options.messages) :
+      translate.bind(options.messages);
+
+    if (typeof options.renderFn == 'function') {
+      renderMediaEmbed = options.renderFn;
+    }
   }
 };
