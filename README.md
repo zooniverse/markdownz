@@ -127,9 +127,15 @@ See [CONTRIBUTING.md](https://github.com/zooniverse/markdownz/tree/master/CONTRI
 
 ## Publishing
 
-1. Add the new version to the changelog.
-2. `npm version major|minor|patch` to test, build, push and publish a new version tag. https://github.com/zooniverse/markdownz/blob/a28604159282a20530c5e88625e0f4823485fa60/package.json#L17-L20
-3. Publish a new tagged release on GitHub.
+1. Create a new branch for the new version.
+2. Add the new version to the changelog with summary of changes.
+3. Update package.json and package-lock.json with the new version number (manually or with `npm --no-git-tag-version version [major|minor|patch]`).
+4. Commit and push the changes to GitHub. Create a pull request, optionally have it reviewed, and merge it.
+5. Using GitHub's web interface, create a new tag and release with the new version number and summary of changes.
+6. Pull the new version of the package locally.
+7. To clear any prior build (`./lib`), run tests, and create a fresh build, run `"rm -rf lib && npm test && npm run build"`.
+8. Run `npm publish --dry-run` to check that the package is ready to publish.
+9. Run `npm publish` to publish the new version to npm.
 
 ## License
 
