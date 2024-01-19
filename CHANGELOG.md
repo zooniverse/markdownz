@@ -1,5 +1,14 @@
 # Changelog
 
+## [v9.1.7](https://github.com/zooniverse/markdownz/tree/v9.1.7) (2024-01-18)
+Dependency updates. Remove `markdown-it-html5-embed` and replace it with `lib/html5-embed`. Update tests.
+
+## What's Changed
+* Upgrade markdown-it (and plugins) to ESM (with CJS fallbacks) by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/237
+* [Security] Remove markdown-it-html5-embed by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/245
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.6...v9.1.7
+
 ## [v9.1.6](https://github.com/zooniverse/markdownz/tree/v9.1.6) (2023-11-30)
 Dependency updates.
 
