@@ -11,6 +11,8 @@ export default class MarkdownEditor extends React.Component {
     this.state = {
       previewing: false
     };
+    this.onPaste = this.onPaste.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
   onInsertLinkClick() {
@@ -19,6 +21,25 @@ export default class MarkdownEditor extends React.Component {
 
   get value() {
     return this.textarea.value;
+  }
+
+  onPaste(e) {
+    const clipboardData = e.clipboardData || window.clipboardData;
+    const pastedData = clipboardData.getData('Text');
+    const textarea = this.textarea;
+    const selection = md.getSelection(textarea);
+    if (
+      pastedData.startsWith('http') &&
+      selection &&
+      !selection.startsWith('http')
+    ) {
+      e.preventDefault();
+      const { text, cursor } = md.hrefLink(selection, pastedData);
+      md.insertAtCursor(text, textarea, cursor);
+      this.onInputChange();
+      return false;
+    }
+    return true;
   }
 
   onInsertImageClick() {
@@ -268,7 +289,8 @@ export default class MarkdownEditor extends React.Component {
             value={this.props.value}
             rows={this.props.rows}
             cols={this.props.cols}
-            onChange={(e) => this.onInputChange(e)}
+            onChange={this.onInputChange}
+            onPaste={this.onPaste}
           />
 
           <Markdown
