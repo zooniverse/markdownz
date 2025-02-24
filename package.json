@@ -60,7 +60,7 @@
   "dependencies": {
     "@twemoji/api": "~15.0.3",
     "isomorphic-dompurify": "~2.22.0",
-    "markdown-it": "~14.0.0",
+    "markdown-it": "~14.1.0",
     "markdown-it-anchor": "~8.6.5",
     "markdown-it-container": "~4.0.0",
     "markdown-it-emoji": "~3.0.0",
