@@ -1,5 +1,14 @@
 # Changelog
 
+## [v9.1.8](https://github.com/zooniverse/markdownz/tree/v9.1.8) (2025-03-05)
+Dependency and documentation updates.
+
+## What's Changed
+* Update README and package.json publishing steps by @mcbouslog https://github.com/zooniverse/markdownz/pull/250
+* Update dependencies - Feb 2025 edition by @shaunanoordin https://github.com/zooniverse/markdownz/pull/263
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.7...v9.1.8
+
 ## [v9.1.7](https://github.com/zooniverse/markdownz/tree/v9.1.7) (2024-01-18)
 Dependency updates. Remove `markdown-it-html5-embed` and replace it with `lib/html5-embed`. Update tests.
 
