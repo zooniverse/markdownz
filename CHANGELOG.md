@@ -1,5 +1,13 @@
 # Changelog
 
+## [v9.1.9](https://github.com/zooniverse/markdownz/tree/v9.1.9) (2025-03-11)
+Dependency updates.
+
+## What's Changed
+* build(deps): update outdated dependencies by @eatyourgreens in https://github.com/zooniverse/markdownz/pull/255
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.8...v9.1.9
+
 ## [v9.1.8](https://github.com/zooniverse/markdownz/tree/v9.1.8) (2025-03-05)
 Dependency and documentation updates.
 
