@@ -53,7 +53,7 @@
     "jsdom": "~26.0.0",
     "mocha": "~11.1.0",
     "prop-types": "~15.8.1",
-    "react": "~16.14",
+    "react": "~19.1",
     "react-dom": "~16.14",
     "react-test-renderer": "~16.14"
   },
