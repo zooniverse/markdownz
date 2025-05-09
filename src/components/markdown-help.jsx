@@ -208,7 +208,7 @@ const MarkdownHelp = ({ title, talk }) => {
             <td>Image</td>
             <td>
               ![imagealttext](https://via.placeholder.com/350x350)<br />
-              <em>images must already be uploaded; use <a href="http://imgur.com/" rel="noopener noreferrer" target="_blank">imgur</a> to host new images</em>
+              <em>Images must already be uploaded. For new images, you need to find a suitable image hosting service.</em>
             </td>
             <td>
               <Markdown>![imagealttext](https://via.placeholder.com/350x350)</Markdown>
