@@ -59,7 +59,7 @@
     "prop-types": "~15.8.1",
     "react": "~16.14",
     "react-dom": "~16.14",
-    "react-test-renderer": "~16.14"
+    "react-test-renderer": "~19.1"
   },
   "dependencies": {
     "@twemoji/api": "~15.1.0",
