@@ -1,5 +1,14 @@
 # Changelog
 
+## [v9.2.0](https://github.com/zooniverse/markdownz/tree/v9.1.9) (2025-05-09)
+Update Markdown Help, specifically in regards to Images. Repo now uses Node.js v20.18, since v20.19 adds breaking changes.
+
+## What's Changed
+* CI: pin to Node v20.18 by @shaunanoordin in https://github.com/zooniverse/markdownz/pull/285
+* Markdown Help: remove bad Imgur note, replace broken example images by @shaunanoordin in https://github.com/zooniverse/markdownz/pull/284
+
+**Full Changelog**: https://github.com/zooniverse/markdownz/compare/v9.1.9...v9.2.0
+
 ## [v9.1.9](https://github.com/zooniverse/markdownz/tree/v9.1.9) (2025-03-11)
 Dependency updates.
 
