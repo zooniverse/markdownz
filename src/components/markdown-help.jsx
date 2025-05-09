@@ -207,22 +207,22 @@ const MarkdownHelp = ({ title, talk }) => {
           <tr>
             <td>Image</td>
             <td>
-              ![imagealttext](https://via.placeholder.com/350x350)<br />
-              <em>images must already be uploaded; use <a href="http://imgur.com/" rel="noopener noreferrer" target="_blank">imgur</a> to host new images</em>
+              ![description of image](https://static.zooniverse.org/pfe-assets/simple-avatar.png)<br />
+              <em>Images must already be uploaded. For new images, you need to find a suitable image hosting service.</em>
             </td>
             <td>
-              <Markdown>![imagealttext](https://via.placeholder.com/350x350)</Markdown>
+              <Markdown>![description of image](https://static.zooniverse.org/pfe-assets/simple-avatar.png)</Markdown>
             </td>
           </tr>
           <tr>
             <td>Resized Image</td>
             <td>
-              ![imagealttext](https://via.placeholder.com/350x350 =MxN)<br />
+              ![description of image](https://static.zooniverse.org/pfe-assets/simple-avatar.png =MxN)<br />
               <em>M is width in pixels, N is height in pixels</em><br />
               <em>constrain by omitting one value, e.g.: =75x or =x75</em>
             </td>
             <td>
-              <Markdown>![imagealttext](https://via.placeholder.com/350x350 =75x75)</Markdown><br />
+              <Markdown>![description of image](https://static.zooniverse.org/pfe-assets/simple-avatar.png =75x75)</Markdown><br />
               sample set @ 75x75
             </td>
           </tr>
