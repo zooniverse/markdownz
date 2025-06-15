@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import * as utils from '../lib/utils';
-import replaceSymbols from '../lib/default-transformer';
+import * as utils from '../lib/utils.js';
+import replaceSymbols from '../lib/default-transformer.js';
 
 const defaultSettings = {};
 

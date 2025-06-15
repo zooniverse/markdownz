@@ -2,7 +2,7 @@
   A fork of markdown-it-html5-embed, replacing mimosa with mime/lite, to look up
   the MIME type of image URLs.
 */
-import mime from 'mime/lite';
+import mime from 'mime/lite.js';
 
 // Default UI messages. You can customize and add simple translations via
 // options.messages. The language has to be provided via the markdown-it

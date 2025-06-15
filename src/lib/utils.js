@@ -15,10 +15,10 @@ import { Fragment, createElement } from 'react';
 import rehype from 'rehype';
 import rehype2react from 'rehype-react';
 
-import html5Embed from './html5-embed';
-import markdownNewTab from './links-in-new-tabs';
-import relNofollow from './links-rel-nofollow';
-import replaceSymbols from './default-transformer';
+import html5Embed from './html5-embed.js';
+import markdownNewTab from './links-in-new-tabs.js';
+import relNofollow from './links-rel-nofollow.js';
+import replaceSymbols from './default-transformer.js';
 
 let counter = 0;
 

@@ -20,7 +20,7 @@ function onNewLine(string, cursorIndex) {
   return (charAtCursor === '\n') || (cursorIndex === 0);
 }
 
-module.exports = {
+export default {
   hrefLink(title, url) {
     const linkTitle = title || 'Example Text';
     const linkUrl = url || 'https://www.example.com';
