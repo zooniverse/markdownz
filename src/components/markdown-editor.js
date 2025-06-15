@@ -1,7 +1,7 @@
 import React from 'react';
-import Markdown from './markdown';
-import md from '../lib/markdown-insert';
-import replaceSymbols from '../lib/default-transformer';
+import Markdown from './markdown.js';
+import md from '../lib/markdown-insert.js';
+import replaceSymbols from '../lib/default-transformer.js';
 
 const NOOP = Function.prototype;
 

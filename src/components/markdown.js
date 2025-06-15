@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useRef } from 'react';
 
-import useMarkdownz from '../hooks/use-markdownz';
-import replaceSymbols from '../lib/default-transformer';
+import useMarkdownz from '../hooks/use-markdownz.js';
+import replaceSymbols from '../lib/default-transformer.js';
 
 const defaultSettings = {};
 

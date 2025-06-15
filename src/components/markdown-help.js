@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from './markdown';
+import Markdown from './markdown.js';
 
 const TalkMarkdownHelp = () =>
   (<table>
