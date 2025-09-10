@@ -1,6 +1,13 @@
 # Changelog
 
-## [v9.2.0](https://github.com/zooniverse/markdownz/tree/v9.1.9) (2025-05-09)
+## [v9.3.0](https://github.com/zooniverse/markdownz/tree/v9.3.0) (2025-09-10)
+Repo now uses Node.js v20.19+.
+
+## What's Changed
+* Add missing `type: commonjs` to package.json.
+* add an empty package.json (untyped) to the ESM build.
+
+## [v9.2.0](https://github.com/zooniverse/markdownz/tree/v9.2.0) (2025-05-09)
 Update Markdown Help, specifically in regards to Images. Repo now uses Node.js v20.18, since v20.19 adds breaking changes.
 
 ## What's Changed
