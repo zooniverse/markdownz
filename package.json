@@ -2,6 +2,7 @@
   "name": "markdownz",
   "version": "9.2.0",
   "description": "Markdown viewer and editor for the Zooniverse",
+  "type": "commonjs",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "sideEffects": false,
@@ -11,7 +12,7 @@
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "babel src --out-dir lib/cjs",
-    "build:esm": "BABEL_ENV=es6 babel src --out-dir lib/esm",
+    "build:esm": "BABEL_ENV=es6 babel src --out-dir lib/esm && echo '{}' > lib/esm/package.json",
     "lint": "eslint src",
     "test": "mocha --require @babel/register test/helper.mjs test/*-test.js*",
     "prepare": "npm run build"
@@ -30,10 +31,6 @@
     "url": "https://github.com/zooniverse/markdownz/issues"
   },
   "homepage": "https://github.com/zooniverse/markdownz#readme",
-  "engines": {
-    "node": ">=20.5 <=20.18",
-    "npm": ">=10"
-  },
   "peerDependencies": {
     "react": ">= 16.14",
     "react-dom": ">= 16.14"

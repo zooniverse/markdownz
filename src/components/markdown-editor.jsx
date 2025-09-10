@@ -1,11 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import Markdown from './markdown';
 import md from '../lib/markdown-insert';
 import replaceSymbols from '../lib/default-transformer';
 
 const NOOP = Function.prototype;
 
-export default class MarkdownEditor extends React.Component {
+export default class MarkdownEditor extends Component {
   constructor(...args) {
     super(...args);
     this.state = {

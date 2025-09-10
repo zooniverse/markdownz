@@ -13,5 +13,8 @@ module.exports = {
   "env": {
     "browser": true,
     "mocha": true
-  }
+  },
+  "ignorePatterns": [
+    "html5-embed.js",
+  ]
 };

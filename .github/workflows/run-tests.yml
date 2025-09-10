@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 20 (v20.18, not v20.19 nor lts/iron)
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20.18'
+          node-version: 'lts/iron'
           cache: 'npm'
       - run: npm ci
       - run: npm test
@@ -24,7 +24,7 @@ jobs:
     needs: test
     with:
       commit_id: ${{ github.sha }}
-      node_version: '20.18'
+      node_version: 'lts/iron'
       output: 'lib'
       script: 'build'
   slack_notifiaction:
