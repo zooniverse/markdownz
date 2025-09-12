@@ -1,5 +1,11 @@
 # Changelog
 
+## [v9.3.1](https://github.com/zooniverse/markdownz/tree/v9.3.0) (2025-09-12)
+
+## What's Changed
+* Bump `isomorphic-dompurify` to latest.
+* Remove unused travis.yml file.
+
 ## [v9.3.0](https://github.com/zooniverse/markdownz/tree/v9.3.0) (2025-09-10)
 Repo now uses Node.js v20.19+.
 
