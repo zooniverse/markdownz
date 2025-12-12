@@ -13,7 +13,7 @@ export default function defaultTransformer(input, { project, baseURI }) {
     [owner, name] = project.slug.split('/');
   }
 
-  const replaceProjectSubjects = `[Subject $4](${prefix}/projects/$2/$3/talk/subjects/$4)`;
+  const replaceProjectSubjects = `[Subject $4](https://www.zooniverse.org/projects/$2/$3/talk/subjects/$4)`;
 
   function replaceTags(fullTag, separator, tagName) {
     if (owner && name) {
@@ -32,7 +32,7 @@ export default function defaultTransformer(input, { project, baseURI }) {
   function replaceSubjects(_, seperator, subjectID) {
     if (owner && name) {
       const text = `Subject ${subjectID}`;
-      const url = `${prefix}/projects/${owner}/${name}/talk/subjects/${subjectID}`;
+      const url = `https://www.zooniverse.org/projects/${owner}/${name}/talk/subjects/${subjectID}`;
       return `${seperator}[${text}](${url})`;
     }
     return subjectID;
