@@ -35,7 +35,7 @@ describe('default-transformer', () => {
   it('replaces ^S<subject_id> mentions with subject links', () => {
     project = { slug: 'test/project' };
     const subjectLink = replaceSymbols('^S123456', { project, baseURI });
-    expect(subjectLink).to.equal('[Subject 123456](/projects/test/project/talk/subjects/123456)');
+    expect(subjectLink).to.equal('[Subject 123456](https://www.zooniverse.org/projects/test/project/talk/subjects/123456)');
   });
 
   it('replaces project #hashtag mentions with project links', () => {
@@ -78,6 +78,6 @@ describe('default-transformer', () => {
   it('replaces @ownerslug/project-slug^S<subject_id> mentions with links', () => {
     const projectSubjectLink = replaceSymbols('@owner/project-d^S123456', { project, baseURI });
 
-    expect(projectSubjectLink).to.equal('[Subject 123456](/projects/owner/project-d/talk/subjects/123456)');
+    expect(projectSubjectLink).to.equal('[Subject 123456](https://www.zooniverse.org/projects/owner/project-d/talk/subjects/123456)');
   });
 });

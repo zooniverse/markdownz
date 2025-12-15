@@ -1,6 +1,11 @@
 # Changelog
 
-## [v9.3.1](https://github.com/zooniverse/markdownz/tree/v9.3.0) (2025-09-12)
+## [v9.4.0](https://github.com/zooniverse/markdownz/tree/v9.4.0) (2025-09-12)
+
+## What's Changed
+* Subject matcher: replace ^S with url containing https://www.zooniverse.org. This is to tell any links to the Subject Level Talk Page to hit the static proxy. No internal routing.
+
+## [v9.3.1](https://github.com/zooniverse/markdownz/tree/v9.3.1) (2025-09-12)
 
 ## What's Changed
 * Bump `isomorphic-dompurify` to latest.
