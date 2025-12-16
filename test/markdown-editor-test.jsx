@@ -15,7 +15,7 @@ describe('MarkdownEditor', () => {
   let editor;
 
   beforeEach(() => {
-    editor = shallow(<MarkdownEditor name="test" onChange={() => {}} />);
+    editor = mount(<MarkdownEditor name="test" onChange={() => {}} />);
   });
 
   it('exists', () => {
@@ -71,9 +71,53 @@ describe('MarkdownEditor', () => {
   describe('#onInputChange', () => {
     it('calls the props.onChange callback', () => {
       const changeSpy = spy.on(editor.instance(), 'onChange');
-      editor = shallow(<MarkdownEditor name="test" onChange={changeSpy} />);
+      editor = mount(<MarkdownEditor name="test" onChange={changeSpy} />);
       editor.instance().onInputChange({ target: { value: 'testVal' }});
       expect(changeSpy).to.have.been.called();
+    });
+  });
+
+  describe('#onPaste', () => {
+    context('when the clipboard contains a URL', () => {
+      it('calls the props.onChange callback', () => {
+        const changeSpy = spy.on(editor.instance(), 'onChange');
+        editor = mount(<MarkdownEditor name="test" onChange={changeSpy} />);
+        editor.instance().textarea = mockTextarea();
+        editor.instance().onPaste({
+          clipboardData: { getData: () => 'http://www.google.com' },
+          preventDefault: () => false
+        }); 
+        expect(changeSpy).to.have.been.called();
+      });
+
+      it('converts text selections into links', () => {
+        const changeSpy = spy.on(editor.instance(), 'onChange');
+        editor = mount(<MarkdownEditor name="test" onChange={changeSpy} />);
+        editor.instance().textarea = mockTextarea();
+        editor.instance().onPaste({
+          clipboardData: { getData: () => 'http://www.google.com' },
+          preventDefault: () => false
+        }); 
+        expect(editor.instance().textarea.value).to.equal(
+          'A [long\nbor](http://www.google.com)ing string that doesn\'t mean anything'
+        );
+      });
+    });
+
+    context('when the clipboard does not contain a URL', () => {
+      it('passes the event on to the default paste handler', () => {
+        const changeSpy = spy.on(editor.instance(), 'onChange');
+        editor = mount(<MarkdownEditor name="test" onChange={changeSpy} />);
+        editor.instance().textarea = mockTextarea();
+        editor.instance().onPaste({
+          clipboardData: { getData: () => 'some test value' },
+          preventDefault: () => false
+        }); 
+        expect(changeSpy).to.not.have.been.called();
+        expect(editor.instance().textarea.value).to.equal(
+          'A long\nboring string that doesn\'t mean anything'
+        );
+      });
     });
   });
 
@@ -92,7 +136,7 @@ describe('MarkdownEditor', () => {
 
   describe('#handlePreviewToggle', () => {
     it('should toggle the preview State', () => {
-      editor = shallow(<MarkdownEditor />);
+      editor = mount(<MarkdownEditor />);
       editor.setProps({ value: '##blah blash' });
       editor.instance().handlePreviewToggle();
       expect(editor.state('previewing')).to.be.true;
@@ -143,7 +187,7 @@ describe('MarkdownEditor', () => {
 
     context('when previewing is true', () => {
       beforeEach(() => {
-        editor = shallow(<MarkdownEditor previewing />);
+        editor = mount(<MarkdownEditor previewing />);
       });
 
       it('should set the preview icon to pencil', () => {
@@ -159,7 +203,7 @@ describe('MarkdownEditor', () => {
 
     context('when previewing is false', () => {
       beforeEach(() => {
-        editor = shallow(<MarkdownEditor previewing={false} />);
+        editor = mount(<MarkdownEditor previewing={false} />);
       });
 
       it('should set the preview icon to eye', () => {
@@ -187,7 +231,7 @@ describe('MarkdownEditor', () => {
         name: 'hey there'
       };
       const value = 'oh there';
-      editor = shallow(<MarkdownEditor {...properties} value={value} />);
+      editor = mount(<MarkdownEditor {...properties} value={value} />);
       const textarea = editor.render().find('textarea');
       Object.keys(properties).forEach((key) => {
         const val = properties[key];
